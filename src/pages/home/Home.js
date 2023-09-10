@@ -161,7 +161,7 @@ const Home = () => {
 
                 // So sánh hướng của người dùng và hướng đến mục tiêu
                 const angleDifference = Math.abs(heading - targetBearing);
-                if (angleDifference < 10 && dict < 0.01) {
+                if (angleDifference < 10 && dist < 0.01) {
                     alert(element.id);
                 }
             }
