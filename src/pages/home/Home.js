@@ -275,8 +275,8 @@ const mapStyles = {
 const Home = () => {
     const [currentPosition, setCurrentPosition] = useState(null);
     const [watchId, setWatchId] = useState(null);
-    const [targetLatitude, setTargetLatitude] = useState(10.76663582574768); // Thay thế bằng tọa độ GPS của mục tiêu
-    const [targetLongitude, setTargetLongitude] = useState(106.69544009294756); // Thay thế bằng tọa độ GPS của mục tiêu
+    const [targetLatitude, setTargetLatitude] = useState(10.7666587); // Thay thế bằng tọa độ GPS của mục tiêu
+    const [targetLongitude, setTargetLongitude] = useState(106.695266); // Thay thế bằng tọa độ GPS của mục tiêu
     const [distance, setDistance] = useState(null);
     const [bearing, setBearing] = useState(null);
 
@@ -467,11 +467,6 @@ const Home = () => {
             ) : (
                 <p>Đang lấy dữ liệu hướng đi...</p>
             )}
-            {/* <LoadScript googleMapsApiKey="AIzaSyARewUOnU_ihrOawcwjTS-G-EEJnTcVHRg">
-                <GoogleMap mapContainerStyle={mapStyles} center={currentPosition} zoom={15}>
-                    {currentPosition && <Marker position={currentPosition} />}
-                </GoogleMap>
-            </LoadScript> */}
             <GoogleMap
                 style={{ cursor: 'default !important' }}
                 mapContainerStyle={mapStyles}
@@ -490,10 +485,18 @@ const Home = () => {
                         strokeWeight: 1,
                     }}
                 />
-                {/* <Marker position={newGeocode} icon={customMarkerIcon} /> */}
+                <Marker
+                    position={{
+                        lat: targetLatitude,
+                        lng: targetLongitude,
+                    }}
+                    icon={{
+                        path: google.maps.SymbolPath.CIRCLE,
+                        scale: 8,
+                        strokeColor: '#393',
+                    }}
+                />
             </GoogleMap>
-
-            <button onClick={handleReGeolocation}>Định vị lại</button>
         </div>
     );
 };
