@@ -439,11 +439,21 @@ const Home = () => {
                 style={{ cursor: 'default !important' }}
                 mapContainerStyle={mapStyles}
                 center={currentPosition}
-                zoom={10}
+                zoom={100}
                 onLoad={onLoad}
                 onUnmount={onUnmount}
             >
-                <Marker position={currentPosition} />
+                <Marker
+                    position={currentPosition}
+                    icon={{
+                        path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW,
+                        scale: 5,
+                        rotation: heading, // Sử dụng góc quay cho hướng
+                        fillColor: 'blue',
+                        fillOpacity: 1,
+                        strokeWeight: 1,
+                    }}
+                />
                 {/* <Marker position={newGeocode} icon={customMarkerIcon} /> */}
             </GoogleMap>
         </div>
