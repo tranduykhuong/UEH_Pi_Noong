@@ -281,8 +281,8 @@ const Home = () => {
     // const [targetLongitude, setTargetLongitude] = useState(106.69504968618132);
     // const [targetLatitude, setTargetLatitude] = useState(10.766703394544189);
     // const [targetLongitude, setTargetLongitude] = useState(106.69524844454077);
-    const [targetLatitude, setTargetLatitude] = useState(10.766647);
-    const [targetLongitude, setTargetLongitude] = useState(106.695145);
+    const [targetLatitude, setTargetLatitude] = useState(10.766736589044667);
+    const [targetLongitude, setTargetLongitude] = useState(106.69497602048739);
     const [distance, setDistance] = useState(null);
     const [bearing, setBearing] = useState(null);
 
