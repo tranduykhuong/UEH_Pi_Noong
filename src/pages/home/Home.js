@@ -284,7 +284,7 @@ const Home = () => {
     const [director, setDirector] = useState(null);
 
     const calculateCompassHeading = (event) => {
-        let newHeading = (event.alpha + 180) % 360; // Góc hướng đi (0-360 độ)
+        let newHeading = event.alpha // Góc hướng đi (0-360 độ)
 
         setHeading(newHeading);
     };
