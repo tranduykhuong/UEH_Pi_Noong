@@ -4,6 +4,7 @@ import { Route, Routes, Navigate } from 'react-router-dom';
 import Home from '../pages/home/Home';
 import NotFound from '../pages/notFound';
 import Layout from './../layouts/index';
+import Main from '../pages/main/Main';
 
 const Navigation = () => {
   const authenticated = true;
@@ -15,6 +16,11 @@ const Navigation = () => {
             path="/"
             name="home"
             element={<Home />}
+          />
+          <Route
+            path="/main"
+            name="home"
+            element={<Main />}
           />
         </Route>
         <Route path="*" name="notFound" element={<Navigate to='/' />} />
