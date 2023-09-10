@@ -11,8 +11,8 @@
 //     const [error, setError] = useState(null);
 //     const [userLatitude, setUserLatitude] = useState(null);
 //     const [userLongitude, setUserLongitude] = useState(null);
-//     const [targetLatitude, setTargetLatitude] = useState(10.766919739966264); // Thay thế bằng tọa độ GPS của mục tiêu
-//     const [targetLongitude, setTargetLongitude] = useState(106.6948431326755); // Thay thế bằng tọa độ GPS của mục tiêu
+// const [targetLatitude, setTargetLatitude] = useState(10.766919739966264); // Thay thế bằng tọa độ GPS của mục tiêu
+// const [targetLongitude, setTargetLongitude] = useState(106.6948431326755); // Thay thế bằng tọa độ GPS của mục tiêu
 //     const [distance, setDistance] = useState(null);
 //     const [bearing, setBearing] = useState(null);
 
@@ -58,40 +58,40 @@
 
 //     // useEffect(() => {
 //     //     // Hàm tính khoảng cách giữa hai điểm dựa trên tọa độ GPS
-//     //     const calculateDistance = (lat1, lon1, lat2, lon2) => {
-//     //         const earthRadiusKm = 6371; // Bán kính trái đất ở đơn vị kilômét
-//     //         const dLat = (lat2 - lat1) * (Math.PI / 180);
-//     //         const dLon = (lon2 - lon1) * (Math.PI / 180);
-//     //         const a =
-//     //             Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-//     //             Math.cos(lat1 * (Math.PI / 180)) *
-//     //                 Math.cos(lat2 * (Math.PI / 180)) *
-//     //                 Math.sin(dLon / 2) *
-//     //                 Math.sin(dLon / 2);
-//     //         const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-//     //         return earthRadiusKm * c;
-//     //     };
+// const calculateDistance = (lat1, lon1, lat2, lon2) => {
+//     const earthRadiusKm = 6371; // Bán kính trái đất ở đơn vị kilômét
+//     const dLat = (lat2 - lat1) * (Math.PI / 180);
+//     const dLon = (lon2 - lon1) * (Math.PI / 180);
+//     const a =
+//         Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+//         Math.cos(lat1 * (Math.PI / 180)) *
+//             Math.cos(lat2 * (Math.PI / 180)) *
+//             Math.sin(dLon / 2) *
+//             Math.sin(dLon / 2);
+//     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+//     return earthRadiusKm * c;
+// };
 
 //     //     // Hàm tính góc hướng giữa hai điểm dựa trên tọa độ GPS
-//     //     const calculateBearing = (lat1, lon1, lat2, lon2) => {
-//     //         const dLon = (lon2 - lon1) * (Math.PI / 180);
-//     //         const y = Math.sin(dLon) * Math.cos(lat2 * (Math.PI / 180));
-//     //         const x =
-//     //             Math.cos(lat1 * (Math.PI / 180)) * Math.sin(lat2 * (Math.PI / 180)) -
-//     //             Math.sin(lat1 * (Math.PI / 180)) * Math.cos(lat2 * (Math.PI / 180)) * Math.cos(dLon);
-//     //         return (Math.atan2(y, x) * 180) / Math.PI;
-//     //     };
+// const calculateBearing = (lat1, lon1, lat2, lon2) => {
+//     const dLon = (lon2 - lon1) * (Math.PI / 180);
+//     const y = Math.sin(dLon) * Math.cos(lat2 * (Math.PI / 180));
+//     const x =
+//         Math.cos(lat1 * (Math.PI / 180)) * Math.sin(lat2 * (Math.PI / 180)) -
+//         Math.sin(lat1 * (Math.PI / 180)) * Math.cos(lat2 * (Math.PI / 180)) * Math.cos(dLon);
+//     return (Math.atan2(y, x) * 180) / Math.PI;
+// };
 
 //     //     // Kiểm tra xem tọa độ GPS của người dùng và mục tiêu đã có chưa
-//     //     if (userLatitude !== null && userLongitude !== null && targetLatitude !== 0 && targetLongitude !== 0) {
-//     //         const dist = calculateDistance(userLatitude, userLongitude, targetLatitude, targetLongitude);
-//     //         const bear = calculateBearing(userLatitude, userLongitude, targetLatitude, targetLongitude);
+// if (userLatitude !== null && userLongitude !== null && targetLatitude !== 0 && targetLongitude !== 0) {
+//     const dist = calculateDistance(userLatitude, userLongitude, targetLatitude, targetLongitude);
+//     const bear = calculateBearing(userLatitude, userLongitude, targetLatitude, targetLongitude);
 
-//     //         setDistance(dist);
-//     //         setBearing(bear);
-//     //         console.log(dist);
-//     //     }
-//     // }, [userLatitude, userLongitude, targetLatitude, targetLongitude]);
+//     setDistance(dist);
+//     setBearing(bear);
+//     console.log(dist);
+// }
+// }, [userLatitude, userLongitude, targetLatitude, targetLongitude]);
 
 //     // useEffect(() => {
 //     //     // Đây là nơi bạn có thể lấy tọa độ GPS hiện tại của người dùng, chẳng hạn qua Geolocation API hoặc các phương thức khác.
@@ -270,6 +270,33 @@ import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 const Home = () => {
     const [currentPosition, setCurrentPosition] = useState(null);
     const [watchId, setWatchId] = useState(null);
+    const [targetLatitude, setTargetLatitude] = useState(10.766919739966264); // Thay thế bằng tọa độ GPS của mục tiêu
+    const [targetLongitude, setTargetLongitude] = useState(106.6948431326755); // Thay thế bằng tọa độ GPS của mục tiêu
+    const [distance, setDistance] = useState(null);
+    const [bearing, setBearing] = useState(null);
+
+    const calculateDistance = (lat1, lon1, lat2, lon2) => {
+        const earthRadiusKm = 6371; // Bán kính trái đất ở đơn vị kilômét
+        const dLat = (lat2 - lat1) * (Math.PI / 180);
+        const dLon = (lon2 - lon1) * (Math.PI / 180);
+        const a =
+            Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+            Math.cos(lat1 * (Math.PI / 180)) *
+                Math.cos(lat2 * (Math.PI / 180)) *
+                Math.sin(dLon / 2) *
+                Math.sin(dLon / 2);
+        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        return earthRadiusKm * c;
+    };
+
+    const calculateBearing = (lat1, lon1, lat2, lon2) => {
+        const dLon = (lon2 - lon1) * (Math.PI / 180);
+        const y = Math.sin(dLon) * Math.cos(lat2 * (Math.PI / 180));
+        const x =
+            Math.cos(lat1 * (Math.PI / 180)) * Math.sin(lat2 * (Math.PI / 180)) -
+            Math.sin(lat1 * (Math.PI / 180)) * Math.cos(lat2 * (Math.PI / 180)) * Math.cos(dLon);
+        return (Math.atan2(y, x) * 180) / Math.PI;
+    };
 
     useEffect(() => {
         // Kiểm tra xem trình duyệt có hỗ trợ Geolocation không
@@ -283,9 +310,17 @@ const Home = () => {
             // Bắt đầu theo dõi vị trí với tần số cập nhật 1 lần mỗi 10 giây
             const watchId = navigator.geolocation.watchPosition(
                 (position) => {
-                    console.log(position.coords)
+                    console.log(position.coords);
                     const { latitude, longitude } = position.coords;
                     setCurrentPosition({ lat: latitude, lng: longitude });
+                    if (latitude !== null && longitude !== null && targetLatitude !== 0 && targetLongitude !== 0) {
+                        const dist = calculateDistance(latitude, longitude, targetLatitude, targetLongitude);
+                        const bear = calculateBearing(latitude, longitude, targetLatitude, targetLongitude);
+
+                        setDistance(dist);
+                        setBearing(bear);
+                        console.log(dist);
+                    }
                 },
                 (error) => {
                     console.error('Lỗi khi lấy tọa độ GPS:', error);
@@ -315,6 +350,10 @@ const Home = () => {
             ) : (
                 <p>Đang tải tọa độ GPS...</p>
             )}
+            <h3>Distance: </h3>
+            <p>{distance}</p>
+            <h3>Degree: </h3>
+            <p>{bearing}</p>
         </div>
     );
 };
