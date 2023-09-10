@@ -6,22 +6,38 @@ const mapStyles = {
     width: '100%',
 };
 
+const data = [
+    {
+        id: 'A1',
+        lat: 10.766894,
+        lng: 106.695466,
+    },
+    {
+        id: 'A2',
+        lat: 10.766970623687978,
+        lng: 106.69504968618132,
+    },
+    {
+        id: 'A3',
+        lat: 10.766703394544189,
+        lng: 106.69524844454077,
+    },
+    {
+        id: 'A4',
+        lat: 10.766736589044667,
+        lng: 106.69497602048739,
+    },
+];
+
 const Home = () => {
     const [currentPosition, setCurrentPosition] = useState(null);
     const [watchId, setWatchId] = useState(null);
     const [targetLatitude, setTargetLatitude] = useState(10.766894); // Thay thế bằng tọa độ GPS của mục tiêu
     const [targetLongitude, setTargetLongitude] = useState(106.695466);
-    // const [targetLatitude, setTargetLatitude] = useState(10.766970623687978);
-    // const [targetLongitude, setTargetLongitude] = useState(106.69504968618132);
-    // const [targetLatitude, setTargetLatitude] = useState(10.766703394544189);
-    // const [targetLongitude, setTargetLongitude] = useState(106.69524844454077);
-    // const [targetLatitude, setTargetLatitude] = useState(10.766736589044667);
-    // const [targetLongitude, setTargetLongitude] = useState(106.69497602048739);
     const [distance, setDistance] = useState(null);
     const [bearing, setBearing] = useState(null);
 
     const [heading, setHeading] = useState(null);
-    const [director, setDirector] = useState(null);
 
     const calculateCompassHeading = (event) => {
         let newHeading = 360 - event.alpha; // Góc hướng đi (0-360 độ)
@@ -70,75 +86,46 @@ const Home = () => {
     };
 
     useEffect(() => {
+        const handleWatchPosition = () => {
+            const options = {
+                enableHighAccuracy: true, // Cố gắng lấy tọa độ chính xác nhất có thể
+                timeout: 1, // Thời gian tối đa chờ đợi lấy tọa độ (ms)
+                maximumAge: 0, // Tọa độ không được lấy từ bộ nhớ cache
+            };
+
+            // Bắt đầu theo dõi vị trí với tần số cập nhật 1 lần mỗi 10 giây
+            const watchId = navigator.geolocation.watchPosition(
+                (position) => {
+                    console.log(position.coords);
+                    const { latitude, longitude } = position.coords;
+                    setCurrentPosition({ lat: latitude, lng: longitude });
+                    if (latitude !== null && longitude !== null) {
+                        const dist = calculateDistance(latitude, longitude, targetLatitude, targetLongitude);
+                        const bear = calculateBearing(latitude, longitude, targetLatitude, targetLongitude);
+
+                        setDistance(dist);
+                        setBearing(bear);
+                    }
+                },
+                (error) => {
+                    console.error('Lỗi khi lấy tọa độ GPS:', error);
+                },
+                options
+            );
+
+            setWatchId(watchId);
+        };
+
         const checkAndRequestGeolocationPermission = async () => {
             const permissionStatus = await navigator.permissions.query({ name: 'geolocation' });
             if (permissionStatus.state === 'granted') {
-                const options = {
-                    enableHighAccuracy: true, // Cố gắng lấy tọa độ chính xác nhất có thể
-                    timeout: 1, // Thời gian tối đa chờ đợi lấy tọa độ (ms)
-                    maximumAge: 0, // Tọa độ không được lấy từ bộ nhớ cache
-                };
-
-                // Bắt đầu theo dõi vị trí với tần số cập nhật 1 lần mỗi 10 giây
-                const watchId = navigator.geolocation.watchPosition(
-                    (position) => {
-                        console.log(position.coords);
-                        const { latitude, longitude } = position.coords;
-                        setCurrentPosition({ lat: latitude, lng: longitude });
-                        if (latitude !== null && longitude !== null && targetLatitude !== 0 && targetLongitude !== 0) {
-                            const dist = calculateDistance(latitude, longitude, targetLatitude, targetLongitude);
-                            const bear = calculateBearing(latitude, longitude, targetLatitude, targetLongitude);
-
-                            setDistance(dist);
-                            setBearing(bear);
-                            console.log(dist);
-                        }
-                    },
-                    (error) => {
-                        console.error('Lỗi khi lấy tọa độ GPS:', error);
-                    },
-                    options
-                );
-
-                setWatchId(watchId);
+                handleWatchPosition();
             } else if (permissionStatus.state === 'prompt') {
                 // Người dùng chưa cấp quyền, yêu cầu cấp quyền
                 try {
                     await navigator.geolocation.requestPermission();
                     // Quyền đã được cấp, lấy tọa độ GPS
-                    const options = {
-                        enableHighAccuracy: true, // Cố gắng lấy tọa độ chính xác nhất có thể
-                        timeout: 1, // Thời gian tối đa chờ đợi lấy tọa độ (ms)
-                        maximumAge: 0, // Tọa độ không được lấy từ bộ nhớ cache
-                    };
-
-                    // Bắt đầu theo dõi vị trí với tần số cập nhật 1 lần mỗi 10 giây
-                    const watchId = navigator.geolocation.watchPosition(
-                        (position) => {
-                            console.log(position.coords);
-                            const { latitude, longitude } = position.coords;
-                            setCurrentPosition({ lat: latitude, lng: longitude });
-                            if (
-                                latitude !== null &&
-                                longitude !== null &&
-                                targetLatitude !== 0 &&
-                                targetLongitude !== 0
-                            ) {
-                                const dist = calculateDistance(latitude, longitude, targetLatitude, targetLongitude);
-                                const bear = calculateBearing(latitude, longitude, targetLatitude, targetLongitude);
-
-                                setDistance(dist);
-                                setBearing(bear);
-                                console.log(dist);
-                            }
-                        },
-                        (error) => {
-                            console.error('Lỗi khi lấy tọa độ GPS:', error);
-                        },
-                        options
-                    );
-
-                    setWatchId(watchId);
+                    handleWatchPosition();
                 } catch (error) {
                     setError('Không thể cấp quyền định vị geolocation.');
                 }
@@ -148,40 +135,6 @@ const Home = () => {
         };
 
         checkAndRequestGeolocationPermission();
-
-        // // Kiểm tra xem trình duyệt có hỗ trợ Geolocation không
-        // if ('geolocation' in navigator) {
-        //     const options = {
-        //         enableHighAccuracy: true, // Cố gắng lấy tọa độ chính xác nhất có thể
-        //         timeout: 1, // Thời gian tối đa chờ đợi lấy tọa độ (ms)
-        //         maximumAge: 0, // Tọa độ không được lấy từ bộ nhớ cache
-        //     };
-
-        //     // Bắt đầu theo dõi vị trí với tần số cập nhật 1 lần mỗi 10 giây
-        //     const watchId = navigator.geolocation.watchPosition(
-        //         (position) => {
-        //             console.log(position.coords);
-        //             const { latitude, longitude } = position.coords;
-        //             setCurrentPosition({ lat: latitude, lng: longitude });
-        //             if (latitude !== null && longitude !== null && targetLatitude !== 0 && targetLongitude !== 0) {
-        //                 const dist = calculateDistance(latitude, longitude, targetLatitude, targetLongitude);
-        //                 const bear = calculateBearing(latitude, longitude, targetLatitude, targetLongitude);
-
-        //                 setDistance(dist);
-        //                 setBearing(bear);
-        //                 console.log(dist);
-        //             }
-        //         },
-        //         (error) => {
-        //             console.error('Lỗi khi lấy tọa độ GPS:', error);
-        //         },
-        //         options
-        //     );
-
-        //     setWatchId(watchId);
-        // } else {
-        //     console.log('Trình duyệt không hỗ trợ Geolocation.');
-        // }
 
         // Khi component unmount, dừng theo dõi vị trí
         return () => {
@@ -219,6 +172,7 @@ const Home = () => {
         }
     }, [heading, currentPosition]);
 
+    // MAP
     const [map, setMap] = useState(null);
     const onLoad = React.useCallback(function callback(mapInstance) {
         const bounds = new window.google.maps.LatLngBounds(currentPosition);
@@ -293,17 +247,19 @@ const Home = () => {
                         strokeWeight: 1,
                     }}
                 />
-                <Marker
-                    position={{
-                        lat: targetLatitude,
-                        lng: targetLongitude,
-                    }}
-                    icon={{
-                        path: google.maps.SymbolPath.CIRCLE,
-                        scale: 8,
-                        strokeColor: '#393',
-                    }}
-                />
+                {data.map((item, idx) => (
+                    <Marker
+                        position={{
+                            lat: item.lat,
+                            lng: item.lng,
+                        }}
+                        icon={{
+                            path: google.maps.SymbolPath.CIRCLE,
+                            scale: 8,
+                            strokeColor: '#393',
+                        }}
+                    />
+                ))}
             </GoogleMap>
         </div>
     );
