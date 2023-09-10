@@ -334,7 +334,7 @@ const Home = () => {
         if ('geolocation' in navigator) {
             const options = {
                 enableHighAccuracy: true, // Cố gắng lấy tọa độ chính xác nhất có thể
-                timeout: 10, // Thời gian tối đa chờ đợi lấy tọa độ (ms)
+                timeout: 1, // Thời gian tối đa chờ đợi lấy tọa độ (ms)
                 maximumAge: 0, // Tọa độ không được lấy từ bộ nhớ cache
             };
 
