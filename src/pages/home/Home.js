@@ -277,8 +277,10 @@ const Home = () => {
     const [watchId, setWatchId] = useState(null);
     // const [targetLatitude, setTargetLatitude] = useState(10.766894); // Thay thế bằng tọa độ GPS của mục tiêu
     // const [targetLongitude, setTargetLongitude] = useState(106.695466);
-    const [targetLatitude, setTargetLatitude] = useState(10.766970623687978); // Thay thế bằng tọa độ GPS của mục tiêu
-    const [targetLongitude, setTargetLongitude] = useState(106.69504968618132); // Thay thế bằng tọa độ GPS của mục tiêu
+    // const [targetLatitude, setTargetLatitude] = useState(10.766970623687978);
+    // const [targetLongitude, setTargetLongitude] = useState(106.69504968618132);
+    const [targetLatitude, setTargetLatitude] = useState(10.766703394544189);
+    const [targetLongitude, setTargetLongitude] = useState(106.69524844454077);
     const [distance, setDistance] = useState(null);
     const [bearing, setBearing] = useState(null);
 
@@ -286,7 +288,7 @@ const Home = () => {
     const [director, setDirector] = useState(null);
 
     const calculateCompassHeading = (event) => {
-        let newHeading = 360-event.alpha; // Góc hướng đi (0-360 độ)
+        let newHeading = 360 - event.alpha; // Góc hướng đi (0-360 độ)
 
         setHeading(newHeading);
     };
@@ -383,7 +385,7 @@ const Home = () => {
                 targetLatitude,
                 targetLongitude
             );
-            setBearing(targetBearing)
+            setBearing(targetBearing);
 
             // So sánh hướng của người dùng và hướng đến mục tiêu
             const angleDifference = Math.abs(userBearing - targetBearing);
