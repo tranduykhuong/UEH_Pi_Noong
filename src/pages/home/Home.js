@@ -374,36 +374,24 @@ const Home = () => {
         };
     }, []);
 
-    const handleReGeolocation = () => {
-        navigator.geolocation.getCurrentPosition(
-            (position) => {
-                const { latitude, longitude } = position.coords;
-                setCurrentPosition({ lat: latitude, lng: longitude });
-            },
-            (error) => {
-                setError(error.message);
-            }
-        );
-    };
+    // const isHeadingTowardTarget = () => {
+    //     if (heading !== null && currentPosition !== null) {
+    //         const userBearing = (360 + heading) % 360; // Chuyển đổi heading về khoảng [0, 360) độ
+    //         const targetBearing = calculateBearing(
+    //             currentPosition.lat,
+    //             currentPosition.lng,
+    //             targetLatitude,
+    //             targetLongitude
+    //         );
 
-    const isHeadingTowardTarget = () => {
-        if (heading !== null && currentPosition !== null) {
-            const userBearing = (360 + heading) % 360; // Chuyển đổi heading về khoảng [0, 360) độ
-            const targetBearing = calculateBearing(
-                currentPosition.lat,
-                currentPosition.lng,
-                targetLatitude,
-                targetLongitude
-            );
-
-            // So sánh hướng của người dùng và hướng đến mục tiêu
-            const angleDifference = Math.abs(userBearing - targetBearing);
-            setDirector(targetBearing);
-            // Cho phép một lỗi nhỏ trong khoảng 15 độ
-            return angleDifference <= 15;
-        }
-        return false;
-    };
+    //         // So sánh hướng của người dùng và hướng đến mục tiêu
+    //         const angleDifference = Math.abs(userBearing - targetBearing);
+    //         setDirector(targetBearing);
+    //         // Cho phép một lỗi nhỏ trong khoảng 15 độ
+    //         return angleDifference <= 15;
+    //     }
+    //     return false;
+    // };
 
     useEffect(() => {
         if (isHeadingTowardTarget()) {
@@ -460,7 +448,7 @@ const Home = () => {
             <h3>Distance: </h3>
             <p>{distance}</p>
             <h3>Degree: </h3>
-            <p>{director}</p>
+            <p>{bearing}</p>
             {heading !== null ? (
                 <div>
                     <h3>Heading:</h3>
