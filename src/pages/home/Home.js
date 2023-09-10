@@ -275,10 +275,10 @@ const mapStyles = {
 const Home = () => {
     const [currentPosition, setCurrentPosition] = useState(null);
     const [watchId, setWatchId] = useState(null);
-    const [targetLatitude, setTargetLatitude] = useState(10.766894); // Thay thế bằng tọa độ GPS của mục tiêu
-    const [targetLongitude, setTargetLongitude] = useState(106.695466);
-    // const [targetLatitude, setTargetLatitude] = useState(10.766970623687978); // Thay thế bằng tọa độ GPS của mục tiêu
-    // const [targetLongitude, setTargetLongitude] = useState(106.69504968618132); // Thay thế bằng tọa độ GPS của mục tiêu
+    // const [targetLatitude, setTargetLatitude] = useState(10.766894); // Thay thế bằng tọa độ GPS của mục tiêu
+    // const [targetLongitude, setTargetLongitude] = useState(106.695466);
+    const [targetLatitude, setTargetLatitude] = useState(10.766970623687978); // Thay thế bằng tọa độ GPS của mục tiêu
+    const [targetLongitude, setTargetLongitude] = useState(106.69504968618132); // Thay thế bằng tọa độ GPS của mục tiêu
     const [distance, setDistance] = useState(null);
     const [bearing, setBearing] = useState(null);
 
@@ -374,24 +374,25 @@ const Home = () => {
         };
     }, []);
 
-    // const isHeadingTowardTarget = () => {
-    //     if (heading !== null && currentPosition !== null) {
-    //         const userBearing = (360 + heading) % 360; // Chuyển đổi heading về khoảng [0, 360) độ
-    //         const targetBearing = calculateBearing(
-    //             currentPosition.lat,
-    //             currentPosition.lng,
-    //             targetLatitude,
-    //             targetLongitude
-    //         );
+    const isHeadingTowardTarget = () => {
+        if (heading !== null && currentPosition !== null) {
+            const userBearing = (360 + heading) % 360; // Chuyển đổi heading về khoảng [0, 360) độ
+            const targetBearing = calculateBearing(
+                currentPosition.lat,
+                currentPosition.lng,
+                targetLatitude,
+                targetLongitude
+            );
+            setBearing(targetBearing)
 
-    //         // So sánh hướng của người dùng và hướng đến mục tiêu
-    //         const angleDifference = Math.abs(userBearing - targetBearing);
-    //         setDirector(targetBearing);
-    //         // Cho phép một lỗi nhỏ trong khoảng 15 độ
-    //         return angleDifference <= 15;
-    //     }
-    //     return false;
-    // };
+            // So sánh hướng của người dùng và hướng đến mục tiêu
+            const angleDifference = Math.abs(userBearing - targetBearing);
+            // setDirector(targetBearing);
+            // Cho phép một lỗi nhỏ trong khoảng 15 độ
+            return angleDifference <= 15;
+        }
+        return false;
+    };
 
     useEffect(() => {
         if (isHeadingTowardTarget()) {
