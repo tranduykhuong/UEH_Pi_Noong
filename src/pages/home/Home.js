@@ -259,7 +259,7 @@ const Home = () => {
 
             <button
                 onClick={handleGetGeolocation}
-                style={{ padding: '20px', width: '100%', margin: '20px', backgroundColor: 'blue', color: 'white' }}
+                style={{ padding: '20px', width: 'calc(100% - 40px)', margin: '20px', backgroundColor: 'blue', color: 'white' }}
             >
                 Get GPS
             </button>
