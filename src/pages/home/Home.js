@@ -36,15 +36,15 @@
 //     //             try {
 //     //                 await navigator.geolocation.requestPermission();
 //     //                 // Quyền đã được cấp, lấy tọa độ GPS
-//     //                 navigator.geolocation.getCurrentPosition(
-//     //                     (position) => {
-//     //                         setLatitude(position.coords.latitude);
-//     //                         setLongitude(position.coords.longitude);
-//     //                     },
-//     //                     (error) => {
-//     //                         setError(error.message);
-//     //                     }
-//     //                 );
+// navigator.geolocation.getCurrentPosition(
+//     (position) => {
+//         setLatitude(position.coords.latitude);
+//         setLongitude(position.coords.longitude);
+//     },
+//     (error) => {
+//         setError(error.message);
+//     }
+// );
 //     //             } catch (error) {
 //     //                 setError('Không thể cấp quyền định vị geolocation.');
 //     //             }
@@ -284,7 +284,7 @@ const Home = () => {
     const [director, setDirector] = useState(null);
 
     const calculateCompassHeading = (event) => {
-        let newHeading = -event.alpha // Góc hướng đi (0-360 độ)
+        let newHeading = -event.alpha; // Góc hướng đi (0-360 độ)
 
         setHeading(newHeading);
     };
@@ -372,6 +372,18 @@ const Home = () => {
         };
     }, []);
 
+    const handleReGeolocation = () => {
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                const { latitude, longitude } = position.coords;
+                setCurrentPosition({ lat: latitude, lng: longitude });
+            },
+            (error) => {
+                setError(error.message);
+            }
+        );
+    };
+
     const isHeadingTowardTarget = () => {
         if (heading !== null && currentPosition !== null) {
             const userBearing = (360 + heading) % 360; // Chuyển đổi heading về khoảng [0, 360) độ
@@ -411,27 +423,27 @@ const Home = () => {
     }, []);
 
     useEffect(() => {
-      // Hàm này sẽ được gọi khi Google Map đã được tải lên
-      if (map) {
-        // Lấy kích thước của bản đồ
-        const mapBounds = map.getBounds();
-  
-        // Kiểm tra nếu bản đồ đã được tải lên
-        if (mapBounds) {
-          // Tính toán giữa điểm của bản đồ và vị trí hiện tại
-          const center = mapBounds.getCenter();
-          const latLng = new window.google.maps.LatLng(currentPosition.lat, currentPosition.lng);
-  
-          // Tính khoảng cách từ vị trí hiện tại đến trung tâm của bản đồ
-          const distance = window.google.maps.geometry.spherical.computeDistanceBetween(latLng, center);
-  
-          // Nếu khoảng cách lớn hơn một ngưỡng nhất định, thì scale lại bản đồ để marker gần mép màn hình
-          if (distance > 100) {
-            map.panTo(latLng);
-            map.setZoom(1000); // Đặt lại mức độ phóng to mong muốn
-          }
+        // Hàm này sẽ được gọi khi Google Map đã được tải lên
+        if (map) {
+            // Lấy kích thước của bản đồ
+            const mapBounds = map.getBounds();
+
+            // Kiểm tra nếu bản đồ đã được tải lên
+            if (mapBounds) {
+                // Tính toán giữa điểm của bản đồ và vị trí hiện tại
+                const center = mapBounds.getCenter();
+                const latLng = new window.google.maps.LatLng(currentPosition.lat, currentPosition.lng);
+
+                // Tính khoảng cách từ vị trí hiện tại đến trung tâm của bản đồ
+                const distance = window.google.maps.geometry.spherical.computeDistanceBetween(latLng, center);
+
+                // Nếu khoảng cách lớn hơn một ngưỡng nhất định, thì scale lại bản đồ để marker gần mép màn hình
+                if (distance > 40) {
+                    map.panTo(latLng);
+                    map.setZoom(1000); // Đặt lại mức độ phóng to mong muốn
+                }
+            }
         }
-      }
     }, [map, currentPosition]);
 
     return (
@@ -480,6 +492,8 @@ const Home = () => {
                 />
                 {/* <Marker position={newGeocode} icon={customMarkerIcon} /> */}
             </GoogleMap>
+
+            <button onClick={handleReGeolocation}>Định vị lại</button>
         </div>
     );
 };
