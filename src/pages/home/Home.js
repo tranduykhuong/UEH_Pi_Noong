@@ -275,6 +275,7 @@ const Home = () => {
     const [bearing, setBearing] = useState(null);
 
     const [heading, setHeading] = useState(null);
+    const [director, setDirector] = useState(null);
 
     const calculateCompassHeading = (event) => {
         const newHeading = event.alpha; // Góc hướng đi (0-360 độ)
@@ -364,6 +365,33 @@ const Home = () => {
         };
     }, []);
 
+    const isHeadingTowardTarget = () => {
+        if (heading !== null && currentPosition !== null) {
+            const userBearing = (360 + heading) % 360; // Chuyển đổi heading về khoảng [0, 360) độ
+            const targetBearing = calculateBearing(
+                currentPosition.lat,
+                currentPosition.lng,
+                targetLatitude,
+                targetLongitude
+            );
+
+            // So sánh hướng của người dùng và hướng đến mục tiêu
+            const angleDifference = Math.abs(userBearing - targetBearing);
+            setDirector(angleDifference)
+            // Cho phép một lỗi nhỏ trong khoảng 15 độ
+            return angleDifference <= 15;
+        }
+        return false;
+    };
+
+    useEffect(() => {
+        if (isHeadingTowardTarget()) {
+            console.log('Người dùng đang đi đúng hướng đến mục tiêu.');
+        } else {
+            console.log('Người dùng đang không đi đúng hướng đến mục tiêu.');
+        }
+    }, [heading, currentPosition]);
+
     return (
         <div>
             {currentPosition ? (
@@ -374,7 +402,7 @@ const Home = () => {
                 <p>Đang tải tọa độ GPS...</p>
             )}
             <h3>Distance: </h3>
-            <p>{distance}</p>
+            <p>{director}</p>
             <h3>Degree: </h3>
             <p>{bearing}</p>
             {heading !== null ? (
