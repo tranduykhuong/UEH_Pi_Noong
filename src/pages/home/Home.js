@@ -275,8 +275,8 @@ const mapStyles = {
 const Home = () => {
     const [currentPosition, setCurrentPosition] = useState(null);
     const [watchId, setWatchId] = useState(null);
-    const [targetLatitude, setTargetLatitude] = useState(10.766919739966264); // Thay thế bằng tọa độ GPS của mục tiêu
-    const [targetLongitude, setTargetLongitude] = useState(106.6948431326755); // Thay thế bằng tọa độ GPS của mục tiêu
+    const [targetLatitude, setTargetLatitude] = useState(10.76663582574768); // Thay thế bằng tọa độ GPS của mục tiêu
+    const [targetLongitude, setTargetLongitude] = useState(106.69544009294756); // Thay thế bằng tọa độ GPS của mục tiêu
     const [distance, setDistance] = useState(null);
     const [bearing, setBearing] = useState(null);
 
@@ -439,7 +439,7 @@ const Home = () => {
             <GoogleMap
                 style={{ cursor: 'default !important' }}
                 mapContainerStyle={mapStyles}
-                // center={currentPosition}
+                center={currentPosition}
                 zoom={100}
                 onLoad={onLoad}
                 onUnmount={onUnmount}
