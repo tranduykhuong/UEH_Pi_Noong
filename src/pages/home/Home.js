@@ -292,12 +292,6 @@ const Home = () => {
         }
 
         setHeading(newHeading);
-
-        // Thiết lập hướng bản đồ
-        if (map) {
-            map.setHeading(newHeading);
-        }
-        setHeading(newHeading);
     };
 
     useEffect(() => {
