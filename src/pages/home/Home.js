@@ -426,7 +426,7 @@ const Home = () => {
           const distance = window.google.maps.geometry.spherical.computeDistanceBetween(latLng, center);
   
           // Nếu khoảng cách lớn hơn một ngưỡng nhất định, thì scale lại bản đồ để marker gần mép màn hình
-          if (distance > 10) {
+          if (distance > 100) {
             map.panTo(latLng);
             map.setZoom(1000); // Đặt lại mức độ phóng to mong muốn
           }
