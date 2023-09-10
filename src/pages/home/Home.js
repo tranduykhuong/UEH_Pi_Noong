@@ -284,7 +284,7 @@ const Home = () => {
     const [director, setDirector] = useState(null);
 
     const calculateCompassHeading = (event) => {
-        let newHeading = event.alpha // Góc hướng đi (0-360 độ)
+        let newHeading = -event.alpha // Góc hướng đi (0-360 độ)
 
         setHeading(newHeading);
     };
@@ -439,7 +439,7 @@ const Home = () => {
             <GoogleMap
                 style={{ cursor: 'default !important' }}
                 mapContainerStyle={mapStyles}
-                center={currentPosition}
+                // center={currentPosition}
                 zoom={100}
                 onLoad={onLoad}
                 onUnmount={onUnmount}
