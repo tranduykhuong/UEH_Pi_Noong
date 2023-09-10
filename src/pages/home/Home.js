@@ -32,8 +32,6 @@ const data = [
 const Home = () => {
     const [currentPosition, setCurrentPosition] = useState(null);
     const [watchId, setWatchId] = useState(null);
-    const [targetLatitude, setTargetLatitude] = useState(10.766894); // Thay thế bằng tọa độ GPS của mục tiêu
-    const [targetLongitude, setTargetLongitude] = useState(106.695466);
     const [distance, setDistance] = useState(null);
     const [bearing, setBearing] = useState(null);
 
@@ -96,16 +94,8 @@ const Home = () => {
             // Bắt đầu theo dõi vị trí với tần số cập nhật 1 lần mỗi 10 giây
             const watchId = navigator.geolocation.watchPosition(
                 (position) => {
-                    console.log(position.coords);
                     const { latitude, longitude } = position.coords;
                     setCurrentPosition({ lat: latitude, lng: longitude });
-                    // if (latitude !== null && longitude !== null) {
-                    //     const dist = calculateDistance(latitude, longitude, targetLatitude, targetLongitude);
-                    //     const bear = calculateBearing(latitude, longitude, targetLatitude, targetLongitude);
-
-                    //     setDistance(dist);
-                    //     setBearing(bear);
-                    // }
                 },
                 (error) => {
                     console.error('Lỗi khi lấy tọa độ GPS:', error);
@@ -144,41 +134,32 @@ const Home = () => {
         };
     }, []);
 
-    const isHeadingTowardTarget = () => {
-        if (heading !== null && currentPosition !== null) {
-            for (let i = 0; i < data.length; i++) {
-                const element = data[i];
-                const targetBearing = calculateBearing(
-                    currentPosition.lat,
-                    currentPosition.lng,
-                    element.lat,
-                    element.lng
-                );
-                setBearing(targetBearing);
+    useEffect(() => {
+        const isHeadingTowardTarget = () => {
+            if (heading !== null && currentPosition !== null) {
+                for (let i = 0; i < data.length; i++) {
+                    const element = data[i];
+                    const targetBearing = calculateBearing(
+                        currentPosition.lat,
+                        currentPosition.lng,
+                        element.lat,
+                        element.lng
+                    );
+                    setBearing(targetBearing);
 
-                const dist = calculateDistance(currentPosition.lat, currentPosition.lng, element.lat, element.lng);
-                setDistance(dist);
+                    const dist = calculateDistance(currentPosition.lat, currentPosition.lng, element.lat, element.lng);
+                    setDistance(dist);
 
-                // So sánh hướng của người dùng và hướng đến mục tiêu
-                const angleDifference = Math.abs(heading - targetBearing);
-                if (angleDifference < 10 && dist < 0.01) {
-                    alert(element.id);
+                    // So sánh hướng của người dùng và hướng đến mục tiêu
+                    const angleDifference = Math.abs(heading - targetBearing);
+                    // if (angleDifference < 10 && dist < 0.01) {
+                    //     alert(element.id);
+                    // }
                 }
             }
+        };
 
-            // setDirector(targetBearing);
-            // Cho phép một lỗi nhỏ trong khoảng 15 độ
-            return true;
-        }
-        return false;
-    };
-
-    useEffect(() => {
-        if (isHeadingTowardTarget()) {
-            console.log('Người dùng đang đi đúng hướng đến mục tiêu.');
-        } else {
-            console.log('Người dùng đang không đi đúng hướng đến mục tiêu.');
-        }
+        isHeadingTowardTarget();
     }, [heading, currentPosition]);
 
     // MAP
@@ -217,9 +198,14 @@ const Home = () => {
         }
     }, [map, currentPosition]);
 
+    // GEOLOCATION
+    const handleGetGeolocation = () => {
+        alert('Lat: ' + currentPosition.lat + '\nLng: ' + currentPosition.lng);
+    };
+
     return (
         <div>
-            {currentPosition ? (
+            {/* {currentPosition ? (
                 <p>
                     Tọa độ GPS hiện tại: Lat {currentPosition.lat}, Lng {currentPosition.lng}
                 </p>
@@ -237,7 +223,7 @@ const Home = () => {
                 </div>
             ) : (
                 <p>Đang lấy dữ liệu hướng đi...</p>
-            )}
+            )} */}
             <GoogleMap
                 style={{ cursor: 'default !important' }}
                 mapContainerStyle={mapStyles}
@@ -270,6 +256,13 @@ const Home = () => {
                     />
                 ))}
             </GoogleMap>
+
+            <button
+                onClick={handleGetGeolocation}
+                style={{ padding: '20px', width: '100%', margin: '20px', backgroundColor: 'blue', color: 'white' }}
+            >
+                Get GPS
+            </button>
         </div>
     );
 };
