@@ -410,6 +410,30 @@ const Home = () => {
         setMap(null);
     }, []);
 
+    useEffect(() => {
+      // Hàm này sẽ được gọi khi Google Map đã được tải lên
+      if (map) {
+        // Lấy kích thước của bản đồ
+        const mapBounds = map.getBounds();
+  
+        // Kiểm tra nếu bản đồ đã được tải lên
+        if (mapBounds) {
+          // Tính toán giữa điểm của bản đồ và vị trí hiện tại
+          const center = mapBounds.getCenter();
+          const latLng = new window.google.maps.LatLng(currentPosition.lat, currentPosition.lng);
+  
+          // Tính khoảng cách từ vị trí hiện tại đến trung tâm của bản đồ
+          const distance = window.google.maps.geometry.spherical.computeDistanceBetween(latLng, center);
+  
+          // Nếu khoảng cách lớn hơn một ngưỡng nhất định, thì scale lại bản đồ để marker gần mép màn hình
+          if (distance > 10) {
+            map.panTo(latLng);
+            map.setZoom(1000); // Đặt lại mức độ phóng to mong muốn
+          }
+        }
+      }
+    }, [map, currentPosition]);
+
     return (
         <div>
             {currentPosition ? (
