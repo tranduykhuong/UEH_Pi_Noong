@@ -420,9 +420,9 @@ const Home = () => {
                 <p>Đang tải tọa độ GPS...</p>
             )}
             <h3>Distance: </h3>
-            <p>{director}</p>
+            <p>{distance}</p>
             <h3>Degree: </h3>
-            <p>{bearing}</p>
+            <p>{director}</p>
             {heading !== null ? (
                 <div>
                     <h3>Heading:</h3>
@@ -440,7 +440,7 @@ const Home = () => {
                 style={{ cursor: 'default !important' }}
                 mapContainerStyle={mapStyles}
                 center={currentPosition}
-                zoom={100}
+                zoom={1000}
                 onLoad={onLoad}
                 onUnmount={onUnmount}
             >
