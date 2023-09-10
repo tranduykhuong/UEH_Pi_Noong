@@ -135,84 +135,42 @@ const Home = () => {
     //     </div>
     // );
 
-    // useEffect(() => {
-    //     let watchId;
-
-    //     const successCallback = (position) => {
-    //         console.log(position);
-    //         setLatitude(position.coords.latitude);
-    //         setLongitude(position.coords.longitude);
-    //         setError(null);
-    //     };
-
-    //     const errorCallback = (error) => {
-    //         console.log(error.message);
-    //         setError(error.message);
-    //     };
-
-    //     if (navigator.geolocation) {
-    //         // Bắt đầu theo dõi vị trí
-    //         console.log('follow');
-    //         watchId = navigator.geolocation.watchPosition(successCallback, errorCallback);
-    //     } else {
-    //         console.log('first');
-    //         setError('Geolocation is not supported by your browser.');
-    //     }
-
-    //     return () => {
-    //         // Ngừng theo dõi vị trí khi component bị unmount
-    //         console.log('unmount');
-    //         if (watchId) {
-    //             navigator.geolocation.clearWatch(watchId);
-    //         }
-    //     };
-    // }, []);
-
-    // return (
-    //     <div>
-    //         <h1>Lấy tọa độ GPS liên tục trong React</h1>
-    //         {latitude && longitude ? (
-    //             <div>
-    //                 <p>Latitude: {latitude}</p>
-    //                 <p>Longitude: {longitude}</p>
-    //             </div>
-    //         ) : (
-    //             <p>{error}</p>
-    //         )}
-    //     </div>
-    // );
-
     useEffect(() => {
-        const updateLocation = () => {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(
-                    (position) => {
-                        setLatitude(position.coords.latitude);
-                        setLongitude(position.coords.longitude);
-                        setError(null);
-                    },
-                    (error) => {
-                        setError(error.message);
-                    }
-                );
-            } else {
-                setError('Geolocation is not supported by your browser.');
+        let watchId;
+
+        const successCallback = (position) => {
+            console.log(position);
+            setLatitude(position.coords.latitude);
+            setLongitude(position.coords.longitude);
+            setError(null);
+        };
+
+        const errorCallback = (error) => {
+            console.log(error.message);
+            setError(error.message);
+        };
+
+        if (navigator.geolocation) {
+            // Bắt đầu theo dõi vị trí
+            console.log('follow');
+            watchId = navigator.geolocation.watchPosition(successCallback, errorCallback);
+        } else {
+            console.log('first');
+            setError('Geolocation is not supported by your browser.');
+        }
+
+        return () => {
+            // Ngừng theo dõi vị trí khi component bị unmount
+            console.log('unmount');
+            if (watchId) {
+                navigator.geolocation.clearWatch(watchId);
             }
         };
-
-        // Cập nhật tọa độ GPS mỗi giây
-        const intervalId = setInterval(updateLocation, 1000);
-
-        // Hủy bỏ interval khi component bị unmount
-        return () => {
-            clearInterval(intervalId);
-        };
     }, []);
-    console.log(latitude + '  ' + longitude);
 
     return (
         <div>
-            <h1>Cập nhật tọa độ GPS mỗi giây trong React</h1>
+            <h1>Lấy tọa độ GPS liên tục trong React</h1>
             {latitude && longitude ? (
                 <div>
                     <p>Latitude: {latitude}</p>
@@ -223,6 +181,48 @@ const Home = () => {
             )}
         </div>
     );
+
+    // useEffect(() => {
+    //     const updateLocation = () => {
+    //         if (navigator.geolocation) {
+    //             navigator.geolocation.getCurrentPosition(
+    //                 (position) => {
+    //                     setLatitude(position.coords.latitude);
+    //                     setLongitude(position.coords.longitude);
+    //                     setError(null);
+    //                 },
+    //                 (error) => {
+    //                     setError(error.message);
+    //                 }
+    //             );
+    //         } else {
+    //             setError('Geolocation is not supported by your browser.');
+    //         }
+    //     };
+
+    //     // Cập nhật tọa độ GPS mỗi giây
+    //     const intervalId = setInterval(updateLocation, 1000);
+
+    //     // Hủy bỏ interval khi component bị unmount
+    //     return () => {
+    //         clearInterval(intervalId);
+    //     };
+    // }, []);
+    // console.log(latitude + '  ' + longitude);
+
+    // return (
+    //     <div>
+    //         <h1>Cập nhật tọa độ GPS mỗi giây trong React</h1>
+    //         {latitude && longitude ? (
+    //             <div>
+    //                 <p>Latitude: {latitude}</p>
+    //                 <p>Longitude: {longitude}</p>
+    //             </div>
+    //         ) : (
+    //             <p>{error}</p>
+    //         )}
+    //     </div>
+    // );
 };
 
 export default Home;
