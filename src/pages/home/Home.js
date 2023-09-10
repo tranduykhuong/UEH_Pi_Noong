@@ -146,22 +146,29 @@ const Home = () => {
 
     const isHeadingTowardTarget = () => {
         if (heading !== null && currentPosition !== null) {
-            const targetBearing = calculateBearing(
-                currentPosition.lat,
-                currentPosition.lng,
-                targetLatitude,
-                targetLongitude
-            );
-            setBearing(targetBearing);
+            for (let i = 0; i < data.length; i++) {
+                const element = data[i];
+                const targetBearing = calculateBearing(
+                    currentPosition.lat,
+                    currentPosition.lng,
+                    element.lat,
+                    element.lng
+                );
+                setBearing(targetBearing);
 
-            const dist = calculateDistance(currentPosition.lat, currentPosition.lng, targetLatitude, targetLongitude);
-            setDistance(dist);
+                const dist = calculateDistance(currentPosition.lat, currentPosition.lng, element.lat, element.lng);
+                setDistance(dist);
 
-            // So sánh hướng của người dùng và hướng đến mục tiêu
-            const angleDifference = Math.abs(heading - targetBearing);
+                // So sánh hướng của người dùng và hướng đến mục tiêu
+                const angleDifference = Math.abs(heading - targetBearing);
+                if (angleDifference < 10 && dict < 0.01) {
+                    alert(element.id);
+                }
+            }
+
             // setDirector(targetBearing);
             // Cho phép một lỗi nhỏ trong khoảng 15 độ
-            return angleDifference <= 15;
+            return true;
         }
         return false;
     };
