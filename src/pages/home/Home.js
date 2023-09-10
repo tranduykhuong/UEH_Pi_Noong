@@ -265,7 +265,6 @@
 // export default Home;
 
 import React, { useState, useEffect } from 'react';
-import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 
 const Home = () => {
     const [currentPosition, setCurrentPosition] = useState(null);
@@ -274,6 +273,30 @@ const Home = () => {
     const [targetLongitude, setTargetLongitude] = useState(106.6948431326755); // Thay thế bằng tọa độ GPS của mục tiêu
     const [distance, setDistance] = useState(null);
     const [bearing, setBearing] = useState(null);
+
+    const [heading, setHeading] = useState(null);
+
+    const calculateCompassHeading = (event) => {
+        const newHeading = event.alpha; // Góc hướng đi (0-360 độ)
+        setHeading(newHeading);
+    };
+
+    useEffect(() => {
+        // Kiểm tra xem trình duyệt có hỗ trợ API cảm biến la bàn không
+        if ('ondeviceorientationabsolute' in window) {
+            window.addEventListener('deviceorientationabsolute', calculateCompassHeading);
+        } else if ('ondeviceorientation' in window) {
+            window.addEventListener('deviceorientation', calculateCompassHeading);
+        }
+
+        return () => {
+            if ('ondeviceorientationabsolute' in window) {
+                window.removeEventListener('deviceorientationabsolute', calculateCompassHeading);
+            } else if ('ondeviceorientation' in window) {
+                window.removeEventListener('deviceorientation', calculateCompassHeading);
+            }
+        };
+    }, []);
 
     const calculateDistance = (lat1, lon1, lat2, lon2) => {
         const earthRadiusKm = 6371; // Bán kính trái đất ở đơn vị kilômét
@@ -354,6 +377,14 @@ const Home = () => {
             <p>{distance}</p>
             <h3>Degree: </h3>
             <p>{bearing}</p>
+            {heading !== null ? (
+                <div>
+                    <h3>Heading:</h3>
+                    <p>{heading} degrees</p>
+                </div>
+            ) : (
+                <p>Đang lấy dữ liệu hướng đi...</p>
+            )}
         </div>
     );
 };
