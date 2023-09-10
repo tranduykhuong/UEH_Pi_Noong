@@ -99,13 +99,13 @@ const Home = () => {
                     console.log(position.coords);
                     const { latitude, longitude } = position.coords;
                     setCurrentPosition({ lat: latitude, lng: longitude });
-                    if (latitude !== null && longitude !== null) {
-                        const dist = calculateDistance(latitude, longitude, targetLatitude, targetLongitude);
-                        const bear = calculateBearing(latitude, longitude, targetLatitude, targetLongitude);
+                    // if (latitude !== null && longitude !== null) {
+                    //     const dist = calculateDistance(latitude, longitude, targetLatitude, targetLongitude);
+                    //     const bear = calculateBearing(latitude, longitude, targetLatitude, targetLongitude);
 
-                        setDistance(dist);
-                        setBearing(bear);
-                    }
+                    //     setDistance(dist);
+                    //     setBearing(bear);
+                    // }
                 },
                 (error) => {
                     console.error('Lỗi khi lấy tọa độ GPS:', error);
@@ -146,7 +146,6 @@ const Home = () => {
 
     const isHeadingTowardTarget = () => {
         if (heading !== null && currentPosition !== null) {
-            const userBearing = (360 + heading) % 360; // Chuyển đổi heading về khoảng [0, 360) độ
             const targetBearing = calculateBearing(
                 currentPosition.lat,
                 currentPosition.lng,
@@ -155,8 +154,11 @@ const Home = () => {
             );
             setBearing(targetBearing);
 
+            const dist = calculateDistance(currentPosition.lat, currentPosition.lng, targetLatitude, targetLongitude);
+            setDistance(dist);
+
             // So sánh hướng của người dùng và hướng đến mục tiêu
-            const angleDifference = Math.abs(userBearing - targetBearing);
+            const angleDifference = Math.abs(heading - targetBearing);
             // setDirector(targetBearing);
             // Cho phép một lỗi nhỏ trong khoảng 15 độ
             return angleDifference <= 15;
