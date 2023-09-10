@@ -332,7 +332,7 @@ const Home = () => {
         const x =
             Math.cos(lat1 * (Math.PI / 180)) * Math.sin(lat2 * (Math.PI / 180)) -
             Math.sin(lat1 * (Math.PI / 180)) * Math.cos(lat2 * (Math.PI / 180)) * Math.cos(dLon);
-        return (Math.atan2(y, x) * 180) / Math.PI;
+        return ((Math.atan2(y, x) * 180) / Math.PI + 360) % 360;
     };
 
     useEffect(() => {
