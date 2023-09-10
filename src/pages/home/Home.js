@@ -284,12 +284,7 @@ const Home = () => {
     const [director, setDirector] = useState(null);
 
     const calculateCompassHeading = (event) => {
-        let newHeading = event.alpha; // Góc hướng đi (0-360 độ)
-        newHeading += 90; // Hoặc bất kỳ giá trị điều chỉnh nào dựa trên thiết bị cụ thể
-
-        if (newHeading >= 360) {
-            newHeading -= 360; // Đảm bảo góc nằm trong khoảng 0-360 độ
-        }
+        let newHeading = (event.alpha + 180) % 360; // Góc hướng đi (0-360 độ)
 
         setHeading(newHeading);
     };
