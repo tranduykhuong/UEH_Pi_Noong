@@ -9,7 +9,7 @@ const CameraComponent = ({ start, onStop, setImg }) => {
 
     const startCamera = async () => {
         try {
-            const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+            const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } });
             setStream(stream);
             streamRef.current = stream;
             if (videoRef.current) {
