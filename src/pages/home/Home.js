@@ -463,7 +463,6 @@ const Home = () => {
             <GoogleMap
                 style={{ cursor: 'default !important' }}
                 mapContainerStyle={mapStyles}
-                center={currentPosition}
                 zoom={1000}
                 onLoad={onLoad}
                 onUnmount={onUnmount}
