@@ -265,6 +265,12 @@
 // export default Home;
 
 import React, { useState, useEffect } from 'react';
+import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
+
+const mapStyles = {
+    height: '400px',
+    width: '100%',
+};
 
 const Home = () => {
     const [currentPosition, setCurrentPosition] = useState(null);
@@ -377,7 +383,7 @@ const Home = () => {
 
             // So sánh hướng của người dùng và hướng đến mục tiêu
             const angleDifference = Math.abs(userBearing - targetBearing);
-            setDirector(angleDifference)
+            setDirector(angleDifference);
             // Cho phép một lỗi nhỏ trong khoảng 15 độ
             return angleDifference <= 15;
         }
@@ -391,6 +397,17 @@ const Home = () => {
             console.log('Người dùng đang không đi đúng hướng đến mục tiêu.');
         }
     }, [heading, currentPosition]);
+
+    const [map, setMap] = useState(null);
+    const onLoad = React.useCallback(function callback(mapInstance) {
+        const bounds = new window.google.maps.LatLngBounds(currentPosition);
+        mapInstance.fitBounds(bounds);
+
+        setMap(mapInstance);
+    }, []);
+    const onUnmount = React.useCallback(function callback(map) {
+        setMap(null);
+    }, []);
 
     return (
         <div>
@@ -413,6 +430,22 @@ const Home = () => {
             ) : (
                 <p>Đang lấy dữ liệu hướng đi...</p>
             )}
+            {/* <LoadScript googleMapsApiKey="AIzaSyARewUOnU_ihrOawcwjTS-G-EEJnTcVHRg">
+                <GoogleMap mapContainerStyle={mapStyles} center={currentPosition} zoom={15}>
+                    {currentPosition && <Marker position={currentPosition} />}
+                </GoogleMap>
+            </LoadScript> */}
+            <GoogleMap
+                style={{ cursor: 'default !important' }}
+                mapContainerStyle={mapStyles}
+                center={currentPosition}
+                zoom={10}
+                onLoad={onLoad}
+                onUnmount={onUnmount}
+            >
+                <Marker position={currentPosition} />
+                {/* <Marker position={newGeocode} icon={customMarkerIcon} /> */}
+            </GoogleMap>
         </div>
     );
 };
