@@ -275,8 +275,8 @@ const mapStyles = {
 const Home = () => {
     const [currentPosition, setCurrentPosition] = useState(null);
     const [watchId, setWatchId] = useState(null);
-    const [targetLatitude, setTargetLatitude] = useState(10.7666587); // Thay thế bằng tọa độ GPS của mục tiêu
-    const [targetLongitude, setTargetLongitude] = useState(106.695266); // Thay thế bằng tọa độ GPS của mục tiêu
+    const [targetLatitude, setTargetLatitude] = useState(10.766970623687978); // Thay thế bằng tọa độ GPS của mục tiêu
+    const [targetLongitude, setTargetLongitude] = useState(106.69504968618132); // Thay thế bằng tọa độ GPS của mục tiêu
     const [distance, setDistance] = useState(null);
     const [bearing, setBearing] = useState(null);
 
