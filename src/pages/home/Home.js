@@ -396,7 +396,7 @@ const Home = () => {
 
             // So sánh hướng của người dùng và hướng đến mục tiêu
             const angleDifference = Math.abs(userBearing - targetBearing);
-            setDirector(angleDifference);
+            setDirector(targetBearing);
             // Cho phép một lỗi nhỏ trong khoảng 15 độ
             return angleDifference <= 15;
         }
