@@ -4,6 +4,7 @@ import anh from '../../assets/imgs/Heart Health.png';
 const CameraComponent = ({ start, onStop, setImg }) => {
     const [isDraw, setIsDraw] = useState(false);
     const [stream, setStream] = useState(null);
+    const [idAnimate, setIdAnimate] = useState(null);
     const videoRef = useRef();
     const canvasRef = useRef();
     const streamRef = useRef();
@@ -32,29 +33,6 @@ const CameraComponent = ({ start, onStop, setImg }) => {
         }
     };
 
-    const capturePhoto = () => {
-        if (videoRef.current && canvasRef.current) {
-            const video = videoRef.current;
-            const canvas = canvasRef.current;
-            canvas.width = video.videoWidth;
-            canvas.height = video.videoHeight;
-            canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
-            const photoURL = canvas.toDataURL('image/jpeg');
-            // You can do something with the captured photoURL here
-            setImg(photoURL);
-            stopCamera();
-        }
-    };
-
-    const toggleImage = () => {
-        requestAnimationFrame(drawOnVideo);
-    };
-
-    const handleDraw = () => {
-        setIsDraw(true);
-        console.log(23);
-    };
-
     const drawOnVideo = () => {
         if (videoRef.current && canvasRef.current) {
             const video = videoRef.current;
@@ -62,33 +40,34 @@ const CameraComponent = ({ start, onStop, setImg }) => {
             const ctx = canvas.getContext('2d');
 
             // Vẽ video lên canvas
-            // if (isDraw)
             ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
 
-            // Vẽ hình vuông màu đỏ lên video (đây là ví dụ)
-            // ctx.fillStyle = 'red';
-            // ctx.fillRect(10, 50, 100, 100); // Thay đổi tọa độ và kích thước tùy ý
-
             ctx.beginPath();
-            console.log(isDraw);
             if (isDraw) {
-                ctx.arc(100, 100, 50, 0, 2 * Math.PI); // Thay đổi tọa độ và kích thước tùy ý
+                ctx.arc(100, 100, 50, 0, 2 * Math.PI);
                 ctx.fillStyle = 'blue';
             }
             ctx.fill();
 
-            // const icon = new Image();
-            // icon.src =
-            //     'https://png.pngtree.com/png-clipart/20220603/original/pngtree-red-location-icon-sign-png-image_7886920.png'; // Thay đổi đường dẫn đến hình ảnh biểu tượng của bạn
-            // icon.onload = () => {
-            //     // Vẽ biểu tượng lên video
-            //     ctx.drawImage(icon, 100, 100, 50, 50); // Thay đổi tọa độ và kích thước tùy ý
-            //     ctx.fill();
-            // };
-
-            // Gọi lại hàm này trong vòng lặp requestAnimationFrame để vẽ liên tục
-            requestAnimationFrame(drawOnVideo);
+            const id = requestAnimationFrame(drawOnVideo);
+            cancelAnimationFrame(id - 1);
+            setIdAnimate(id);
         }
+    };
+
+    const toggleImage = () => {
+        const id = requestAnimationFrame(drawOnVideo);
+        setIdAnimate(id);
+    };
+
+    const handleDraw = () => {
+        setIsDraw((prev) => !prev);
+        cancelAnimationFrame(idAnimate);
+        toggleImage();
+    };
+
+    const handleStopCanvas = () => {
+        cancelAnimationFrame(idAnimate);
     };
 
     useEffect(() => {
@@ -121,19 +100,18 @@ const CameraComponent = ({ start, onStop, setImg }) => {
             <div
                 style={{ margin: 'auto', display: 'flex', flexDirection: 'column', maxWidth: '100vw', height: '100vh' }}
             >
-                {stream && <video style={{ height: 0 }} ref={videoRef} autoPlay></video>}
-                {stream && (
-                    <>
-                        <button
-                            className="btn-primary ml-8 btn-lg"
-                            style={{ marginLeft: '-1px' }}
-                            onClick={toggleImage}
-                        >
-                            Start
-                        </button>
-                        <button onClick={handleDraw}>Draw</button>
-                    </>
-                )}
+                <>
+                    <button style={{ padding: 10 }} onClick={toggleImage}>
+                        Start
+                    </button>
+                    <button style={{ padding: 10 }} onClick={handleStopCanvas}>
+                        Stop
+                    </button>
+                    <button style={{ padding: 10 }} onClick={handleDraw}>
+                        Draw
+                    </button>
+                </>
+                {stream && <video ref={videoRef} style={{ height: 0 }} autoPlay></video>}
                 <canvas ref={canvasRef} width="480" height="640"></canvas>
             </div>
         </div>
