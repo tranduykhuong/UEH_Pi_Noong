@@ -43,8 +43,30 @@ const Home = () => {
         setHeading(newHeading);
     };
 
+    // useEffect(() => {
+    //     // Kiểm tra xem trình duyệt có hỗ trợ API cảm biến la bàn không
+    //     if ('ondeviceorientationabsolute' in window) {
+    //         window.addEventListener('deviceorientationabsolute', calculateCompassHeading);
+    //     } else if ('ondeviceorientation' in window) {
+    //         window.addEventListener('deviceorientation', calculateCompassHeading);
+    //     }
+
+    //     return () => {
+    //         if ('ondeviceorientationabsolute' in window) {
+    //             window.removeEventListener('deviceorientationabsolute', calculateCompassHeading);
+    //         } else if ('ondeviceorientation' in window) {
+    //             window.removeEventListener('deviceorientation', calculateCompassHeading);
+    //         }
+    //     };
+    // }, []);
     useEffect(() => {
-        // Kiểm tra xem trình duyệt có hỗ trợ API cảm biến la bàn không
+        const calculateCompassHeading = (event) => {
+            const heading = event.alpha; // Lấy giá trị alpha từ sự kiện
+
+            // Xử lý hướng la bàn ở đây
+            console.log('Hướng la bàn:', heading);
+        };
+
         if ('ondeviceorientationabsolute' in window) {
             window.addEventListener('deviceorientationabsolute', calculateCompassHeading);
         } else if ('ondeviceorientation' in window) {
