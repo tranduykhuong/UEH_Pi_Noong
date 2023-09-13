@@ -43,6 +43,35 @@ const Home = () => {
         setHeading(newHeading);
     };
 
+    const requestGeolocationAndCompassAccess = async () => {
+        try {
+            // Yêu cầu quyền truy cập GPS
+            const geolocationPermission = await navigator.permissions.query({ name: 'geolocation' });
+            if (geolocationPermission.state === 'denied') {
+                // Xử lý khi người dùng từ chối quyền truy cập GPS
+                console.log('Quyền truy cập GPS bị từ chối.');
+                return;
+            }
+
+            // Yêu cầu quyền truy cập cảm biến la bàn
+            const compassPermission = await navigator.permissions.query({ name: 'magnetometer' });
+            if (compassPermission.state === 'denied') {
+                // Xử lý khi người dùng từ chối quyền truy cập cảm biến la bàn
+                console.log('Quyền truy cập cảm biến la bàn bị từ chối.');
+                return;
+            }
+
+            // Quyền đã được cấp, thực hiện các xử lý liên quan đến GPS và cảm biến la bàn ở đây
+            console.log('Quyền truy cập GPS và cảm biến la bàn đã được cấp.');
+        } catch (error) {
+            console.error('Lỗi khi yêu cầu quyền truy cập:', error);
+        }
+    };
+
+    useEffect(() => {
+        requestGeolocationAndCompassAccess();
+    }, []);
+
     // useEffect(() => {
     //     // Kiểm tra xem trình duyệt có hỗ trợ API cảm biến la bàn không
     //     if ('ondeviceorientationabsolute' in window) {
@@ -59,28 +88,6 @@ const Home = () => {
     //         }
     //     };
     // }, []);
-    useEffect(() => {
-        const calculateCompassHeading = (event) => {
-            const heading = event.alpha; // Lấy giá trị alpha từ sự kiện
-
-            // Xử lý hướng la bàn ở đây
-            console.log('Hướng la bàn:', heading);
-        };
-
-        if ('ondeviceorientationabsolute' in window) {
-            window.addEventListener('deviceorientationabsolute', calculateCompassHeading);
-        } else if ('ondeviceorientation' in window) {
-            window.addEventListener('deviceorientation', calculateCompassHeading);
-        }
-
-        return () => {
-            if ('ondeviceorientationabsolute' in window) {
-                window.removeEventListener('deviceorientationabsolute', calculateCompassHeading);
-            } else if ('ondeviceorientation' in window) {
-                window.removeEventListener('deviceorientation', calculateCompassHeading);
-            }
-        };
-    }, []);
 
     const calculateDistance = (lat1, lon1, lat2, lon2) => {
         const earthRadiusKm = 6371; // Bán kính trái đất ở đơn vị kilômét
