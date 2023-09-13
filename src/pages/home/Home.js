@@ -60,31 +60,6 @@ const Home = () => {
         };
     }, []);
 
-    const requestGeolocationAccess = () => {
-        if ('geolocation' in navigator) {
-            navigator.geolocation.watchPosition(
-                (position) => {
-                    // Lấy dữ liệu vị trí và hướng từ GPS
-                    const heading = position.coords.heading;
-
-                    // Xử lý hướng la bàn ở đây
-                    console.log('Hướng la bàn từ GPS:', heading);
-                    setHeading(heading);
-                },
-                (error) => {
-                    console.error('Lỗi khi truy cập GPS:', error);
-                }
-            );
-        } else {
-            console.log('Trình duyệt không hỗ trợ GPS.');
-        }
-    };
-
-    useEffect(() => {
-        // Yêu cầu quyền truy cập GPS và lấy hướng
-        requestGeolocationAccess();
-    }, []);
-
     const calculateDistance = (lat1, lon1, lat2, lon2) => {
         const earthRadiusKm = 6371; // Bán kính trái đất ở đơn vị kilômét
         const dLat = (lat2 - lat1) * (Math.PI / 180);
@@ -177,6 +152,7 @@ const Home = () => {
             const watchId = navigator.geolocation.watchPosition(
                 (position) => {
                     const { latitude, longitude } = position.coords;
+
                     setCurrentPosition({ lat: latitude, lng: longitude });
                 },
                 (error) => {
@@ -195,6 +171,8 @@ const Home = () => {
                         // const latitude = position.coords.latitude;
                         // const longitude = position.coords.longitude;
                         // console.log(`Vị trí của bạn: ${latitude}, ${longitude}`);
+                        const heading = position.coords.heading;
+                        setHeading(heading);
                         handleWatchPosition();
                         // setCurrentPosition({ lat: latitude, lng: longitude });
                         // Gọi hàm xử lý vị trí ở đây
