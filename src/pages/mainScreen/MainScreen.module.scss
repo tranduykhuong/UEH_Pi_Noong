@@ -3,7 +3,7 @@
     width: 100%;
     height: 100vh;
     position: relative;
-    background-color: rgb(246, 229, 205);
+    // background-color: rgb(246, 229, 205);
 
     .logout {
         position: absolute;
@@ -12,12 +12,13 @@
         width: 70px;
         height: 70px;
         border-radius: 50%;
-        background-color: orange;
+        background-color: rgb(246, 175, 44);
         display: flex;
         justify-content: center;
         align-items: center;
 
         &__img {
+            padding-left: 2px;
             width: 60%;
             height: 60%;
         }
@@ -27,24 +28,48 @@
         display: flex;
         flex-direction: row;
         width: 100%;
-        height: calc(100vh - 80%);
-        background-color: red;
+        height: calc(100vh - 85%);
+        // background-color: red;
         position: absolute;
         bottom: 0;
+        margin-bottom: 20%;
 
         &__book {
             flex: 1;
-            background-color: aquamarine;
+            // background-color: aquamarine;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            &_img {
+                width: 70px;
+                height: 70px;
+            }
         }
 
-        &__btnPiNong {
-            flex: 1;
-            background-color: antiquewhite;
+        &__btnPiNoong {
+            flex: 2;
+            // background-color: antiquewhite;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            &_img {
+                width: 110px;
+                height: 110px;
+                border-radius: 50%;
+            }
         }
 
         &__collection {
             flex: 1;
-            background-color: azure;
+            // background-color: azure;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            &_img {
+                width: 70px;
+                height: 70px;
+            }
         }
     }
 }
