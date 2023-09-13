@@ -173,9 +173,6 @@ const Home = () => {
                 (position) => {
                     const { latitude, longitude } = position.coords;
                     const heading = position.coords.heading;
-                    setHeading(heading);
-                    console.log(heading);
-
                     setCurrentPosition({ lat: latitude, lng: longitude });
                 },
                 (error) => {
@@ -194,8 +191,7 @@ const Home = () => {
                         // const latitude = position.coords.latitude;
                         // const longitude = position.coords.longitude;
                         // console.log(`Vị trí của bạn: ${latitude}, ${longitude}`);
-                        const heading = position.coords.heading;
-                        setHeading(heading);
+
                         handleWatchPosition();
                         startWatchingHeading();
 
