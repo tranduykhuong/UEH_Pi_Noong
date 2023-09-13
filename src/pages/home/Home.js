@@ -90,6 +90,7 @@ const Home = () => {
                 timeout: 10000, // Thời gian tối đa chờ đợi lấy tọa độ (ms) - ví dụ: 10 giây
                 maximumAge: 0, // Tọa độ không được lấy từ bộ nhớ cache
             };
+            console.log('Vinh');
 
             // Kiểm tra xem trình duyệt có hỗ trợ geolocation không
             if ('geolocation' in navigator) {
@@ -109,16 +110,16 @@ const Home = () => {
                                 await navigator.geolocation.requestPermission();
                                 handleWatchPosition(); // Thử lại sau khi có quyền
                             } else if (permissionStatus.state === 'denied') {
-                                setError('Người dùng đã từ chối quyền truy cập vị trí.');
+                                console.log('Người dùng đã từ chối quyền truy cập vị trí.');
                             }
                         } catch (error) {
-                            setError('Không thể kiểm tra quyền truy cập vị trí.');
+                            console.log('Không thể kiểm tra quyền truy cập vị trí.');
                         }
                     },
                     options
                 );
             } else {
-                setError('Trình duyệt không hỗ trợ định vị geolocation.');
+                console.log('Trình duyệt không hỗ trợ định vị geolocation.');
             }
         };
 
@@ -133,10 +134,10 @@ const Home = () => {
                     // Quyền đã được cấp, lấy tọa độ GPS
                     handleWatchPosition();
                 } catch (error) {
-                    setError('Không thể cấp quyền định vị geolocation.');
+                    console.log('Không thể cấp quyền định vị geolocation.');
                 }
             } else {
-                setError('Trình duyệt không hỗ trợ định vị geolocation.');
+                console.log('Trình duyệt không hỗ trợ định vị geolocation.');
             }
         };
 
@@ -216,7 +217,10 @@ const Home = () => {
 
     // GEOLOCATION
     const handleGetGeolocation = () => {
-        alert('Lat: ' + currentPosition.lat + '\nLng: ' + currentPosition.lng);
+        console.log(currentPosition);
+        if (currentPosition !== null) {
+            alert('Lat: ' + currentPosition.lat + '\nLng: ' + currentPosition.lng);
+        }
     };
 
     return (
