@@ -154,6 +154,7 @@ const Home = () => {
                     const { latitude, longitude } = position.coords;
                     const heading = position.coords.heading;
                     setHeading(heading);
+                    console.log(heading);
 
                     setCurrentPosition({ lat: latitude, lng: longitude });
                 },
