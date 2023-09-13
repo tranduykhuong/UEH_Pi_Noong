@@ -186,7 +186,7 @@ const Home = () => {
 
         checkAndRequestGeolocationPermission();
 
-        // Khi component unmount, dừng theo dõi vị trí
+        // Khi component unmount, dừng theo dõi
         return () => {
             if (watchId) {
                 navigator.geolocation.clearWatch(watchId);
@@ -268,7 +268,7 @@ const Home = () => {
 
     return (
         <div>
-            {/* {currentPosition ? (
+            {currentPosition ? (
                 <p>
                     Tọa độ GPS hiện tại: Lat {currentPosition.lat}, Lng {currentPosition.lng}
                 </p>
@@ -286,7 +286,7 @@ const Home = () => {
                 </div>
             ) : (
                 <p>Đang lấy dữ liệu hướng đi...</p>
-            )} */}
+            )}
             <GoogleMap
                 style={{ cursor: 'default !important' }}
                 mapContainerStyle={mapStyles}
