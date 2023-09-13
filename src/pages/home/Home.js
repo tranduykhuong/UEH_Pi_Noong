@@ -79,7 +79,6 @@ const Home = () => {
         console.log(angleToNorth);
 
         setHeading(angleToNorth);
-        setBearing(angleToNorth);
         return angleToNorth;
     }
 
