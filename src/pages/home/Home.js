@@ -60,6 +60,31 @@ const Home = () => {
         };
     }, []);
 
+    const requestGeolocationAccess = () => {
+        if ('geolocation' in navigator) {
+            navigator.geolocation.watchPosition(
+                (position) => {
+                    // Lấy dữ liệu vị trí và hướng từ GPS
+                    const heading = position.coords.heading;
+
+                    // Xử lý hướng la bàn ở đây
+                    console.log('Hướng la bàn từ GPS:', heading);
+                    setHeading(heading);
+                },
+                (error) => {
+                    console.error('Lỗi khi truy cập GPS:', error);
+                }
+            );
+        } else {
+            console.log('Trình duyệt không hỗ trợ GPS.');
+        }
+    };
+
+    useEffect(() => {
+        // Yêu cầu quyền truy cập GPS và lấy hướng
+        requestGeolocationAccess();
+    }, []);
+
     const calculateDistance = (lat1, lon1, lat2, lon2) => {
         const earthRadiusKm = 6371; // Bán kính trái đất ở đơn vị kilômét
         const dLat = (lat2 - lat1) * (Math.PI / 180);
