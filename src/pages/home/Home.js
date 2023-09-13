@@ -152,7 +152,7 @@ const Home = () => {
             const watchId = navigator.geolocation.watchPosition(
                 (position) => {
                     const { latitude, longitude } = position.coords;
-                    const heading = position.coords.heading;
+                    const heading = position.coords;
                     setHeading(heading);
                     console.log(heading);
 
@@ -174,8 +174,7 @@ const Home = () => {
                         // const latitude = position.coords.latitude;
                         // const longitude = position.coords.longitude;
                         // console.log(`Vị trí của bạn: ${latitude}, ${longitude}`);
-                        const heading = position.coords.heading;
-                        setHeading(heading);
+
                         handleWatchPosition();
                         // setCurrentPosition({ lat: latitude, lng: longitude });
                         // Gọi hàm xử lý vị trí ở đây
