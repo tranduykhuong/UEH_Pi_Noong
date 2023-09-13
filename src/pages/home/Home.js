@@ -60,6 +60,25 @@ const Home = () => {
         };
     }, []);
 
+    const startWatchingHeading = () => {
+        if ('ondeviceorientation' in window) {
+            watchId = navigator.compass.watchHeading(
+                (heading) => {
+                    // Xử lý thay đổi hướng ở đây
+                    const magneticHeading = heading.magneticHeading;
+                    const trueHeading = heading.trueHeading;
+                    console.log('Hướng từ cảm biến la bàn (Magnetic):', magneticHeading);
+                    console.log('Hướng từ cảm biến la bàn (True):', trueHeading);
+                },
+                (error) => {
+                    console.error('Lỗi khi theo dõi hướng:', error);
+                }
+            );
+        } else {
+            console.log('Trình duyệt không hỗ trợ cảm biến la bàn.');
+        }
+    };
+
     const calculateDistance = (lat1, lon1, lat2, lon2) => {
         const earthRadiusKm = 6371; // Bán kính trái đất ở đơn vị kilômét
         const dLat = (lat2 - lat1) * (Math.PI / 180);
@@ -177,6 +196,8 @@ const Home = () => {
                         const heading = position.coords.heading;
                         setHeading(heading);
                         handleWatchPosition();
+                        startWatchingHeading();
+
                         // setCurrentPosition({ lat: latitude, lng: longitude });
                         // Gọi hàm xử lý vị trí ở đây
                     },
