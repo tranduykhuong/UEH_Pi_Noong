@@ -123,19 +123,41 @@ const Home = () => {
             }
         };
 
-        const checkAndRequestGeolocationPermission = async () => {
-            const permissionStatus = await navigator.permissions.query({ name: 'geolocation' });
-            if (permissionStatus.state === 'granted') {
-                handleWatchPosition();
-            } else if (permissionStatus.state === 'prompt') {
-                // Người dùng chưa cấp quyền, yêu cầu cấp quyền
-                try {
-                    await navigator.geolocation.requestPermission();
-                    // Quyền đã được cấp, lấy tọa độ GPS
-                    handleWatchPosition();
-                } catch (error) {
-                    console.log('Không thể cấp quyền định vị geolocation.');
-                }
+        // const checkAndRequestGeolocationPermission = async () => {
+        //     const permissionStatus = await navigator.permissions.query({ name: 'geolocation' });
+        //     if (permissionStatus.state === 'granted') {
+        //         handleWatchPosition();
+        //     } else if (permissionStatus.state === 'prompt') {
+        //         // Người dùng chưa cấp quyền, yêu cầu cấp quyền
+        //         try {
+        //             await navigator.geolocation.requestPermission();
+        //             // Quyền đã được cấp, lấy tọa độ GPS
+        //             handleWatchPosition();
+        //         } catch (error) {
+        //             console.log(error);
+        //             console.log('Không thể cấp quyền định vị geolocation.');
+        //         }
+        //     } else {
+        //         console.log('Trình duyệt không hỗ trợ định vị geolocation.');
+        //     }
+        // };
+
+        const checkAndRequestGeolocationPermission = () => {
+            if ('geolocation' in navigator) {
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        // Quyền đã được cấp, xử lý vị trí ở đây
+                        const latitude = position.coords.latitude;
+                        const longitude = position.coords.longitude;
+                        console.log(`Vị trí của bạn: ${latitude}, ${longitude}`);
+                        setCurrentPosition({ lat: latitude, lng: longitude });
+                        // Gọi hàm xử lý vị trí ở đây
+                    },
+                    (error) => {
+                        console.error('Không thể lấy vị trí:', error.message);
+                        // Xử lý lỗi ở đây
+                    }
+                );
             } else {
                 console.log('Trình duyệt không hỗ trợ định vị geolocation.');
             }
