@@ -62,7 +62,7 @@ const Home = () => {
 
     const startWatchingHeading = () => {
         // if ('ondeviceorientation' in window) {
-        watchId = navigator.calculateCompassHeading.watchHeading(
+        watchId = navigator.calculateCompassHeading.watchPosition(
             (heading) => {
                 console.log(heading);
                 // Xử lý thay đổi hướng ở đây
