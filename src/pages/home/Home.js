@@ -60,26 +60,26 @@ const Home = () => {
     //     };
     // }, []);
 
-    const startWatchingHeading = () => {
-        // if ('ondeviceorientation' in window) {
-        watchId = navigator.calculateCompassHeading.watchPosition(
-            (heading) => {
-                console.log(heading);
-                // Xử lý thay đổi hướng ở đây
-                const magneticHeading = heading.magneticHeading;
-                const trueHeading = heading.trueHeading;
-                console.log('Hướng từ cảm biến la bàn (Magnetic):', magneticHeading);
-                console.log('Hướng từ cảm biến la bàn (True):', trueHeading);
-                setHeading(magneticHeading);
-            },
-            (error) => {
-                console.error('Lỗi khi theo dõi hướng:', error);
-            }
-        );
-        // } else {
-        //     console.log('Trình duyệt không hỗ trợ cảm biến la bàn.');
-        // }
-    };
+    function calculateAngleToNorth(currentLat, currentLng) {
+        // Tọa độ của Bắc (North)
+        const northLatitude = 90;
+        const northLongitude = 0;
+
+        // Tính toán góc giữa vị trí hiện tại và hướng Bắc
+        const deltaY = northLatitude - currentLat;
+        const deltaX = northLongitude - currentLng;
+
+        // Sử dụng atan2 để tính toán góc
+        let angleToNorth = Math.atan2(deltaY, deltaX) * (180 / Math.PI);
+
+        // Chuyển góc thành giá trị dương nếu cần thiết
+        if (angleToNorth < 0) {
+            angleToNorth += 360;
+        }
+
+        setHeading(angleToNorth);
+        return angleToNorth;
+    }
 
     const calculateDistance = (lat1, lon1, lat2, lon2) => {
         const earthRadiusKm = 6371; // Bán kính trái đất ở đơn vị kilômét
@@ -173,7 +173,10 @@ const Home = () => {
             const watchId = navigator.geolocation.watchPosition(
                 (position) => {
                     const { latitude, longitude } = position.coords;
-                    const heading = position.coords.heading;
+                    // const heading = position.coords.heading;
+                    // setHeading(heading);
+                    // console.log(heading);
+
                     setCurrentPosition({ lat: latitude, lng: longitude });
                 },
                 (error) => {
@@ -192,9 +195,9 @@ const Home = () => {
                         // const latitude = position.coords.latitude;
                         // const longitude = position.coords.longitude;
                         // console.log(`Vị trí của bạn: ${latitude}, ${longitude}`);
-
+                        const heading = position.coords.heading;
+                        setHeading(heading);
                         handleWatchPosition();
-                        startWatchingHeading();
 
                         // setCurrentPosition({ lat: latitude, lng: longitude });
                         // Gọi hàm xử lý vị trí ở đây
@@ -240,6 +243,8 @@ const Home = () => {
                     // if (angleDifference < 10 && dist < 0.01) {
                     //     alert(element.id);
                     // }
+
+                    calculateAngleToNorth();
                 }
             }
         };
