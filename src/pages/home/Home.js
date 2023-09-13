@@ -69,6 +69,7 @@ const Home = () => {
                     const trueHeading = heading.trueHeading;
                     console.log('Hướng từ cảm biến la bàn (Magnetic):', magneticHeading);
                     console.log('Hướng từ cảm biến la bàn (True):', trueHeading);
+                    setHeading(magneticHeading);
                 },
                 (error) => {
                     console.error('Lỗi khi theo dõi hướng:', error);
