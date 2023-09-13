@@ -83,56 +83,43 @@ const Home = () => {
         return ((Math.atan2(y, x) * 180) / Math.PI + 360) % 360;
     };
 
-    useEffect(() => {
-        const handleWatchPosition = () => {
-            const options = {
-                enableHighAccuracy: true, // Cố gắng lấy tọa độ chính xác nhất có thể
-                timeout: 1, // Thời gian tối đa chờ đợi lấy tọa độ (ms)
-                maximumAge: 0, // Tọa độ không được lấy từ bộ nhớ cache
-            };
+    const handleWatchPosition = () => {
+        const options = {
+            enableHighAccuracy: true, // Cố gắng lấy tọa độ chính xác nhất có thể
+            timeout: 10000, // Thời gian tối đa chờ đợi lấy tọa độ (ms) - ví dụ: 10 giây
+            maximumAge: 0, // Tọa độ không được lấy từ bộ nhớ cache
+        };
 
-            // Bắt đầu theo dõi vị trí với tần số cập nhật 1 lần mỗi 10 giây
-            const watchId = navigator.geolocation.watchPosition(
+        // Kiểm tra xem trình duyệt có hỗ trợ geolocation không
+        if ('geolocation' in navigator) {
+            navigator.geolocation.getCurrentPosition(
                 (position) => {
                     const { latitude, longitude } = position.coords;
                     setCurrentPosition({ lat: latitude, lng: longitude });
                 },
-                (error) => {
+                async (error) => {
                     console.error('Lỗi khi lấy tọa độ GPS:', error);
+
+                    // Kiểm tra quyền truy cập vị trí
+                    try {
+                        const permissionStatus = await navigator.permissions.query({ name: 'geolocation' });
+                        if (permissionStatus.state === 'prompt') {
+                            // Người dùng chưa cấp quyền, yêu cầu cấp quyền
+                            await navigator.geolocation.requestPermission();
+                            handleWatchPosition(); // Thử lại sau khi có quyền
+                        } else if (permissionStatus.state === 'denied') {
+                            setError('Người dùng đã từ chối quyền truy cập vị trí.');
+                        }
+                    } catch (error) {
+                        setError('Không thể kiểm tra quyền truy cập vị trí.');
+                    }
                 },
                 options
             );
-
-            setWatchId(watchId);
-        };
-
-        const checkAndRequestGeolocationPermission = async () => {
-            const permissionStatus = await navigator.permissions.query({ name: 'geolocation' });
-            if (permissionStatus.state === 'granted') {
-                handleWatchPosition();
-            } else if (permissionStatus.state === 'prompt') {
-                // Người dùng chưa cấp quyền, yêu cầu cấp quyền
-                try {
-                    await navigator.geolocation.requestPermission();
-                    // Quyền đã được cấp, lấy tọa độ GPS
-                    handleWatchPosition();
-                } catch (error) {
-                    setError('Không thể cấp quyền định vị geolocation.');
-                }
-            } else {
-                setError('Trình duyệt không hỗ trợ định vị geolocation.');
-            }
-        };
-
-        checkAndRequestGeolocationPermission();
-
-        // Khi component unmount, dừng theo dõi vị trí
-        return () => {
-            if (watchId) {
-                navigator.geolocation.clearWatch(watchId);
-            }
-        };
-    }, []);
+        } else {
+            setError('Trình duyệt không hỗ trợ định vị geolocation.');
+        }
+    };
 
     useEffect(() => {
         const isHeadingTowardTarget = () => {
@@ -259,7 +246,13 @@ const Home = () => {
 
             <button
                 onClick={handleGetGeolocation}
-                style={{ padding: '20px', width: 'calc(100% - 40px)', margin: '20px', backgroundColor: 'blue', color: 'white' }}
+                style={{
+                    padding: '20px',
+                    width: 'calc(100% - 40px)',
+                    margin: '20px',
+                    backgroundColor: 'blue',
+                    color: 'white',
+                }}
             >
                 Get GPS
             </button>
@@ -268,3 +261,4 @@ const Home = () => {
 };
 
 export default Home;
+

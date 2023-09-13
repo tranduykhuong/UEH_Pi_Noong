@@ -1,0 +1,51 @@
+.container {
+    // background-color: aqua;
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    background-color: rgb(246, 229, 205);
+
+    .logout {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        background-color: orange;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &__img {
+            width: 60%;
+            height: 60%;
+        }
+    }
+
+    .option {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        height: calc(100vh - 80%);
+        background-color: red;
+        position: absolute;
+        bottom: 0;
+
+        &__book {
+            flex: 1;
+            background-color: aquamarine;
+        }
+
+        &__btnPiNong {
+            flex: 1;
+            background-color: antiquewhite;
+        }
+
+        &__collection {
+            flex: 1;
+            background-color: azure;
+        }
+    }
+}
+
