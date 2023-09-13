@@ -246,7 +246,7 @@ const Home = () => {
                     // }
                 }
             }
-            calculateAngleToNorth(currentPosition?.lat || 0, currentPosition?.lng || 0);
+            // calculateAngleToNorth(currentPosition?.lat || 0, currentPosition?.lng || 0);
         };
 
         isHeadingTowardTarget();
@@ -298,7 +298,7 @@ const Home = () => {
 
     return (
         <div>
-            {currentPosition ? (
+            {/* {currentPosition ? (
                 <p>
                     Tọa độ GPS hiện tại: Lat {currentPosition.lat}, Lng {currentPosition.lng}
                 </p>
@@ -316,7 +316,7 @@ const Home = () => {
                 </div>
             ) : (
                 <p>Đang lấy dữ liệu hướng đi...</p>
-            )}
+            )} */}
             <GoogleMap
                 style={{ cursor: 'default !important' }}
                 mapContainerStyle={mapStyles}
