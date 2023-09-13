@@ -43,22 +43,22 @@ const Home = () => {
         setHeading(newHeading);
     };
 
-    useEffect(() => {
-        // Kiểm tra xem trình duyệt có hỗ trợ API cảm biến la bàn không
-        if ('ondeviceorientationabsolute' in window) {
-            window.addEventListener('deviceorientationabsolute', calculateCompassHeading);
-        } else if ('ondeviceorientation' in window) {
-            window.addEventListener('deviceorientation', calculateCompassHeading);
-        }
+    // useEffect(() => {
+    //     // Kiểm tra xem trình duyệt có hỗ trợ API cảm biến la bàn không
+    //     if ('ondeviceorientationabsolute' in window) {
+    //         window.addEventListener('deviceorientationabsolute', calculateCompassHeading);
+    //     } else if ('ondeviceorientation' in window) {
+    //         window.addEventListener('deviceorientation', calculateCompassHeading);
+    //     }
 
-        return () => {
-            if ('ondeviceorientationabsolute' in window) {
-                window.removeEventListener('deviceorientationabsolute', calculateCompassHeading);
-            } else if ('ondeviceorientation' in window) {
-                window.removeEventListener('deviceorientation', calculateCompassHeading);
-            }
-        };
-    }, []);
+    //     return () => {
+    //         if ('ondeviceorientationabsolute' in window) {
+    //             window.removeEventListener('deviceorientationabsolute', calculateCompassHeading);
+    //         } else if ('ondeviceorientation' in window) {
+    //             window.removeEventListener('deviceorientation', calculateCompassHeading);
+    //         }
+    //     };
+    // }, []);
 
     const startWatchingHeading = () => {
         if ('ondeviceorientation' in window) {
