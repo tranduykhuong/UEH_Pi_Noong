@@ -76,8 +76,10 @@ const Home = () => {
         if (angleToNorth < 0) {
             angleToNorth += 360;
         }
+        console.log(angleToNorth);
 
         setHeading(angleToNorth);
+        setBearing(angleToNorth);
         return angleToNorth;
     }
 
@@ -243,10 +245,9 @@ const Home = () => {
                     // if (angleDifference < 10 && dist < 0.01) {
                     //     alert(element.id);
                     // }
-
-                    calculateAngleToNorth();
                 }
             }
+            calculateAngleToNorth(currentPosition?.lat || 0, currentPosition?.lng || 0);
         };
 
         isHeadingTowardTarget();
