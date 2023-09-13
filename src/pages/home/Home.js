@@ -152,6 +152,8 @@ const Home = () => {
             const watchId = navigator.geolocation.watchPosition(
                 (position) => {
                     const { latitude, longitude } = position.coords;
+                    const heading = position.coords.heading;
+                    setHeading(heading);
 
                     setCurrentPosition({ lat: latitude, lng: longitude });
                 },
