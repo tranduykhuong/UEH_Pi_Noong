@@ -43,44 +43,44 @@ const Home = () => {
         setHeading(newHeading);
     };
 
-    // useEffect(() => {
-    //     // Kiểm tra xem trình duyệt có hỗ trợ API cảm biến la bàn không
-    //     if ('ondeviceorientationabsolute' in window) {
-    //         window.addEventListener('deviceorientationabsolute', calculateCompassHeading);
-    //     } else if ('ondeviceorientation' in window) {
-    //         window.addEventListener('deviceorientation', calculateCompassHeading);
-    //     }
-
-    //     return () => {
-    //         if ('ondeviceorientationabsolute' in window) {
-    //             window.removeEventListener('deviceorientationabsolute', calculateCompassHeading);
-    //         } else if ('ondeviceorientation' in window) {
-    //             window.removeEventListener('deviceorientation', calculateCompassHeading);
-    //         }
-    //     };
-    // }, []);
-
-    function calculateAngleToNorth(currentLat, currentLng) {
-        // Tọa độ của Bắc (North)
-        const northLatitude = 90;
-        const northLongitude = 0;
-
-        // Tính toán góc giữa vị trí hiện tại và hướng Bắc
-        const deltaY = northLatitude - currentLat;
-        const deltaX = northLongitude - currentLng;
-
-        // Sử dụng atan2 để tính toán góc
-        let angleToNorth = Math.atan2(deltaY, deltaX) * (180 / Math.PI);
-
-        // Chuyển góc thành giá trị dương nếu cần thiết
-        if (angleToNorth < 0) {
-            angleToNorth += 360;
+    useEffect(() => {
+        // Kiểm tra xem trình duyệt có hỗ trợ API cảm biến la bàn không
+        if ('ondeviceorientationabsolute' in window) {
+            window.addEventListener('deviceorientationabsolute', calculateCompassHeading);
+        } else if ('ondeviceorientation' in window) {
+            window.addEventListener('deviceorientation', calculateCompassHeading);
         }
-        console.log(angleToNorth);
 
-        setHeading(angleToNorth);
-        return angleToNorth;
-    }
+        return () => {
+            if ('ondeviceorientationabsolute' in window) {
+                window.removeEventListener('deviceorientationabsolute', calculateCompassHeading);
+            } else if ('ondeviceorientation' in window) {
+                window.removeEventListener('deviceorientation', calculateCompassHeading);
+            }
+        };
+    }, []);
+
+    // function calculateAngleToNorth(currentLat, currentLng) {
+    //     // Tọa độ của Bắc (North)
+    //     const northLatitude = 90;
+    //     const northLongitude = 0;
+
+    //     // Tính toán góc giữa vị trí hiện tại và hướng Bắc
+    //     const deltaY = northLatitude - currentLat;
+    //     const deltaX = northLongitude - currentLng;
+
+    //     // Sử dụng atan2 để tính toán góc
+    //     let angleToNorth = Math.atan2(deltaY, deltaX) * (180 / Math.PI);
+
+    //     // Chuyển góc thành giá trị dương nếu cần thiết
+    //     if (angleToNorth < 0) {
+    //         angleToNorth += 360;
+    //     }
+    //     console.log(angleToNorth);
+
+    //     setHeading(angleToNorth);
+    //     return angleToNorth;
+    // }
 
     const calculateDistance = (lat1, lon1, lat2, lon2) => {
         const earthRadiusKm = 6371; // Bán kính trái đất ở đơn vị kilômét
