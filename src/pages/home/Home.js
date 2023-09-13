@@ -62,7 +62,7 @@ const Home = () => {
 
     const startWatchingHeading = () => {
         // if ('ondeviceorientation' in window) {
-        watchId = navigator.compass.watchHeading(
+        watchId = navigator.geolocation.watchHeading(
             (heading) => {
                 // Xử lý thay đổi hướng ở đây
                 const magneticHeading = heading.magneticHeading;
