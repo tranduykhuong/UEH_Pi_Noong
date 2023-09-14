@@ -25,14 +25,17 @@ const CollectionModal = ({ onClose }) => {
     const modalRef = useRef(null);
 
     const handleModalClick = (e) => {
-        // Kiểm tra xem sự kiện click có phát sinh từ phần tử modal chính hay không
-        onClose(); // Đóng modal khi click bên ngoài
+        if (modalRef.current && !modalRef.current.contains(e.target)) {
+            onClose(); // Đóng modal khi click bên ngoài
+        }
+    };
+    const handleBackClick = () => {
+        onClose();
     };
 
     const handleImageClick = (e, image, index) => {
         const imageSrc = image.src;
         const imageAlt = image.alt;
-        const clickedElement = e.currentTarget;
 
         console.log('Thông tin ảnh:', imageSrc, imageAlt);
         console.log('Vị trí phần tử trong mảng:', index);
@@ -43,7 +46,7 @@ const CollectionModal = ({ onClose }) => {
             <div ref={modalRef} className={classes.container_modal}>
                 <div className={classes.header}>
                     <p>TÚI ĐỒ</p>
-                    <div onClick={handleModalClick} className={classes.back_btn}>
+                    <div onClick={handleBackClick} className={classes.back_btn}>
                         <img className={classes.back_icon} src={Back} alt="Back" />
                     </div>
                 </div>

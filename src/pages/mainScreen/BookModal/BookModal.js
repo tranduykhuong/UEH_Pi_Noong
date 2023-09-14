@@ -25,8 +25,13 @@ const BookModal = ({ onClose }) => {
     const modalRef = useRef(null);
 
     const handleModalClick = (e) => {
-        // Kiểm tra xem sự kiện click có phát sinh từ phần tử modal chính hay không
-        onClose(); // Đóng modal khi click bên ngoài
+        if (modalRef.current && !modalRef.current.contains(e.target)) {
+            onClose(); // Đóng modal khi click bên ngoài
+        }
+    };
+
+    const handleBackClick = () => {
+        onClose();
     };
 
     const handleImageClick = (e, image, index) => {
@@ -38,11 +43,11 @@ const BookModal = ({ onClose }) => {
         console.log('Vị trí phần tử trong mảng:', index);
     };
     return (
-        <div className={classes.container}>
+        <div onClick={handleModalClick} className={classes.container}>
             <div ref={modalRef} className={classes.container_modal}>
                 <div className={classes.header}>
                     <p>BỘ SƯU TẬP</p>
-                    <div onClick={handleModalClick} className={classes.back_btn}>
+                    <div onClick={handleBackClick} className={classes.back_btn}>
                         <img className={classes.back_icon} src={Back} alt="Back" />
                     </div>
                 </div>
