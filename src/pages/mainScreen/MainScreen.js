@@ -191,10 +191,9 @@ const MainScreen = () => {
                     const element = data[i];
                     const dist = calculateDistance(currentPosition.lat, currentPosition.lng, element.lat, element.lng);
 
-                    console.log(element);
-                    console.log(dist);
-
                     if (dist < 0.01 && !yieldModal) {
+                        console.log(element);
+                        console.log(dist);
                         // check thêm có đang hiện vật phẩm trước đó không
                         // alert(element.id);
                         // Xử lý hiện vật phẩm
