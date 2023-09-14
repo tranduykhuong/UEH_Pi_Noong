@@ -14,21 +14,29 @@ import YieldModal from './YieldModal/YieldModal';
 const temp = [
     {
         id: 'A1',
+        img: 'https://kinpetshop.com/wp-content/uploads/meo-con-keu-lien-tuc.jpg',
+        name: 'Mũ trang phục Hoa',
         lat: 10.766894,
         lng: 106.695466,
     },
     {
         id: 'A2',
+        img: 'https://kinpetshop.com/wp-content/uploads/meo-con-keu-lien-tuc.jpg',
+        name: 'Áo trang phục Hoa',
         lat: 10.766970623687978,
         lng: 106.69504968618132,
     },
     {
         id: 'A3',
+        img: 'https://kinpetshop.com/wp-content/uploads/meo-con-keu-lien-tuc.jpg',
+        name: 'Quần trang phục Hoa',
         lat: 10.766703394544189,
         lng: 106.69524844454077,
     },
     {
         id: 'A4',
+        img: 'https://kinpetshop.com/wp-content/uploads/meo-con-keu-lien-tuc.jpg',
+        name: 'Voucher 50%',
         lat: 10.766736589044667,
         lng: 106.69497602048739,
     },
@@ -192,12 +200,14 @@ const MainScreen = () => {
                     const dist = calculateDistance(currentPosition.lat, currentPosition.lng, element.lat, element.lng);
 
                     if (dist < 0.01 && !yieldModal) {
-                        console.log(element);
+                        // console.log(element);
                         console.log(dist);
                         // check thêm có đang hiện vật phẩm trước đó không
                         // alert(element.id);
                         // Xử lý hiện vật phẩm
+                        setYield(element);
                         setYieldModal(true);
+
                         // Cập nhật data và local các vật phẩm đã hoàn thành
                         const dataUpdate = data.map((item) => item.id !== element.id);
                         setData(dataUpdate);
@@ -262,7 +272,7 @@ const MainScreen = () => {
             {bookModal && <BookModal onClose={closeBookModal} />}
             {collectionModal && <CollectionModal onClose={closeCollectionModal} />}
             {requipmentModal && <RequipmentModal onClose={closeRequipmentModal} />}
-            {yieldModal && <YieldModal onClose={closeYieldModal} />}
+            {yieldModal && <YieldModal onClose={closeYieldModal} yields={yields} />}
         </div>
     );
 };

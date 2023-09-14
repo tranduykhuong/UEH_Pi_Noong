@@ -1,8 +1,8 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import classes from './YieldModal.module.scss';
 import Back from '../../../assets/imgs/back.png';
 
-const YieldModal = ({ onClose }) => {
+const YieldModal = ({ onClose, yields }) => {
     const modalRef = useRef(null);
 
     const handleModalClick = (e) => {
@@ -14,6 +14,10 @@ const YieldModal = ({ onClose }) => {
     const handleBackClick = () => {
         onClose();
     };
+
+    useEffect(() => {
+        console.log(yields);
+    }, []);
 
     return (
         <div onClick={handleModalClick} className={classes.container}>
@@ -27,7 +31,7 @@ const YieldModal = ({ onClose }) => {
                 <div className={classes.colection}>
                     <div className={classes.template}></div>
                     <div className={classes.option_btn}>
-                        <div className={classes.cancel}>
+                        <div onClick={handleBackClick} className={classes.cancel}>
                             <p>Bỏ qua</p>
                         </div>
                         <div className={classes.cancel}>
