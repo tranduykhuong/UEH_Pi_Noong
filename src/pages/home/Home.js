@@ -60,28 +60,6 @@ const Home = () => {
         };
     }, []);
 
-    // function calculateAngleToNorth(currentLat, currentLng) {
-    //     // Tọa độ của Bắc (North)
-    //     const northLatitude = 90;
-    //     const northLongitude = 0;
-
-    //     // Tính toán góc giữa vị trí hiện tại và hướng Bắc
-    //     const deltaY = northLatitude - currentLat;
-    //     const deltaX = northLongitude - currentLng;
-
-    //     // Sử dụng atan2 để tính toán góc
-    //     let angleToNorth = Math.atan2(deltaY, deltaX) * (180 / Math.PI);
-
-    //     // Chuyển góc thành giá trị dương nếu cần thiết
-    //     if (angleToNorth < 0) {
-    //         angleToNorth += 360;
-    //     }
-    //     console.log(angleToNorth);
-
-    //     setHeading(angleToNorth);
-    //     return angleToNorth;
-    // }
-
     const calculateDistance = (lat1, lon1, lat2, lon2) => {
         const earthRadiusKm = 6371; // Bán kính trái đất ở đơn vị kilômét
         const dLat = (lat2 - lat1) * (Math.PI / 180);
@@ -106,64 +84,6 @@ const Home = () => {
     };
 
     useEffect(() => {
-        // const handleWatchPosition = () => {
-        //     const options = {
-        //         enableHighAccuracy: true, // Cố gắng lấy tọa độ chính xác nhất có thể
-        //         timeout: 10000, // Thời gian tối đa chờ đợi lấy tọa độ (ms) - ví dụ: 10 giây
-        //         maximumAge: 0, // Tọa độ không được lấy từ bộ nhớ cache
-        //     };
-        //     console.log('Vinh');
-
-        //     // Kiểm tra xem trình duyệt có hỗ trợ geolocation không
-        //     if ('geolocation' in navigator) {
-        //         navigator.geolocation.getCurrentPosition(
-        //             (position) => {
-        //                 const { latitude, longitude } = position.coords;
-        //                 setCurrentPosition({ lat: latitude, lng: longitude });
-        //             },
-        //             async (error) => {
-        //                 console.error('Lỗi khi lấy tọa độ GPS:', error);
-
-        //                 // Kiểm tra quyền truy cập vị trí
-        //                 try {
-        //                     const permissionStatus = await navigator.permissions.query({ name: 'geolocation' });
-        //                     if (permissionStatus.state === 'prompt') {
-        //                         // Người dùng chưa cấp quyền, yêu cầu cấp quyền
-        //                         await navigator.geolocation.requestPermission();
-        //                         handleWatchPosition(); // Thử lại sau khi có quyền
-        //                     } else if (permissionStatus.state === 'denied') {
-        //                         console.log('Người dùng đã từ chối quyền truy cập vị trí.');
-        //                     }
-        //                 } catch (error) {
-        //                     console.log('Không thể kiểm tra quyền truy cập vị trí.');
-        //                 }
-        //             },
-        //             options
-        //         );
-        //     } else {
-        //         console.log('Trình duyệt không hỗ trợ định vị geolocation.');
-        //     }
-        // };
-
-        // const checkAndRequestGeolocationPermission = async () => {
-        //     const permissionStatus = await navigator.permissions.query({ name: 'geolocation' });
-        //     if (permissionStatus.state === 'granted') {
-        //         handleWatchPosition();
-        //     } else if (permissionStatus.state === 'prompt') {
-        //         // Người dùng chưa cấp quyền, yêu cầu cấp quyền
-        //         try {
-        //             await navigator.geolocation.requestPermission();
-        //             // Quyền đã được cấp, lấy tọa độ GPS
-        //             handleWatchPosition();
-        //         } catch (error) {
-        //             console.log(error);
-        //             console.log('Không thể cấp quyền định vị geolocation.');
-        //         }
-        //     } else {
-        //         console.log('Trình duyệt không hỗ trợ định vị geolocation.');
-        //     }
-        // };
-
         const handleWatchPosition = () => {
             const options = {
                 enableHighAccuracy: true, // Cố gắng lấy tọa độ chính xác nhất có thể
@@ -174,9 +94,6 @@ const Home = () => {
             const watchId = navigator.geolocation.watchPosition(
                 (position) => {
                     const { latitude, longitude } = position.coords;
-                    // const heading = position.coords.heading;
-                    // setHeading(heading);
-                    // console.log(heading);
 
                     setCurrentPosition({ lat: latitude, lng: longitude });
                 },
@@ -192,16 +109,9 @@ const Home = () => {
             if ('geolocation' in navigator) {
                 navigator.geolocation.getCurrentPosition(
                     (position) => {
-                        // Quyền đã được cấp, xử lý vị trí ở đây
-                        // const latitude = position.coords.latitude;
-                        // const longitude = position.coords.longitude;
-                        // console.log(`Vị trí của bạn: ${latitude}, ${longitude}`);
                         const heading = position.coords.heading;
                         setHeading(heading);
                         handleWatchPosition();
-
-                        // setCurrentPosition({ lat: latitude, lng: longitude });
-                        // Gọi hàm xử lý vị trí ở đây
                     },
                     (error) => {
                         console.error('Không thể lấy vị trí:', error.message);
