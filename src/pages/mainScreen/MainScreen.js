@@ -59,8 +59,8 @@ const MainScreen = () => {
     const [bookModal, setBookModal] = useState(false);
     const [collectionModal, setCollectionModal] = useState(false);
     const [requipmentModal, setRequipmentModal] = useState(false);
-    const [yieldModal, setYieldModal] = useState(true);
-    const [yields, setYield] = useState(true);
+    const [yieldModal, setYieldModal] = useState(false);
+    const [yields, setYield] = useState(null);
 
     const [currentPosition, setCurrentPosition] = useState(null);
     const [watchId, setWatchId] = useState(null);
