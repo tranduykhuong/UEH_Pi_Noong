@@ -25,10 +25,12 @@ const CollectionModal = ({ onClose }) => {
     const modalRef = useRef(null);
 
     const handleModalClick = (e) => {
-        // Kiểm tra xem sự kiện click có phát sinh từ phần tử modal chính hay không
         if (modalRef.current && !modalRef.current.contains(e.target)) {
             onClose(); // Đóng modal khi click bên ngoài
         }
+    };
+    const handleBackClick = () => {
+        onClose();
     };
 
     const handleImageClick = (e, image, index) => {
@@ -44,7 +46,7 @@ const CollectionModal = ({ onClose }) => {
             <div ref={modalRef} className={classes.container_modal}>
                 <div className={classes.header}>
                     <p>TÚI ĐỒ</p>
-                    <div onClick={handleModalClick} className={classes.back_btn}>
+                    <div onClick={handleBackClick} className={classes.back_btn}>
                         <img className={classes.back_icon} src={Back} alt="Back" />
                     </div>
                 </div>
