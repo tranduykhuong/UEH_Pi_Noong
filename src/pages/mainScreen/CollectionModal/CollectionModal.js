@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import classes from './BookModal.module.scss';
+import classes from './CollectionModal.module.scss';
 import Back from '../../../assets/imgs/back.png';
 import AoMong from '../../../assets/imgs/colection/aoMong.png';
 import BitMong from '../../../assets/imgs/colection/bitMong.png';
@@ -21,7 +21,7 @@ const images = [
     { src: ThanTrenAoTay, alt: 'Thân trên áo tay' },
 ];
 
-const BookModal = ({ onClose }) => {
+const CollectionModal = ({ onClose }) => {
     const modalRef = useRef(null);
 
     const handleModalClick = (e) => {
@@ -37,11 +37,12 @@ const BookModal = ({ onClose }) => {
         console.log('Thông tin ảnh:', imageSrc, imageAlt);
         console.log('Vị trí phần tử trong mảng:', index);
     };
+
     return (
         <div className={classes.container}>
             <div ref={modalRef} className={classes.container_modal}>
                 <div className={classes.header}>
-                    <p>BỘ SƯU TẬP</p>
+                    <p>TÚI ĐỒ</p>
                     <div onClick={handleModalClick} className={classes.back_btn}>
                         <img className={classes.back_icon} src={Back} alt="Back" />
                     </div>
@@ -62,5 +63,5 @@ const BookModal = ({ onClose }) => {
     );
 };
 
-export default BookModal;
+export default CollectionModal;
 
