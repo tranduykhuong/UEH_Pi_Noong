@@ -205,7 +205,6 @@ const MainScreen = () => {
                         // check thêm có đang hiện vật phẩm trước đó không
                         // alert(element.id);
                         // Xử lý hiện vật phẩm
-                        console.log('cc');
                         setYield(element);
                         setYieldModal(true);
 
