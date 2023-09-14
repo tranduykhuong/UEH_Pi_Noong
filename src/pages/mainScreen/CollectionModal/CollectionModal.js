@@ -26,13 +26,14 @@ const CollectionModal = ({ onClose }) => {
 
     const handleModalClick = (e) => {
         // Kiểm tra xem sự kiện click có phát sinh từ phần tử modal chính hay không
-        onClose(); // Đóng modal khi click bên ngoài
+        if (modalRef.current && !modalRef.current.contains(e.target)) {
+            onClose(); // Đóng modal khi click bên ngoài
+        }
     };
 
     const handleImageClick = (e, image, index) => {
         const imageSrc = image.src;
         const imageAlt = image.alt;
-        const clickedElement = e.currentTarget;
 
         console.log('Thông tin ảnh:', imageSrc, imageAlt);
         console.log('Vị trí phần tử trong mảng:', index);

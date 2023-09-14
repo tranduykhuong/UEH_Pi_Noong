@@ -7,7 +7,7 @@ import Colection from '../../assets/imgs/collection.png';
 import BookModal from './BookModal/BookModal';
 import CollectionModal from './CollectionModal/CollectionModal';
 import AoDai from '../../assets/imgs/colection/aoMong.png';
-import Cancel from '../../assets/imgs/Cancel.png';
+import Reload from '../../assets/imgs/reload.png';
 
 const MainScreen = () => {
     const [bookModal, setBookModal] = useState(false);
@@ -47,7 +47,7 @@ const MainScreen = () => {
             )}
 
             <div className={classes.logout}>
-                <img className={classes.logout__img} src={RightBracket} alt="Logout" />
+                <img className={classes.logout__img} src={Reload} alt="Logout" />
             </div>
 
             <div className={classes.option}>
