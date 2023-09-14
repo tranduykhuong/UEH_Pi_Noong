@@ -36,19 +36,19 @@ const MainScreen = () => {
 
     return (
         <div className={classes.container}>
+            <div className={classes.header_btn}>
+                <div className={classes.cancel}>
+                    <p>Bỏ qua vật phẩm</p>
+                </div>
+                <div className={classes.logout}>
+                    <img className={classes.logout__img} src={Reload} alt="Logout" />
+                </div>
+            </div>
             {yields && (
                 <div className={classes.yield}>
-                    <div className={classes.cancel}>
-                        {/* <img src={Cancel} alt="Cancel"></img> */}
-                        <p>Bỏ qua vật phẩm</p>
-                    </div>
                     <img src={AoDai} alt="yield"></img>
                 </div>
             )}
-
-            <div className={classes.logout}>
-                <img className={classes.logout__img} src={Reload} alt="Logout" />
-            </div>
 
             <div className={classes.option}>
                 <div className={classes.equipment}>
