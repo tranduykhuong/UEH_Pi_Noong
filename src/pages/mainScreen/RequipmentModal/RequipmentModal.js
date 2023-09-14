@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import classes from './BookModal.module.scss';
+import classes from './RequipmentModal.module.scss';
 import Back from '../../../assets/imgs/back.png';
 import AoMong from '../../../assets/imgs/colection/aoMong.png';
 import BitMong from '../../../assets/imgs/colection/bitMong.png';
@@ -21,7 +21,7 @@ const images = [
     { src: ThanTrenAoTay, alt: 'Thân trên áo tay' },
 ];
 
-const BookModal = ({ onClose }) => {
+const RequipmentModal = ({ onClose }) => {
     const modalRef = useRef(null);
 
     const handleModalClick = (e) => {
@@ -46,27 +46,18 @@ const BookModal = ({ onClose }) => {
         <div onClick={handleModalClick} className={classes.container}>
             <div ref={modalRef} className={classes.container_modal}>
                 <div className={classes.header}>
-                    <p>BỘ SƯU TẬP</p>
+                    <p>TRANG PHỤC</p>
                     <div onClick={handleBackClick} className={classes.back_btn}>
                         <img className={classes.back_icon} src={Back} alt="Back" />
                     </div>
                 </div>
                 <div className={classes.colection}>
-                    {images.map((image, index) => (
-                        <div
-                            key={index}
-                            className={classes.image_item}
-                            onClick={(e) => handleImageClick(e, image, index)}
-                        >
-                            <p>{image.alt}</p>
-                            <img className={classes.img_collection} src={image.src} alt={image.alt} />
-                        </div>
-                    ))}
+                    <div className={classes.template}></div>
                 </div>
             </div>
         </div>
     );
 };
 
-export default BookModal;
+export default RequipmentModal;
 

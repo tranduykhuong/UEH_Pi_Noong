@@ -42,7 +42,7 @@ const CollectionModal = ({ onClose }) => {
     };
 
     return (
-        <div className={classes.container}>
+        <div onClick={handleModalClick} className={classes.container}>
             <div ref={modalRef} className={classes.container_modal}>
                 <div className={classes.header}>
                     <p>TÚI ĐỒ</p>
@@ -57,6 +57,7 @@ const CollectionModal = ({ onClose }) => {
                             className={classes.image_item}
                             onClick={(e) => handleImageClick(e, image, index)}
                         >
+                            <p>{image.alt}</p>
                             <img className={classes.img_collection} src={image.src} alt={image.alt} />
                         </div>
                     ))}
