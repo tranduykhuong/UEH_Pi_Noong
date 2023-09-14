@@ -199,7 +199,7 @@ const MainScreen = () => {
                         alert(element.id);
                         // Xử lý hiện vật phẩm
                         setYieldModal(true);
-
+                        localStorage.clear();
                         // Cập nhật data và local các vật phẩm đã hoàn thành
                         // const dataUpdate = data.map((item) => item.id !== element.id);
                         // setData(dataUpdate);
