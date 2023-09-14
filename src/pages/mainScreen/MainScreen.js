@@ -201,8 +201,8 @@ const MainScreen = () => {
                         setYieldModal(true);
                         localStorage.clear();
                         // Cập nhật data và local các vật phẩm đã hoàn thành
-                        // const dataUpdate = data.map((item) => item.id !== element.id);
-                        // setData(dataUpdate);
+                        const dataUpdate = data.map((item) => item.id !== element.id);
+                        setData(dataUpdate);
                         // const completed = JSON.parse(localStorage.getItem('completed'));
                         // completed.push(element);
                         // localStorage.setItem('completed', completed);
