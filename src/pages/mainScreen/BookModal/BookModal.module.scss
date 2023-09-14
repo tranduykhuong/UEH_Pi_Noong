@@ -25,7 +25,7 @@
         .header {
             position: relative;
             background-color: rgb(120, 2, 2);
-            height: 25%;
+            height: 22%;
             width: 100%;
             border-radius: 15px;
             border: 5px solid rgb(120, 2, 2);
@@ -39,8 +39,8 @@
             letter-spacing: 2px;
             .back_btn {
                 position: absolute;
-                width: 50px;
-                height: 50px;
+                width: 45px;
+                height: 45px;
                 top: 50%;
                 left: 1%;
                 border: solid 3px orange;
@@ -61,7 +61,7 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
-            overflow: scroll;
+            overflow-y: scroll;
 
             .image_item {
                 flex: 0 0 calc(33.33%);

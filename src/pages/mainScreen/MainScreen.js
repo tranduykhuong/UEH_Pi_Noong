@@ -51,14 +51,19 @@ const MainScreen = () => {
             </div>
 
             <div className={classes.option}>
-                <div onClick={openBookModal} className={classes.option__book}>
-                    <img className={classes.option__book_img} src={Book} alt="Book" />
+                <div className={classes.equipment}>
+                    <p>Xem trang phục</p>
                 </div>
-                <div className={classes.option__btnPiNoong} onClick={selectedYield}>
-                    <img className={classes.option__btnPiNoong_img} src={PiNoong} alt="PiNong" />
-                </div>
-                <div onClick={openCollectionModal} className={classes.option__collection}>
-                    <img className={classes.option__collection_img} src={Colection} alt="Collection" />
+                <div className={classes.option__wrap}>
+                    <div onClick={openBookModal} className={classes.option__book}>
+                        <img className={classes.option__book_img} src={Book} alt="Book" />
+                    </div>
+                    <div className={classes.option__btnPiNoong} onClick={selectedYield}>
+                        <img className={classes.option__btnPiNoong_img} src={PiNoong} alt="PiNong" />
+                    </div>
+                    <div onClick={openCollectionModal} className={classes.option__collection}>
+                        <img className={classes.option__collection_img} src={Colection} alt="Collection" />
+                    </div>
                 </div>
             </div>
 
