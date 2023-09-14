@@ -1,0 +1,40 @@
+{
+    "outfits": [
+        {
+            "id": "A",
+            "name": "Trang phục dân tộc Hoa",
+            "full_img": "https://image.phunuonline.com.vn/fckeditor/upload/2022/20220629/images/doc-dao-voi-trang-phuc-cua-_221656486591.jpg",
+            "hidden_img": "https://luhanhvietnam.com.vn/du-lich/vnt_upload/news/08_2022/trang-phuc-dan-toc-viet-nam-dep-1.jpg"
+        }
+    ],
+    "items": [
+        {
+            "id": "A1",
+            "img": "https://kinpetshop.com/wp-content/uploads/meo-con-keu-lien-tuc.jpg",
+            "name": "Mũ trang phục Hoa",
+            "lat": 10.766894,
+            "lng": 106.695466
+        },
+        {
+            "id": "A2",
+            "img": "https://kinpetshop.com/wp-content/uploads/meo-con-keu-lien-tuc.jpg",
+            "name": "Áo trang phục Hoa",
+            "lat": 10.766894,
+            "lng": 106.695466
+        },
+        {
+            "id": "A3",
+            "img": "https://kinpetshop.com/wp-content/uploads/meo-con-keu-lien-tuc.jpg",
+            "name": "Quần trang phục Hoa",
+            "lat": 10.766894,
+            "lng": 106.695466
+        },
+        {
+            "id": "Z1",
+            "img": "https://kinpetshop.com/wp-content/uploads/meo-con-keu-lien-tuc.jpg",
+            "name": "Voucher 50%",
+            "lat": 10.766894,
+            "lng": 106.695466
+        }
+    ]
+}
