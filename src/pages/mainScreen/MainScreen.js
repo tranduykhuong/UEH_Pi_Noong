@@ -198,14 +198,14 @@ const MainScreen = () => {
                         // check thêm có đang hiện vật phẩm trước đó không
                         alert(element.id);
                         // Xử lý hiện vật phẩm
-
+                        setYieldModal(true);
 
                         // Cập nhật data và local các vật phẩm đã hoàn thành
-                        const dataUpdate = data.map((item) => item.id !== element.id);
-                        setData(dataUpdate);
-                        const completed = JSON.parse(localStorage.getItem('completed'));
-                        completed.push(element);
-                        localStorage.setItem('completed', completed);
+                        // const dataUpdate = data.map((item) => item.id !== element.id);
+                        // setData(dataUpdate);
+                        // const completed = JSON.parse(localStorage.getItem('completed'));
+                        // completed.push(element);
+                        // localStorage.setItem('completed', completed);
                         break;
                     }
                 }
@@ -270,3 +270,4 @@ const MainScreen = () => {
 };
 
 export default MainScreen;
+
