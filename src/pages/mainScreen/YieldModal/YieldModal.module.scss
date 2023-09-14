@@ -72,11 +72,21 @@
                 height: 85%;
             }
 
+            .name_yield {
+                width: 100%;
+                padding-top: 10px;
+                padding-bottom: 10px;
+                text-align: center;
+                font-size: 20px;
+                font-weight: 600;
+                color: rgb(112, 4, 4);
+            }
+
             .option_btn {
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
-                height: 20%;
+                height: max-content;
                 width: 100%;
                 padding: 0 30px;
 

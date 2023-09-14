@@ -29,7 +29,10 @@ const YieldModal = ({ onClose, yields }) => {
                     </div>
                 </div>
                 <div className={classes.colection}>
-                    <div className={classes.template}></div>
+                    <div className={classes.template}>
+                        <img src={yields.img} alt="yield" />
+                    </div>
+                    <div className={classes.name_yield}>{yields.name}</div>
                     <div className={classes.option_btn}>
                         <div onClick={handleBackClick} className={classes.cancel}>
                             <p>Bỏ qua</p>
