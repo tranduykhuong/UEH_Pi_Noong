@@ -17,6 +17,7 @@ const YieldModal = ({ onClose, yields }) => {
     }, [yields]);
 
     const handleBackClick = () => {
+        console.log('cc');
         setConfirmModal(true);
     };
 
