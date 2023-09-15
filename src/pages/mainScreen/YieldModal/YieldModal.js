@@ -50,7 +50,7 @@ const YieldModal = ({ onClose, yields }) => {
                 </div>
                 <div className={classes.colection}>
                     <div className={classes.template}>
-                        <img className={classes.img_yield} src={yields.image} alt="yield" />
+                        <img className={classes.img_yield} src={yields.img} alt="yield" />
                     </div>
                     <div className={classes.name_yield}>{yields.name}</div>
                     <div className={classes.option_btn}>
