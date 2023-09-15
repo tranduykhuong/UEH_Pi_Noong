@@ -52,7 +52,7 @@ const RequipmentModal = ({ onClose }) => {
                 </div>
                 <div className={classes.colection}>
                     <div className={classes.template}>
-                        <img className={classes.img_ao} src={HiddenDTMong} alt={'pic'} />
+                        <img className={classes.img_hiden} src={HiddenDTMong} alt={'pic'} />
                         {collectionData.map((item) => (
                             <img key={item.id} className={classes.img_ao} src={item.img} alt={item.name} />
                         ))}

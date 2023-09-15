@@ -75,18 +75,21 @@
                 justify-content: center;
                 align-items: center;
 
+                .img_hiden {
+                    width: 100%;
+                    height: auto;
+                }
+
                 .img_ao {
                     position: absolute;
                     width: 100%;
                     height: auto;
-                    z-index: 1000;
                 }
 
                 .img_vay {
                     position: absolute;
                     width: 100%;
                     height: auto;
-                    z-index: 200;
                 }
                 .img_non {
                     position: absolute;
