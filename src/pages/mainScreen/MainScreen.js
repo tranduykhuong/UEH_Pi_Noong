@@ -12,49 +12,49 @@ import RequipmentModal from './RequipmentModal/RequipmentModal';
 import YieldModal from './YieldModal/YieldModal';
 import YieldDatas from '../../assets/data.json';
 
-const temp = [
-    {
-        id: 'A1',
-        img: 'https://kinpetshop.com/wp-content/uploads/meo-con-keu-lien-tuc.jpg',
-        name: 'Mũ trang phục Hoa',
-        lat: 10.766894,
-        lng: 106.695466,
-    },
-    {
-        id: 'A2',
-        img: 'https://kinpetshop.com/wp-content/uploads/meo-con-keu-lien-tuc.jpg',
-        name: 'Áo trang phục Hoa',
-        lat: 10.766970623687978,
-        lng: 106.69504968618132,
-    },
-    {
-        id: 'A3',
-        img: 'https://kinpetshop.com/wp-content/uploads/meo-con-keu-lien-tuc.jpg',
-        name: 'Quần trang phục Hoa',
-        lat: 10.766703394544189,
-        lng: 106.69524844454077,
-    },
-    {
-        id: 'A4',
-        img: 'https://kinpetshop.com/wp-content/uploads/meo-con-keu-lien-tuc.jpg',
-        name: 'Voucher 50%',
-        lat: 10.766736589044667,
-        lng: 106.69497602048739,
-    },
-];
+// const temp = [
+//     {
+//         id: 'A1',
+//         img: 'https://kinpetshop.com/wp-content/uploads/meo-con-keu-lien-tuc.jpg',
+//         name: 'Mũ trang phục Hoa',
+//         lat: 10.766894,
+//         lng: 106.695466,
+//     },
+//     {
+//         id: 'A2',
+//         img: 'https://kinpetshop.com/wp-content/uploads/meo-con-keu-lien-tuc.jpg',
+//         name: 'Áo trang phục Hoa',
+//         lat: 10.766970623687978,
+//         lng: 106.69504968618132,
+//     },
+//     {
+//         id: 'A3',
+//         img: 'https://kinpetshop.com/wp-content/uploads/meo-con-keu-lien-tuc.jpg',
+//         name: 'Quần trang phục Hoa',
+//         lat: 10.766703394544189,
+//         lng: 106.69524844454077,
+//     },
+//     {
+//         id: 'A4',
+//         img: 'https://kinpetshop.com/wp-content/uploads/meo-con-keu-lien-tuc.jpg',
+//         name: 'Voucher 50%',
+//         lat: 10.766736589044667,
+//         lng: 106.69497602048739,
+//     },
+// ];
 
-const test = [
-    {
-        id: 'A1',
-        lat: 10.766894,
-        lng: 106.695466,
-    },
-    {
-        id: 'A2',
-        lat: 10.766970623687978,
-        lng: 106.69504968618132,
-    },
-];
+// const test = [
+//     {
+//         id: 'A1',
+//         lat: 10.766894,
+//         lng: 106.695466,
+//     },
+//     {
+//         id: 'A2',
+//         lat: 10.766970623687978,
+//         lng: 106.69504968618132,
+//     },
+// ];
 
 const MainScreen = () => {
     const [bookModal, setBookModal] = useState(false);
