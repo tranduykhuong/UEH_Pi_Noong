@@ -36,7 +36,7 @@ const RequipmentModal = ({ onClose }) => {
     };
 
     useEffect(() => {
-        const localData = localStorage.getItem('completed');
+        const localData = localStorage.getItem('collected');
         if (localData) {
             // Nếu có, gán dữ liệu từ localStorage vào state
             setCollectionData(JSON.parse(localData));

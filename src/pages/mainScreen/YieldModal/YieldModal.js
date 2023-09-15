@@ -14,7 +14,7 @@ const YieldModal = ({ onClose, yields }) => {
     };
     useEffect(() => {
         console.log(yields);
-    });
+    }, [yields]);
 
     const handleBackClick = () => {
         setConfirmModal(true);
@@ -22,10 +22,9 @@ const YieldModal = ({ onClose, yields }) => {
 
     const handleSaveYields = () => {
         // Lưu yields vào localStorage
-        const completed = JSON.parse(localStorage.getItem('completed')) || [];
+        const completed = JSON.parse(localStorage.getItem('collected')) || [];
         completed.push(yields);
-        localStorage.setItem('completed', JSON.stringify(completed));
-
+        localStorage.setItem('collected', JSON.stringify(completed));
         onClose();
     };
 
