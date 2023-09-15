@@ -16,9 +16,14 @@ const YieldModal = ({ onClose, yields }) => {
         onClose();
     };
 
-    useEffect(() => {
-        // console.log(yields.id);
-    }, []);
+    const handleSaveYields = () => {
+        // Lưu yields vào localStorage
+        const completed = JSON.parse(localStorage.getItem('completed')) || [];
+        completed.push(yields);
+        localStorage.setItem('completed', JSON.stringify(completed));
+
+        onClose();
+    };
 
     return (
         <div onClick={handleModalClick} className={classes.container}>
@@ -38,7 +43,7 @@ const YieldModal = ({ onClose, yields }) => {
                         <div onClick={handleBackClick} className={classes.cancel}>
                             <p>Bỏ qua</p>
                         </div>
-                        <div className={classes.cancel}>
+                        <div onClick={handleSaveYields} className={classes.cancel}>
                             <p>Thu thập</p>
                         </div>
                     </div>
