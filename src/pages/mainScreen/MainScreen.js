@@ -131,7 +131,7 @@ const MainScreen = () => {
     useEffect(() => {
         const completed = localStorage.getItem('completed');
         // const completed = test;
-        console.log(completed);
+        // console.log(completed);
         if (completed) {
             const completedData = completed || JSON.parse(completed);
             const tmp = YieldDatas.items
@@ -201,10 +201,11 @@ const MainScreen = () => {
 
                     if (dist < 0.01 && !yieldModal) {
                         // console.log(element);
-                        console.log(dist);
+                        // console.log(dist);
                         // check thêm có đang hiện vật phẩm trước đó không
                         // alert(element.id);
                         // Xử lý hiện vật phẩm
+                        console.log(yields);
                         setYield(element);
                         setYieldModal(true);
 
