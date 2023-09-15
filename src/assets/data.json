@@ -3,35 +3,171 @@
         {
             "id": "A",
             "name": "Trang phục dân tộc Hoa",
-            "full_img": "https://image.phunuonline.com.vn/fckeditor/upload/2022/20220629/images/doc-dao-voi-trang-phuc-cua-_221656486591.jpg",
-            "hidden_img": "https://luhanhvietnam.com.vn/du-lich/vnt_upload/news/08_2022/trang-phuc-dan-toc-viet-nam-dep-1.jpg"
+            "hidden_img": "https://res.cloudinary.com/dnax1t7m4/image/upload/v1694792335/ueh/A_dxuien.png",
+            "full_img": ""
+        },
+        {
+            "id": "B",
+            "name": "Trang phục dân tộc Hoa",
+            "hidden_img": "https://res.cloudinary.com/dnax1t7m4/image/upload/v1694792333/ueh/B_izfuyv.png",
+            "full_img": ""
+        },
+        {
+            "id": "C",
+            "name": "Trang phục dân tộc Hoa",
+            "hidden_img": "https://res.cloudinary.com/dnax1t7m4/image/upload/v1694792332/ueh/C_ujejmt.png",
+            "full_img": ""
+        },
+        {
+            "id": "E",
+            "name": "Trang phục dân tộc Hoa",
+            "hidden_img": "https://res.cloudinary.com/dnax1t7m4/image/upload/v1694792333/ueh/E_hbvubb.png",
+            "full_img": ""
+        },
+        {
+            "id": "G",
+            "name": "Trang phục dân tộc Hoa",
+            "hidden_img": "https://res.cloudinary.com/dnax1t7m4/image/upload/v1694792333/ueh/G_qop7hi.png",
+            "full_img": ""
+        },
+        {
+            "id": "H",
+            "name": "Trang phục dân tộc Hoa",
+            "hidden_img": "https://res.cloudinary.com/dnax1t7m4/image/upload/v1694792334/ueh/H_qbszig.png",
+            "full_img": ""
         }
     ],
     "items": [
         {
             "id": "A1",
-            "img": "https://kinpetshop.com/wp-content/uploads/meo-con-keu-lien-tuc.jpg",
+            "img": "https://res.cloudinary.com/dnax1t7m4/image/upload/v1694791106/ueh/A1_ealctc.png",
             "name": "Mũ trang phục Hoa",
             "lat": 10.766894,
             "lng": 106.695466
         },
         {
             "id": "A2",
-            "img": "https://kinpetshop.com/wp-content/uploads/meo-con-keu-lien-tuc.jpg",
+            "img": "https://res.cloudinary.com/dnax1t7m4/image/upload/v1694791104/ueh/A2_eh2n28.png",
+            "name": "Áo trang phục Hoa",
+            "lat": 10.766970623687978,
+            "lng": 106.69504968618132
+        },
+        {
+            "id": "A3",
+            "img": "https://res.cloudinary.com/dnax1t7m4/image/upload/v1694791104/ueh/A3_haxw4i.png",
+            "name": "Quần trang phục Hoa",
+            "lat": 10.766703394544189,
+            "lng": 106.69524844454077
+        },
+        {
+            "id": "B1",
+            "img": "https://res.cloudinary.com/dnax1t7m4/image/upload/v1694791104/ueh/B1_kf2lz8.png",
+            "name": "Mũ trang phục Hoa",
+            "lat": 10.766894,
+            "lng": 106.695466
+        },
+        {
+            "id": "B2",
+            "img": "https://res.cloudinary.com/dnax1t7m4/image/upload/v1694791105/ueh/B2_bcn0iz.png",
             "name": "Áo trang phục Hoa",
             "lat": 10.766894,
             "lng": 106.695466
         },
         {
-            "id": "A3",
-            "img": "https://kinpetshop.com/wp-content/uploads/meo-con-keu-lien-tuc.jpg",
+            "id": "B3",
+            "img": "https://res.cloudinary.com/dnax1t7m4/image/upload/v1694791104/ueh/B3_dvoizo.png",
             "name": "Quần trang phục Hoa",
             "lat": 10.766894,
             "lng": 106.695466
         },
         {
+            "id": "C1",
+            "img": "https://res.cloudinary.com/dnax1t7m4/image/upload/v1694791105/ueh/C1_v2e3ns.png",
+            "name": "Mũ trang phục Hoa",
+            "lat": 10.766894,
+            "lng": 106.695466
+        },
+        {
+            "id": "C2",
+            "img": "https://res.cloudinary.com/dnax1t7m4/image/upload/v1694791105/ueh/C2_t2iggn.png",
+            "name": "Áo trang phục Hoa",
+            "lat": 10.766894,
+            "lng": 106.695466
+        },
+        {
+            "id": "C3",
+            "img": "https://res.cloudinary.com/dnax1t7m4/image/upload/v1694791105/ueh/C3_limrdp.png",
+            "name": "Quần trang phục Hoa",
+            "lat": 10.766894,
+            "lng": 106.695466
+        },
+        {
+            "id": "E1",
+            "img": "https://res.cloudinary.com/dnax1t7m4/image/upload/v1694791105/ueh/E1_s6p0yw.png",
+            "name": "Mũ trang phục Hoa",
+            "lat": 10.766894,
+            "lng": 106.695466
+        },
+        {
+            "id": "E2",
+            "img": "https://res.cloudinary.com/dnax1t7m4/image/upload/v1694791106/ueh/E2_q79jzl.png",
+            "name": "Áo trang phục Hoa",
+            "lat": 10.766894,
+            "lng": 106.695466
+        },
+        {
+            "id": "E3",
+            "img": "https://res.cloudinary.com/dnax1t7m4/image/upload/v1694791106/ueh/E3_h3ba4d.png",
+            "name": "Quần trang phục Hoa",
+            "lat": 10.766894,
+            "lng": 106.695466
+        },
+        {
+            "id": "G1",
+            "img": "https://res.cloudinary.com/dnax1t7m4/image/upload/v1694791108/ueh/G1_semvky.png",
+            "name": "Mũ trang phục Hoa",
+            "lat": 10.766894,
+            "lng": 106.695466
+        },
+        {
+            "id": "G2",
+            "img": "https://res.cloudinary.com/dnax1t7m4/image/upload/v1694791108/ueh/G2_f1yunp.png",
+            "name": "Áo trang phục Hoa",
+            "lat": 10.766894,
+            "lng": 106.695466
+        },
+        {
+            "id": "G3",
+            "img": "https://res.cloudinary.com/dnax1t7m4/image/upload/v1694791112/ueh/G3_g3aq7z.png",
+            "name": "Quần trang phục Hoa",
+            "lat": 10.766894,
+            "lng": 106.695466
+        },
+        {
+            "id": "H1",
+            "img": "https://res.cloudinary.com/dnax1t7m4/image/upload/v1694791109/ueh/H1_yjyulh.png",
+            "name": "Mũ trang phục Hoa",
+            "lat": 10.766894,
+            "lng": 106.695466
+        },
+        {
+            "id": "H2",
+            "img": "https://res.cloudinary.com/dnax1t7m4/image/upload/v1694791109/ueh/H2_wwu9ht.png",
+            "name": "Áo trang phục Hoa",
+            "lat": 10.766894,
+            "lng": 106.695466
+        },
+        {
+            "id": "H3",
+            "img": "https://res.cloudinary.com/dnax1t7m4/image/upload/v1694791110/ueh/H3_erdlrw.png",
+            "name": "Quần trang phục Hoa",
+            "lat": 10.766894,
+            "lng": 106.695466
+        },
+
+        {
             "id": "Z1",
-            "img": "https://kinpetshop.com/wp-content/uploads/meo-con-keu-lien-tuc.jpg",
+            "img": "",
             "name": "Voucher 50%",
             "lat": 10.766894,
             "lng": 106.695466
