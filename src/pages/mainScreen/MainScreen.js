@@ -251,7 +251,7 @@ const MainScreen = () => {
                 </div>
             </div>
             <div className={classes.map}>
-                <img src={MapYield} alt="map"></img>
+                <img width={700} src={MapYield} alt="map"></img>
             </div>
 
             <div className={classes.option}>
