@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import classes from './RequipmentModal.module.scss';
 import Back from '../../../assets/imgs/back.png';
 import AoMong from '../../../assets/imgs/colection/aoMong.png';
@@ -26,6 +26,7 @@ const images = [
 
 const RequipmentModal = ({ onClose }) => {
     const modalRef = useRef(null);
+    const [collectionData, setCollectionData] = useState([]);
 
     const handleModalClick = (e) => {
         if (modalRef.current && !modalRef.current.contains(e.target)) {
@@ -45,6 +46,16 @@ const RequipmentModal = ({ onClose }) => {
         console.log('Thông tin ảnh:', imageSrc, imageAlt);
         console.log('Vị trí phần tử trong mảng:', index);
     };
+
+    useEffect(() => {
+        const localData = localStorage.getItem('completed');
+        if (localData) {
+            // Nếu có, gán dữ liệu từ localStorage vào state
+            setCollectionData(JSON.parse(localData));
+        } else {
+            // Nếu chưa có
+        }
+    }, []);
     return (
         <div onClick={handleModalClick} className={classes.container}>
             <div ref={modalRef} className={classes.container_modal}>
@@ -56,9 +67,9 @@ const RequipmentModal = ({ onClose }) => {
                 </div>
                 <div className={classes.colection}>
                     <div className={classes.template}>
-                        <img className={classes.img_non} src={NonDTMong} alt="yield" />
-                        <img className={classes.img_ao} src={aoDTMong} alt="yield" />
-                        <img className={classes.img_vay} src={VayDTMong} alt="yield" />
+                        {collectionData.map((item) => (
+                            <img key={item.id} className={classes.aoDTMong} src={item.img} alt={item.name} />
+                        ))}
                     </div>
                 </div>
             </div>
