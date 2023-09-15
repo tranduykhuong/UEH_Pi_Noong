@@ -11,6 +11,7 @@ import Reload from '../../assets/imgs/reload.png';
 import RequipmentModal from './RequipmentModal/RequipmentModal';
 import YieldModal from './YieldModal/YieldModal';
 import YieldDatas from '../../assets/data.json';
+import MapYield from '../../assets/imgs/map.jpg';
 
 // const temp = [
 //     {
@@ -250,7 +251,7 @@ const MainScreen = () => {
                 </div>
             </div>
             <div className={classes.map}>
-                <img src={AoDai} alt="yield"></img>
+                <img src={MapYield} alt="map"></img>
             </div>
 
             <div className={classes.option}>
