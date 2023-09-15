@@ -5,6 +5,7 @@ import Img from '../../../assets/imgs/colection/aoMong.png';
 
 const YieldModal = ({ onClose, yields }) => {
     const modalRef = useRef(null);
+    const [confirmModal, setConfirmModal] = useState(false);
 
     const handleModalClick = (e) => {
         if (modalRef.current && !modalRef.current.contains(e.target)) {
@@ -13,7 +14,7 @@ const YieldModal = ({ onClose, yields }) => {
     };
 
     const handleBackClick = () => {
-        onClose();
+        setConfirmModal(true);
     };
 
     const handleSaveYields = () => {
@@ -23,6 +24,16 @@ const YieldModal = ({ onClose, yields }) => {
         localStorage.setItem('completed', JSON.stringify(completed));
 
         onClose();
+    };
+
+    const handleConfirm = () => {
+        // Xử lý khi người dùng xác nhận
+        // Lưu yields vào localStorage hoặc bất kỳ tương tác nào bạn muốn thực hiện
+        onClose(); // Đóng modal
+    };
+
+    const handleCancel = () => {
+        setConfirmModal(false); // Đóng modal xác nhận
     };
 
     return (
@@ -49,6 +60,14 @@ const YieldModal = ({ onClose, yields }) => {
                     </div>
                 </div>
             </div>
+
+            {confirmModal && (
+                <div className={classes.confirmModal}>
+                    <p>Bạn có muốn bỏ qua không?</p>
+                    <button onClick={handleConfirm}>Đồng ý</button>
+                    <button onClick={handleCancel}>Hủy</button>
+                </div>
+            )}
         </div>
     );
 };
