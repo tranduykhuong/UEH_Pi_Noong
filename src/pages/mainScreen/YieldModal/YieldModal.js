@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import classes from './YieldModal.module.scss';
 import Back from '../../../assets/imgs/back.png';
 import Img from '../../../assets/imgs/colection/aoMong.png';

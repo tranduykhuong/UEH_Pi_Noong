@@ -12,19 +12,6 @@ import VayDTMong from '../../../assets/imgs/puzzle/váy dân tộc mông.pn
 import NonDTMong from '../../../assets/imgs/puzzle/nón dân tộc mông.png';
 import HiddenDTMong from '../../../assets/imgs/hidden/DTMong.png';
 
-const images = [
-    { src: AoMong, alt: 'Áo Mông' },
-    { src: BitMong, alt: 'Bít Mông' },
-    { src: KhanTay, alt: 'Khăn Tay' },
-    { src: NonMong, alt: 'Nón Mông' },
-    { src: ThanDuoiAoTay, alt: 'Thân dưới áo tay' },
-    { src: ThanTrenAoTay, alt: 'Thân trên áo tay' },
-    { src: ThanTrenAoTay, alt: 'Thân trên áo tay' },
-    { src: ThanTrenAoTay, alt: 'Thân trên áo tay' },
-    { src: ThanTrenAoTay, alt: 'Thân trên áo tay' },
-    { src: ThanTrenAoTay, alt: 'Thân trên áo tay' },
-];
-
 const RequipmentModal = ({ onClose }) => {
     const modalRef = useRef(null);
     const [collectionData, setCollectionData] = useState([]);
@@ -68,8 +55,9 @@ const RequipmentModal = ({ onClose }) => {
                 </div>
                 <div className={classes.colection}>
                     <div className={classes.template}>
-                        <img className={classes.img_ao} src={HiddenDTMong} alt={'pic'} />
+                        <img className={classes.img_ao} src={NonDTMong} alt={'pic'} />
                         <img className={classes.img_ao} src={aoDTMong} alt={'pic'} />
+                        <img className={classes.img_ao} src={VayDTMong} alt={'pic'} />
                         {collectionData.map((item) => (
                             <img key={item.id} className={classes.img_ao} src={item.img} alt={item.name} />
                         ))}

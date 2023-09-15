@@ -10,6 +10,7 @@ import AoDai from '../../assets/imgs/colection/aoMong.png';
 import Reload from '../../assets/imgs/reload.png';
 import RequipmentModal from './RequipmentModal/RequipmentModal';
 import YieldModal from './YieldModal/YieldModal';
+import YieldDatas from '../../assets/data.json';
 
 const temp = [
     {
@@ -66,7 +67,7 @@ const MainScreen = () => {
     const [watchId, setWatchId] = useState(null);
     const [heading, setHeading] = useState(null);
 
-    const [data, setData] = useState(temp);
+    const [data, setData] = useState(YieldDatas.items);
 
     const openBookModal = () => {
         setBookModal(true);
@@ -133,7 +134,7 @@ const MainScreen = () => {
         console.log(completed);
         if (completed) {
             const completedData = completed || JSON.parse(completed);
-            const tmp = temp
+            const tmp = YieldDatas.items
                 .map((item) => {
                     for (let i = 0; i < completedData.length; i++) {
                         const element = completedData[i];
