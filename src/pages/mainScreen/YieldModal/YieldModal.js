@@ -13,7 +13,7 @@ const YieldModal = ({ onClose, yields }) => {
         }
     };
     useEffect(() => {
-        console.log(yields);
+        console.log(yields.id);
     }, [yields]);
 
     const handleBackClick = () => {
