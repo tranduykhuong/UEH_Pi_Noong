@@ -7,6 +7,9 @@ import KhanTay from '../../../assets/imgs/colection/khanTay.png';
 import NonMong from '../../../assets/imgs/colection/nonMong.png';
 import ThanDuoiAoTay from '../../../assets/imgs/colection/thanduoiaoTay.png';
 import ThanTrenAoTay from '../../../assets/imgs/colection/thantrenaoTay.png';
+import aoDTMong from '../../../assets/imgs/puzzle/áo dân tộc mông.png';
+import VayDTMong from '../../../assets/imgs/puzzle/váy dân tộc mông.png';
+import NonDTMong from '../../../assets/imgs/puzzle/nón dân tộc mông.png';
 
 const images = [
     { src: AoMong, alt: 'Áo Mông' },
@@ -52,7 +55,11 @@ const RequipmentModal = ({ onClose }) => {
                     </div>
                 </div>
                 <div className={classes.colection}>
-                    <div className={classes.template}></div>
+                    <div className={classes.template}>
+                        <img className={classes.img_non} src={NonDTMong} alt="yield" />
+                        <img className={classes.img_ao} src={aoDTMong} alt="yield" />
+                        <img className={classes.img_vay} src={VayDTMong} alt="yield" />
+                    </div>
                 </div>
             </div>
         </div>
