@@ -143,7 +143,6 @@ const MainScreen = () => {
                     return item;
                 })
                 .filter((e) => e !== undefined);
-            console.log(tmp);
             setData(tmp);
         } else {
             localStorage.setItem('completed', JSON.stringify([]));
