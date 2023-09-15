@@ -7,9 +7,6 @@ import KhanTay from '../../../assets/imgs/colection/khanTay.png';
 import NonMong from '../../../assets/imgs/colection/nonMong.png';
 import ThanDuoiAoTay from '../../../assets/imgs/colection/thanduoiaoTay.png';
 import ThanTrenAoTay from '../../../assets/imgs/colection/thantrenaoTay.png';
-import aoDTMong from '../../../assets/imgs/puzzle/áo dân tộc mông.png';
-import VayDTMong from '../../../assets/imgs/puzzle/váy dân tộc mông.png';
-import NonDTMong from '../../../assets/imgs/puzzle/nón dân tộc mông.png';
 import HiddenDTMong from '../../../assets/imgs/hidden/DTMong.png';
 
 const RequipmentModal = ({ onClose }) => {
@@ -55,9 +52,7 @@ const RequipmentModal = ({ onClose }) => {
                 </div>
                 <div className={classes.colection}>
                     <div className={classes.template}>
-                        <img className={classes.img_ao} src={NonDTMong} alt={'pic'} />
-                        <img className={classes.img_ao} src={aoDTMong} alt={'pic'} />
-                        <img className={classes.img_ao} src={VayDTMong} alt={'pic'} />
+                        <img className={classes.img_ao} src={HiddenDTMong} alt={'pic'} />
                         {collectionData.map((item) => (
                             <img key={item.id} className={classes.img_ao} src={item.img} alt={item.name} />
                         ))}
