@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import classes from './YieldModal.module.scss';
 import Back from '../../../assets/imgs/back.png';
+import Img from '../../../assets/imgs/colection/aoMong.png';
 
 const YieldModal = ({ onClose, yields }) => {
     const modalRef = useRef(null);
@@ -16,7 +17,7 @@ const YieldModal = ({ onClose, yields }) => {
     };
 
     useEffect(() => {
-        console.log(yields.id);
+        // console.log(yields.id);
     }, []);
 
     return (
@@ -30,7 +31,7 @@ const YieldModal = ({ onClose, yields }) => {
                 </div>
                 <div className={classes.colection}>
                     <div className={classes.template}>
-                        <img src={yields.img} alt="yield" />
+                        <img className={classes.img_yield} src={yields.image} alt="yield" />
                     </div>
                     <div className={classes.name_yield}>{yields.name}</div>
                     <div className={classes.option_btn}>
