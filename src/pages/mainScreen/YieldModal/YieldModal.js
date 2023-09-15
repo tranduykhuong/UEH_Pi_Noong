@@ -12,9 +12,9 @@ const YieldModal = ({ onClose, yields }) => {
             onClose(); // Đóng modal khi click bên ngoài
         }
     };
-    useEffect(() => {
-        console.log(yields.id);
-    }, [yields]);
+    // useEffect(() => {
+    //     console.log(yields.id);
+    // }, [yields]);
 
     const handleBackClick = () => {
         console.log('cc');
