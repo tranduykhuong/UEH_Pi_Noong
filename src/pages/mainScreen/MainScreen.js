@@ -199,8 +199,8 @@ const MainScreen = () => {
                 for (let i = 0; i < data.length; i++) {
                     const element = data[i];
                     const dist = calculateDistance(currentPosition.lat, currentPosition.lng, element.lat, element.lng);
-
-                    if (dist < 0.01 && !yieldModal) {
+                    console.log('fghfghfghgfh');
+                    if (dist < 0.1) {
                         // console.log(element);
                         // console.log(dist);
                         // check thêm có đang hiện vật phẩm trước đó không
@@ -209,6 +209,7 @@ const MainScreen = () => {
                         console.log(yields);
                         setYield(element);
                         setYieldModal(true);
+                        console.log('vvvvv');
 
                         // Cập nhật data và local các vật phẩm đã hoàn thành
                         const dataUpdate = data.map((item) => item.id !== element.id);

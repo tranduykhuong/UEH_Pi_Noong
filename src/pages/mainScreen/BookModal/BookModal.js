@@ -7,6 +7,7 @@ import KhanTay from '../../../assets/imgs/colection/khanTay.png';
 import NonMong from '../../../assets/imgs/colection/nonMong.png';
 import ThanDuoiAoTay from '../../../assets/imgs/colection/thanduoiaoTay.png';
 import ThanTrenAoTay from '../../../assets/imgs/colection/thantrenaoTay.png';
+import bookData from '../../../assets/data.json';
 
 const images = [
     { src: AoMong, alt: 'Áo Mông' },
@@ -52,14 +53,14 @@ const BookModal = ({ onClose }) => {
                     </div>
                 </div>
                 <div className={classes.colection}>
-                    {images.map((image, index) => (
+                    {bookData.outfits.map((image, index) => (
                         <div
                             key={index}
                             className={classes.image_item}
                             onClick={(e) => handleImageClick(e, image, index)}
                         >
-                            <p>{image.alt}</p>
-                            <img className={classes.img_collection} src={image.src} alt={image.alt} />
+                            <img className={classes.img_collection} src={image.hidden_img} alt={image.alt} />
+                            <p>{image.name}</p>
                         </div>
                     ))}
                 </div>
