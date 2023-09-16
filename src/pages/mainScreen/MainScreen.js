@@ -215,7 +215,12 @@ const MainScreen = () => {
                         console.log('vvvvv');
 
                         // Cập nhật data và local các vật phẩm đã hoàn thành
-                        const dataUpdate = data.map((item) => item.id !== element.id);
+                        const dataUpdate = data
+                            .map((item) => {
+                                if (item.id !== element.id) return item;
+                            })
+                            .filter((e) => e !== undefined);
+                        console.log(dataUpdate);
                         setData(dataUpdate);
                         // const completed = JSON.parse(localStorage.getItem('completed'));
                         // completed.push(element);
