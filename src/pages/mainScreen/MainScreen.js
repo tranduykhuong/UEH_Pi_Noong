@@ -199,7 +199,7 @@ const MainScreen = () => {
                 for (let i = 0; i < data.length; i++) {
                     const element = data[i];
                     const dist = calculateDistance(currentPosition.lat, currentPosition.lng, element.lat, element.lng);
-                    console.log('fghfghfghgfh');
+                    console.log(dist);
                     if (dist < 0.1) {
                         // console.log(element);
                         // console.log(dist);
