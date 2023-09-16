@@ -10,50 +10,52 @@ import AoDai from '../../assets/imgs/colection/aoMong.png';
 import Reload from '../../assets/imgs/reload.png';
 import RequipmentModal from './RequipmentModal/RequipmentModal';
 import YieldModal from './YieldModal/YieldModal';
+import YieldDatas from '../../assets/data.json';
+import MapYield from '../../assets/imgs/map.jpg';
 
-const temp = [
-    {
-        id: 'A1',
-        img: 'https://kinpetshop.com/wp-content/uploads/meo-con-keu-lien-tuc.jpg',
-        name: 'Mũ trang phục Hoa',
-        lat: 10.766894,
-        lng: 106.695466,
-    },
-    {
-        id: 'A2',
-        img: 'https://kinpetshop.com/wp-content/uploads/meo-con-keu-lien-tuc.jpg',
-        name: 'Áo trang phục Hoa',
-        lat: 10.766970623687978,
-        lng: 106.69504968618132,
-    },
-    {
-        id: 'A3',
-        img: 'https://kinpetshop.com/wp-content/uploads/meo-con-keu-lien-tuc.jpg',
-        name: 'Quần trang phục Hoa',
-        lat: 10.766703394544189,
-        lng: 106.69524844454077,
-    },
-    {
-        id: 'A4',
-        img: 'https://kinpetshop.com/wp-content/uploads/meo-con-keu-lien-tuc.jpg',
-        name: 'Voucher 50%',
-        lat: 10.766736589044667,
-        lng: 106.69497602048739,
-    },
-];
+// const temp = [
+//     {
+//         id: 'A1',
+//         img: 'https://kinpetshop.com/wp-content/uploads/meo-con-keu-lien-tuc.jpg',
+//         name: 'Mũ trang phục Hoa',
+//         lat: 10.766894,
+//         lng: 106.695466,
+//     },
+//     {
+//         id: 'A2',
+//         img: 'https://kinpetshop.com/wp-content/uploads/meo-con-keu-lien-tuc.jpg',
+//         name: 'Áo trang phục Hoa',
+//         lat: 10.766970623687978,
+//         lng: 106.69504968618132,
+//     },
+//     {
+//         id: 'A3',
+//         img: 'https://kinpetshop.com/wp-content/uploads/meo-con-keu-lien-tuc.jpg',
+//         name: 'Quần trang phục Hoa',
+//         lat: 10.766703394544189,
+//         lng: 106.69524844454077,
+//     },
+//     {
+//         id: 'A4',
+//         img: 'https://kinpetshop.com/wp-content/uploads/meo-con-keu-lien-tuc.jpg',
+//         name: 'Voucher 50%',
+//         lat: 10.766736589044667,
+//         lng: 106.69497602048739,
+//     },
+// ];
 
-const test = [
-    {
-        id: 'A1',
-        lat: 10.766894,
-        lng: 106.695466,
-    },
-    {
-        id: 'A2',
-        lat: 10.766970623687978,
-        lng: 106.69504968618132,
-    },
-];
+// const test = [
+//     {
+//         id: 'A1',
+//         lat: 10.766894,
+//         lng: 106.695466,
+//     },
+//     {
+//         id: 'A2',
+//         lat: 10.766970623687978,
+//         lng: 106.69504968618132,
+//     },
+// ];
 
 const MainScreen = () => {
     const [bookModal, setBookModal] = useState(false);
@@ -66,7 +68,7 @@ const MainScreen = () => {
     const [watchId, setWatchId] = useState(null);
     const [heading, setHeading] = useState(null);
 
-    const [data, setData] = useState(temp);
+    const [data, setData] = useState(YieldDatas.items);
 
     const openBookModal = () => {
         setBookModal(true);
@@ -130,10 +132,10 @@ const MainScreen = () => {
     useEffect(() => {
         const completed = localStorage.getItem('completed');
         // const completed = test;
-        console.log(completed);
+        // console.log(completed);
         if (completed) {
             const completedData = completed || JSON.parse(completed);
-            const tmp = temp
+            const tmp = YieldDatas.items
                 .map((item) => {
                     for (let i = 0; i < completedData.length; i++) {
                         const element = completedData[i];
@@ -142,7 +144,6 @@ const MainScreen = () => {
                     return item;
                 })
                 .filter((e) => e !== undefined);
-            console.log(tmp);
             setData(tmp);
         } else {
             localStorage.setItem('completed', JSON.stringify([]));
@@ -197,19 +198,29 @@ const MainScreen = () => {
             if (currentPosition !== null) {
                 for (let i = 0; i < data.length; i++) {
                     const element = data[i];
+                    console.log(element.lat);
+                    console.log(element.lng);
+                    console.log(currentPosition);
                     const dist = calculateDistance(currentPosition.lat, currentPosition.lng, element.lat, element.lng);
-
-                    if (dist < 0.01 && !yieldModal) {
+                    console.log(dist);
+                    if (dist < 0.05 && !yieldModal) {
                         // console.log(element);
-                        console.log(dist);
+                        // console.log(dist);
                         // check thêm có đang hiện vật phẩm trước đó không
                         // alert(element.id);
                         // Xử lý hiện vật phẩm
+                        console.log(element);
                         setYield(element);
                         setYieldModal(true);
+                        console.log('vvvvv');
 
                         // Cập nhật data và local các vật phẩm đã hoàn thành
-                        const dataUpdate = data.map((item) => item.id !== element.id);
+                        const dataUpdate = data
+                            .map((item) => {
+                                if (item.id !== element.id) return item;
+                            })
+                            .filter((e) => e !== undefined);
+                        console.log(dataUpdate);
                         setData(dataUpdate);
                         // const completed = JSON.parse(localStorage.getItem('completed'));
                         // completed.push(element);
@@ -249,7 +260,7 @@ const MainScreen = () => {
                 </div>
             </div>
             <div className={classes.map}>
-                <img src={AoDai} alt="yield"></img>
+                <img width={700} src={MapYield} alt="map"></img>
             </div>
 
             <div className={classes.option}>

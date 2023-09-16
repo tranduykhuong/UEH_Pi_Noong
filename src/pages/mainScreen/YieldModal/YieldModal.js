@@ -1,28 +1,42 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import classes from './YieldModal.module.scss';
 import Back from '../../../assets/imgs/back.png';
 import Img from '../../../assets/imgs/colection/aoMong.png';
 
 const YieldModal = ({ onClose, yields }) => {
     const modalRef = useRef(null);
+    const [confirmModal, setConfirmModal] = useState(false);
 
     const handleModalClick = (e) => {
         if (modalRef.current && !modalRef.current.contains(e.target)) {
             onClose(); // Đóng modal khi click bên ngoài
         }
     };
+    // useEffect(() => {
+    //     console.log(yields.id);
+    // }, [yields]);
 
     const handleBackClick = () => {
-        onClose();
+        console.log('cc');
+        setConfirmModal(true);
     };
 
     const handleSaveYields = () => {
         // Lưu yields vào localStorage
-        const completed = JSON.parse(localStorage.getItem('completed')) || [];
+        const completed = JSON.parse(localStorage.getItem('collected')) || [];
         completed.push(yields);
-        localStorage.setItem('completed', JSON.stringify(completed));
-
+        localStorage.setItem('collected', JSON.stringify(completed));
         onClose();
+    };
+
+    const handleConfirm = () => {
+        // Xử lý khi người dùng xác nhận
+        // Lưu yields vào localStorage hoặc bất kỳ tương tác nào bạn muốn thực hiện
+        onClose(); // Đóng modal
+    };
+
+    const handleCancel = () => {
+        setConfirmModal(false); // Đóng modal xác nhận
     };
 
     return (
@@ -36,7 +50,7 @@ const YieldModal = ({ onClose, yields }) => {
                 </div>
                 <div className={classes.colection}>
                     <div className={classes.template}>
-                        <img className={classes.img_yield} src={yields.image} alt="yield" />
+                        <img className={classes.img_yield} src={yields.img} alt="yield" />
                     </div>
                     <div className={classes.name_yield}>{yields.name}</div>
                     <div className={classes.option_btn}>
@@ -49,6 +63,14 @@ const YieldModal = ({ onClose, yields }) => {
                     </div>
                 </div>
             </div>
+
+            {confirmModal && (
+                <div className={classes.confirmModal}>
+                    <p>Bạn có muốn bỏ qua không?</p>
+                    <button onClick={handleConfirm}>Đồng ý</button>
+                    <button onClick={handleCancel}>Hủy</button>
+                </div>
+            )}
         </div>
     );
 };
