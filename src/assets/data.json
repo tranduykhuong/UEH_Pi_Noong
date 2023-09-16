@@ -2,37 +2,37 @@
     "outfits": [
         {
             "id": "A",
-            "name": "Trang phục dân tộc Hoa",
+            "name": "Dân tộc Tày",
             "hidden_img": "https://res.cloudinary.com/dnax1t7m4/image/upload/v1694792335/ueh/A_dxuien.png",
             "full_img": ""
         },
         {
             "id": "B",
-            "name": "Trang phục dân tộc Hoa",
+            "name": "Dân tộc Thái",
             "hidden_img": "https://res.cloudinary.com/dnax1t7m4/image/upload/v1694792333/ueh/B_izfuyv.png",
             "full_img": ""
         },
         {
             "id": "C",
-            "name": "Trang phục dân tộc Hoa",
+            "name": "Dân tộc Mường",
             "hidden_img": "https://res.cloudinary.com/dnax1t7m4/image/upload/v1694792332/ueh/C_ujejmt.png",
             "full_img": ""
         },
         {
             "id": "E",
-            "name": "Trang phục dân tộc Hoa",
+            "name": "Dân tộc Mông",
             "hidden_img": "https://res.cloudinary.com/dnax1t7m4/image/upload/v1694792333/ueh/E_hbvubb.png",
             "full_img": ""
         },
         {
             "id": "G",
-            "name": "Trang phục dân tộc Hoa",
+            "name": "Dân tộc Hoa",
             "hidden_img": "https://res.cloudinary.com/dnax1t7m4/image/upload/v1694792333/ueh/G_qop7hi.png",
             "full_img": ""
         },
         {
             "id": "H",
-            "name": "Trang phục dân tộc Hoa",
+            "name": "Dân tộc Dao",
             "hidden_img": "https://res.cloudinary.com/dnax1t7m4/image/upload/v1694792334/ueh/H_qbszig.png",
             "full_img": ""
         }
@@ -41,126 +41,144 @@
         {
             "id": "A1",
             "img": "https://res.cloudinary.com/dnax1t7m4/image/upload/v1694791106/ueh/A1_ealctc.png",
-            "name": "Mũ trang phục Hoa",
+            "name": "Khăn đội đầu trang phục Tày",
+            "yield_img": "https://res.cloudinary.com/dnax1t7m4/image/upload/v1694844936/ueh/a1_kpuy69.png",
             "lat": 10.766894,
             "lng": 106.695466
         },
         {
             "id": "A2",
             "img": "https://res.cloudinary.com/dnax1t7m4/image/upload/v1694791104/ueh/A2_eh2n28.png",
-            "name": "Áo trang phục Hoa",
+            "name": "Áo trang phục Tày",
+            "yield_img": "https://res.cloudinary.com/dnax1t7m4/image/upload/v1694844937/ueh/a2_seq24j.png",
             "lat": 10.766970623687978,
             "lng": 106.69504968618132
         },
         {
             "id": "A3",
             "img": "https://res.cloudinary.com/dnax1t7m4/image/upload/v1694791104/ueh/A3_haxw4i.png",
-            "name": "Quần trang phục Hoa",
+            "name": "Váy trang phục Tày",
+            "yield_img": "https://res.cloudinary.com/dnax1t7m4/image/upload/v1694844937/ueh/a3_idbyiu.png",
             "lat": 10.766703394544189,
             "lng": 106.69524844454077
         },
         {
             "id": "B1",
             "img": "https://res.cloudinary.com/dnax1t7m4/image/upload/v1694791104/ueh/B1_kf2lz8.png",
-            "name": "Mũ trang phục Hoa",
+            "name": "Khăn Pieu trang phục Thái",
+            "yield_img": "https://res.cloudinary.com/dnax1t7m4/image/upload/v1694844938/ueh/b1_genprn.png",
             "lat": 10.766894,
             "lng": 106.695466
         },
         {
             "id": "B2",
             "img": "https://res.cloudinary.com/dnax1t7m4/image/upload/v1694791105/ueh/B2_bcn0iz.png",
-            "name": "Áo trang phục Hoa",
+            "name": "Áo cóm trang phục Thái",
+            "yield_img": "https://res.cloudinary.com/dnax1t7m4/image/upload/v1694844927/ueh/b2_q4nhtw.png",
             "lat": 10.766894,
             "lng": 106.695466
         },
         {
             "id": "B3",
             "img": "https://res.cloudinary.com/dnax1t7m4/image/upload/v1694791104/ueh/B3_dvoizo.png",
-            "name": "Quần trang phục Hoa",
+            "name": "Váy trang phục Thái",
+            "yield_img": "https://res.cloudinary.com/dnax1t7m4/image/upload/v1694844927/ueh/b3_huwyxl.png",
             "lat": 10.766894,
             "lng": 106.695466
         },
         {
             "id": "C1",
             "img": "https://res.cloudinary.com/dnax1t7m4/image/upload/v1694791105/ueh/C1_v2e3ns.png",
-            "name": "Mũ trang phục Hoa",
+            "name": "Khăn đội đầu trang phục Mường",
+            "yield_img": "https://res.cloudinary.com/dnax1t7m4/image/upload/v1694844927/ueh/c1_poagih.png",
             "lat": 10.766894,
             "lng": 106.695466
         },
         {
             "id": "C2",
             "img": "https://res.cloudinary.com/dnax1t7m4/image/upload/v1694791105/ueh/C2_t2iggn.png",
-            "name": "Áo trang phục Hoa",
+            "name": "Áo pắn trang phục Mường",
+            "yield_img": "https://res.cloudinary.com/dnax1t7m4/image/upload/v1694844927/ueh/c2_ont2zq.png",
             "lat": 10.766894,
             "lng": 106.695466
         },
         {
             "id": "C3",
             "img": "https://res.cloudinary.com/dnax1t7m4/image/upload/v1694791105/ueh/C3_limrdp.png",
-            "name": "Quần trang phục Hoa",
+            "name": "Váy trang phục Mường",
+            "yield_img": "https://res.cloudinary.com/dnax1t7m4/image/upload/v1694844927/ueh/c3_y5izva.png",
             "lat": 10.766894,
             "lng": 106.695466
         },
         {
             "id": "E1",
             "img": "https://res.cloudinary.com/dnax1t7m4/image/upload/v1694791105/ueh/E1_s6p0yw.png",
-            "name": "Mũ trang phục Hoa",
+            "name": "Khăn đội đầu trang phục Mông",
+            "yield_img": "https://res.cloudinary.com/dnax1t7m4/image/upload/v1694844929/ueh/e1_rdg1yv.png",
             "lat": 10.766894,
             "lng": 106.695466
         },
         {
             "id": "E2",
             "img": "https://res.cloudinary.com/dnax1t7m4/image/upload/v1694791106/ueh/E2_q79jzl.png",
-            "name": "Áo trang phục Hoa",
+            "name": "Áo tứ thân trang phục Mông",
+            "yield_img": "https://res.cloudinary.com/dnax1t7m4/image/upload/v1694844928/ueh/e2_yzmxpv.png",
             "lat": 10.766894,
             "lng": 106.695466
         },
         {
             "id": "E3",
             "img": "https://res.cloudinary.com/dnax1t7m4/image/upload/v1694791106/ueh/E3_h3ba4d.png",
-            "name": "Quần trang phục Hoa",
+            "name": "Váy trang phục Mông",
+            "yield_img": "https://res.cloudinary.com/dnax1t7m4/image/upload/v1694844928/ueh/e3_l36fi7.png",
             "lat": 10.766894,
             "lng": 106.695466
         },
         {
             "id": "G1",
             "img": "https://res.cloudinary.com/dnax1t7m4/image/upload/v1694791108/ueh/G1_semvky.png",
-            "name": "Mũ trang phục Hoa",
+            "name": "Sườn xám trang phục Hoa",
+            "yield_img": "https://res.cloudinary.com/dnax1t7m4/image/upload/v1694844932/ueh/g1_l9pn73.png",
             "lat": 10.766894,
             "lng": 106.695466
         },
         {
             "id": "G2",
             "img": "https://res.cloudinary.com/dnax1t7m4/image/upload/v1694791108/ueh/G2_f1yunp.png",
-            "name": "Áo trang phục Hoa",
+            "name": "Trăm cài trang phục Hoa",
+            "yield_img": "https://res.cloudinary.com/dnax1t7m4/image/upload/v1694844933/ueh/g2_jcjj9i.png",
             "lat": 10.766894,
             "lng": 106.695466
         },
         {
             "id": "G3",
             "img": "https://res.cloudinary.com/dnax1t7m4/image/upload/v1694791112/ueh/G3_g3aq7z.png",
-            "name": "Quần trang phục Hoa",
+            "name": "Giày thêu trang phục Hoa",
+            "yield_img": "https://res.cloudinary.com/dnax1t7m4/image/upload/v1694844933/ueh/g3_rka9ha.png",
             "lat": 10.766894,
             "lng": 106.695466
         },
         {
             "id": "H1",
             "img": "https://res.cloudinary.com/dnax1t7m4/image/upload/v1694791109/ueh/H1_yjyulh.png",
-            "name": "Mũ trang phục Hoa",
+            "name": "Khăn vấn đầu trang phục Dao",
+            "yield_img": "https://res.cloudinary.com/dnax1t7m4/image/upload/v1694844933/ueh/h1_ficwoq.png",
             "lat": 10.766894,
             "lng": 106.695466
         },
         {
             "id": "H2",
             "img": "https://res.cloudinary.com/dnax1t7m4/image/upload/v1694791109/ueh/H2_wwu9ht.png",
-            "name": "Áo trang phục Hoa",
+            "name": "Áo trang phục Dao",
+            "yield_img": "https://res.cloudinary.com/dnax1t7m4/image/upload/v1694844934/ueh/H2_pmfrmm.png",
             "lat": 10.766894,
             "lng": 106.695466
         },
         {
             "id": "H3",
             "img": "https://res.cloudinary.com/dnax1t7m4/image/upload/v1694791110/ueh/H3_erdlrw.png",
-            "name": "Quần trang phục Hoa",
+            "name": "Quần trang phục Dao",
+            "yield_img": "https://res.cloudinary.com/dnax1t7m4/image/upload/v1694844936/ueh/h3_h1dk36.png",
             "lat": 10.766894,
             "lng": 106.695466
         },
@@ -168,7 +186,24 @@
         {
             "id": "Z1",
             "img": "",
-            "name": "Voucher 50%",
+            "name": "Voucher từ Seoul Academy",
+            "yield_img": "https://res.cloudinary.com/dnax1t7m4/image/upload/v1694847697/ueh/Z1_guueay.png",
+            "lat": 10.766894,
+            "lng": 106.695466
+        },
+        {
+            "id": "Z2",
+            "img": "",
+            "name": "Voucher từ Ấn tượng đẹp",
+            "yield_img": "https://res.cloudinary.com/dnax1t7m4/image/upload/v1694847696/ueh/Z2_daho0a.jpg",
+            "lat": 10.766894,
+            "lng": 106.695466
+        },
+        {
+            "id": "Z3",
+            "img": "",
+            "name": "Voucher từ ZIM",
+            "yield_img": "https://res.cloudinary.com/dnax1t7m4/image/upload/v1694847696/ueh/Z3_l8i3x4.png",
             "lat": 10.766894,
             "lng": 106.695466
         }
