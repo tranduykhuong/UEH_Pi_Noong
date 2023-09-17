@@ -210,7 +210,7 @@ const Home = () => {
         <div>
             {currentPosition ? (
                 <p>
-                    Tọa độ GPS hiện tại: Lat {currentPosition.lat}, Lng {currentPosition.lng}
+                    Tọa độ GPS hiện tại: <br /> Lat {currentPosition.lat} <br /> Lng {currentPosition.lng}
                 </p>
             ) : (
                 <p>Đang tải tọa độ GPS...</p>
