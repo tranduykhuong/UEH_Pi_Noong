@@ -208,18 +208,18 @@ const Home = () => {
 
     return (
         <div>
-            {/* {currentPosition ? (
+            {currentPosition ? (
                 <p>
                     Tọa độ GPS hiện tại: Lat {currentPosition.lat}, Lng {currentPosition.lng}
                 </p>
             ) : (
                 <p>Đang tải tọa độ GPS...</p>
             )}
-            <h3>Distance: </h3>
+            {/* <h3>Distance: </h3>
             <p>{distance}</p>
             <h3>Degree: </h3>
-            <p>{bearing}</p>
-            {heading !== null ? (
+            <p>{bearing}</p> */}
+            {/* {heading !== null ? (
                 <div>
                     <h3>Heading:</h3>
                     <p>{heading} degrees</p>
