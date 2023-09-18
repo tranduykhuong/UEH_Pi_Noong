@@ -251,12 +251,22 @@ const MainScreen = () => {
         };
     }, []);
 
+    const clearLocalStorage = () => {
+        localStorage.clear();
+    };
+
     return (
         <div className={classes.container}>
             <div className={classes.header_btn}>
                 <div className={classes.name}>Pỉ Noọng Ơi</div>
-                <div className={classes.logout}>
-                    <img className={classes.logout__img} src={Reload} alt="Logout" />
+                <div
+                    className={classes.logout}
+                    onClick={() => {
+                        clearLocalStorage();
+                        window.location.reload();
+                    }}
+                >
+                    <img className={classes.logout__img} src={Reload} alt="reload" />
                 </div>
             </div>
             <div className={classes.map}>
