@@ -1,26 +1,7 @@
 import React, { useRef } from 'react';
 import classes from './BookModal.module.scss';
 import Back from '../../../assets/imgs/back.png';
-import AoMong from '../../../assets/imgs/colection/aoMong.png';
-import BitMong from '../../../assets/imgs/colection/bitMong.png';
-import KhanTay from '../../../assets/imgs/colection/khanTay.png';
-import NonMong from '../../../assets/imgs/colection/nonMong.png';
-import ThanDuoiAoTay from '../../../assets/imgs/colection/thanduoiaoTay.png';
-import ThanTrenAoTay from '../../../assets/imgs/colection/thantrenaoTay.png';
 import bookData from '../../../assets/data.json';
-
-const images = [
-    { src: AoMong, alt: 'Áo Mông' },
-    { src: BitMong, alt: 'Bít Mông' },
-    { src: KhanTay, alt: 'Khăn Tay' },
-    { src: NonMong, alt: 'Nón Mông' },
-    { src: ThanDuoiAoTay, alt: 'Thân dưới áo tay' },
-    { src: ThanTrenAoTay, alt: 'Thân trên áo tay' },
-    { src: ThanTrenAoTay, alt: 'Thân trên áo tay' },
-    { src: ThanTrenAoTay, alt: 'Thân trên áo tay' },
-    { src: ThanTrenAoTay, alt: 'Thân trên áo tay' },
-    { src: ThanTrenAoTay, alt: 'Thân trên áo tay' },
-];
 
 const BookModal = ({ onClose }) => {
     const modalRef = useRef(null);
@@ -36,13 +17,21 @@ const BookModal = ({ onClose }) => {
     };
 
     const handleImageClick = (e, image, index) => {
-        const imageSrc = image.src;
-        const imageAlt = image.alt;
-        const clickedElement = e.currentTarget;
+        const imageInfo = {
+            id: image.id,
+            name: image.name,
+            hidden_img: image.hidden_img,
+            full_img: image.full_img,
+        };
+        console.log(imageInfo);
 
-        console.log('Thông tin ảnh:', imageSrc, imageAlt);
-        console.log('Vị trí phần tử trong mảng:', index);
+        // Lưu thông tin ảnh vào localStorage
+        localStorage.setItem(`image_choose`, JSON.stringify(imageInfo));
+        alert(`Đã chọn ảnh ${imageInfo.name}`);
+        // Đóng modal
+        onClose();
     };
+
     return (
         <div onClick={handleModalClick} className={classes.container}>
             <div ref={modalRef} className={classes.container_modal}>

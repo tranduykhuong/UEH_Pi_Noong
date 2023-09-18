@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import classes from './YieldModal.module.scss';
 import Back from '../../../assets/imgs/back.png';
-import Img from '../../../assets/imgs/colection/aoMong.png';
 
 const YieldModal = ({ onClose, yields }) => {
     const modalRef = useRef(null);
@@ -9,15 +8,11 @@ const YieldModal = ({ onClose, yields }) => {
 
     const handleModalClick = (e) => {
         if (modalRef.current && !modalRef.current.contains(e.target)) {
-            onClose(); // Đóng modal khi click bên ngoài
+            // onClose(); // Đóng modal khi click bên ngoài
         }
     };
-    // useEffect(() => {
-    //     console.log(yields.id);
-    // }, [yields]);
 
     const handleBackClick = () => {
-        console.log('cc');
         setConfirmModal(true);
     };
 
@@ -26,17 +21,16 @@ const YieldModal = ({ onClose, yields }) => {
         const completed = JSON.parse(localStorage.getItem('collected')) || [];
         completed.push(yields);
         localStorage.setItem('collected', JSON.stringify(completed));
+        alert(`Đã thu thập được vật phẩm`);
         onClose();
     };
 
     const handleConfirm = () => {
-        // Xử lý khi người dùng xác nhận
-        // Lưu yields vào localStorage hoặc bất kỳ tương tác nào bạn muốn thực hiện
         onClose(); // Đóng modal
     };
 
     const handleCancel = () => {
-        setConfirmModal(false); // Đóng modal xác nhận
+        setConfirmModal(false);
     };
 
     return (
@@ -67,8 +61,10 @@ const YieldModal = ({ onClose, yields }) => {
             {confirmModal && (
                 <div className={classes.confirmModal}>
                     <p>Bạn có muốn bỏ qua không?</p>
-                    <button onClick={handleConfirm}>Đồng ý</button>
-                    <button onClick={handleCancel}>Hủy</button>
+                    <div className={classes.wrap_btn}>
+                        <button onClick={handleConfirm}>Đồng ý</button>
+                        <button onClick={handleCancel}>Hủy</button>
+                    </div>
                 </div>
             )}
         </div>

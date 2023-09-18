@@ -12,6 +12,7 @@ import HiddenDTMong from '../../../assets/imgs/hidden/DTMong.png';
 const RequipmentModal = ({ onClose }) => {
     const modalRef = useRef(null);
     const [collectionData, setCollectionData] = useState([]);
+    const [imageSelected, setImageSelected] = useState(localStorage.getItem('image_choose') || '');
 
     const handleModalClick = (e) => {
         if (modalRef.current && !modalRef.current.contains(e.target)) {
@@ -34,13 +35,19 @@ const RequipmentModal = ({ onClose }) => {
 
     useEffect(() => {
         const localData = localStorage.getItem('collected');
+        console.log(localStorage.getItem('image_choose'));
+        const imgSelected = localStorage.getItem('image_choose');
         if (localData) {
             // Nếu có, gán dữ liệu từ localStorage vào state
             setCollectionData(JSON.parse(localData));
+            setImageSelected(JSON.parse(imgSelected));
         } else {
             // Nếu chưa có
         }
     }, []);
+
+    const filteredCollectionData = collectionData.filter((item) => item.id.includes(imageSelected.id));
+
     return (
         <div onClick={handleModalClick} className={classes.container}>
             <div ref={modalRef} className={classes.container_modal}>
@@ -52,9 +59,9 @@ const RequipmentModal = ({ onClose }) => {
                 </div>
                 <div className={classes.colection}>
                     <div className={classes.template}>
-                        <img className={classes.img_hiden} src={HiddenDTMong} alt={'pic'} />
-                        {collectionData.map((item) => (
-                            <img key={item.id} className={classes.img_ao} src={item.img} alt={item.name} />
+                        <img className={classes.img_hiden} src={imageSelected.hidden_img} alt={'pic'} />
+                        {filteredCollectionData.map((item, index) => (
+                            <img key={index} className={classes.img_ao} src={item.img} alt={item.name} />
                         ))}
                     </div>
                 </div>
