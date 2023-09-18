@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import classes from './CollectionModal.module.scss';
 import Back from '../../../assets/imgs/back.png';
 import dataCollection from '../../../assets/data.json';
