@@ -37,10 +37,10 @@ const RequipmentModal = ({ onClose }) => {
         const localData = localStorage.getItem('collected');
         console.log(localStorage.getItem('image_choose'));
         const imgSelected = localStorage.getItem('image_choose');
+        setImageSelected(JSON.parse(imgSelected));
         if (localData) {
             // Nếu có, gán dữ liệu từ localStorage vào state
             setCollectionData(JSON.parse(localData));
-            setImageSelected(JSON.parse(imgSelected));
         } else {
             // Nếu chưa có
         }
