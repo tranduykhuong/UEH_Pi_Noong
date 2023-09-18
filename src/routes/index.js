@@ -13,9 +13,9 @@ const Navigation = () => {
         <main>
             <Routes>
                 <Route element={<Layout />}>
-                    <Route path="/" name="home" element={<Home />} />
+                    {/* <Route path="/" name="home" element={<Home />} /> */}
+                    <Route path="/" name="mainScreen" element={<MainScreen />} />
                     <Route path="/main" name="home" element={<Main />} />
-                    <Route path="/mainScreen" name="mainScreen" element={<MainScreen />} />
                 </Route>
                 <Route path="*" name="notFound" element={<Navigate to="/" />} />
             </Routes>
@@ -24,4 +24,3 @@ const Navigation = () => {
 };
 
 export default Navigation;
-

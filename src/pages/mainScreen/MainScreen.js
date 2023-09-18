@@ -126,6 +126,7 @@ const MainScreen = () => {
     };
 
     const handleReset = () => {
+        localStorage.clear();
         localStorage.setItem('completed', JSON.stringify([]));
     };
 
@@ -222,9 +223,9 @@ const MainScreen = () => {
                             .filter((e) => e !== undefined);
                         console.log(dataUpdate);
                         setData(dataUpdate);
-                        // const completed = JSON.parse(localStorage.getItem('completed'));
-                        // completed.push(element);
-                        // localStorage.setItem('completed', completed);
+                        const completed = JSON.parse(localStorage.getItem('completed'));
+                        completed.push(element);
+                        localStorage.setItem('completed', completed);
                         break;
                     }
                 }
@@ -259,14 +260,8 @@ const MainScreen = () => {
         <div className={classes.container}>
             <div className={classes.header_btn}>
                 <div className={classes.name}>Pỉ Noọng Ơi</div>
-                <div
-                    className={classes.logout}
-                    onClick={() => {
-                        clearLocalStorage();
-                        window.location.reload();
-                    }}
-                >
-                    <img className={classes.logout__img} src={Reload} alt="reload" />
+                <div className={classes.logout}>
+                    <img className={classes.logout__img} src={Reload} alt="Logout" onClick={handleReset} />
                 </div>
             </div>
             <div className={classes.map}>
