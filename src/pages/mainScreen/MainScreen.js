@@ -258,9 +258,9 @@ const MainScreen = () => {
     }, []);
 
     useEffect(() => {
-        async function startVideo() {
+        function startVideo() {
             try {
-                const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+                const stream = navigator.mediaDevices.getUserMedia({ video: true });
                 setVideoStream(stream);
                 videoStreamRef.current = stream; // Cập nhật biến ref
             } catch (error) {
