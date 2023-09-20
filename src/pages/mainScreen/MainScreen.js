@@ -203,23 +203,44 @@ const MainScreen = () => {
         };
     }, []);
 
-    const startVideo = async () => {
+    // const startVideo = async () => {
+    //     try {
+    //         const stream = await navigator.mediaDevices.getUserMedia({
+    //             video: { facingMode: 'environment' }, // Sử dụng camera sau
+    //         });
+    //         setVideoStream(stream);
+    //         videoStreamRef.current = stream; // Cập nhật biến ref
+    //         setIsCameraOn(true); // Đặt biến trạng thái thành true khi camera đã bật
+    //     } catch (error) {
+    //         console.error('Lỗi truy cập camera:', error);
+    //     }
+    // };
+
+    const videoRef = useRef();
+    const streamRef = useRef();
+    const [stream, setStream] = useState(null);
+    const startCamera = async () => {
         try {
-            const stream = await navigator.mediaDevices.getUserMedia({
-                video: { facingMode: 'environment' }, // Sử dụng camera sau
-            });
-            setVideoStream(stream);
-            videoStreamRef.current = stream; // Cập nhật biến ref
-            setIsCameraOn(true); // Đặt biến trạng thái thành true khi camera đã bật
+            const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } });
+            setStream(stream);
+            streamRef.current = stream;
+            if (videoRef.current) {
+                videoRef.current.srcObject = stream;
+            }
         } catch (error) {
-            console.error('Lỗi truy cập camera:', error);
+            console.error('Error accessing camera:', error);
         }
     };
 
     // Gọi hàm startVideo chỉ khi hasStarted là false
+    // useEffect(() => {
+    //     console.log('cc');
+    //     startVideo();
+    // }, []);
+
     useEffect(() => {
-        console.log('cc');
-        startVideo();
+        startCamera();
+        startCamera();
     }, []);
 
     const clearLocalStorage = () => {
@@ -237,7 +258,7 @@ const MainScreen = () => {
                 </div>
             </div>
             <div className={classes.map}>
-                {isCameraOn ? (
+                {/* {isCameraOn ? (
                     <div className={classes.video}>
                         <video
                             width={'100%'}
@@ -253,7 +274,8 @@ const MainScreen = () => {
                     </div>
                 ) : (
                     <img width={700} src={MapYield} alt="map" />
-                )}
+                )} */}
+                {stream && <video ref={videoRef} height={'100%'} width={'100%'} autoPlay></video>}
             </div>
 
             <div className={classes.option}>
