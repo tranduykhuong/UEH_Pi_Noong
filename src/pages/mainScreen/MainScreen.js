@@ -230,9 +230,10 @@ const MainScreen = () => {
 
     // Gọi hàm startVideo chỉ khi hasStarted là false
     useEffect(() => {
+        console.log('cc');
         if (!hasStarted) {
             startVideo();
-            setHasStarted(true); // Đánh dấu rằng đã gọi startVideo
+            setHasStarted(true);
         }
     }, [hasStarted]);
 
