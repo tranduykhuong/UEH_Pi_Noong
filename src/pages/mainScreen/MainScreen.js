@@ -22,7 +22,8 @@ const MainScreen = () => {
     const [yieldModal, setYieldModal] = useState(false);
     const [yields, setYield] = useState(null);
 
-    const videoElement = document.getElementById('video-element');
+    const [videoStream, setVideoStream] = useState(null);
+    const videoStreamRef = useRef(null);
 
     const [currentPosition, setCurrentPosition] = useState(null);
     const [watchId, setWatchId] = useState(null);
@@ -212,21 +213,27 @@ const MainScreen = () => {
         };
     }, []);
 
-    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-        // Yêu cầu quyền truy cập vào camera sau
-        navigator.mediaDevices
-            .getUserMedia({ video: { facingMode: 'environment' } }) // facingMode: 'environment' để chọn camera sau
-            .then(function (stream) {
-                // Gán luồng video từ camera vào video element
-                videoElement.srcObject = stream;
-                videoElement.play();
-            })
-            .catch(function (error) {
+    useEffect(() => {
+        async function startVideo() {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({
+                    video: { facingMode: 'environment' }, // Sử dụng camera sau
+                });
+                setVideoStream(stream);
+                videoStreamRef.current = stream; // Cập nhật biến ref
+            } catch (error) {
                 console.error('Lỗi truy cập camera:', error);
-            });
-    } else {
-        console.error('Trình duyệt không hỗ trợ navigator.mediaDevices');
-    }
+            }
+        }
+
+        startVideo();
+
+        return () => {
+            if (videoStreamRef.current) {
+                videoStreamRef.current.getTracks().forEach((track) => track.stop());
+            }
+        };
+    }, []);
 
     const clearLocalStorage = () => {
         localStorage.clear();
@@ -241,7 +248,19 @@ const MainScreen = () => {
                 </div>
             </div>
             <div className={classes.map}>
-                <video id="video-element" autoplay playsinline></video>
+                {videoStream ? (
+                    <video
+                        autoPlay
+                        playsInline
+                        ref={(videoElement) => {
+                            if (videoElement) {
+                                videoElement.srcObject = videoStream;
+                            }
+                        }}
+                    />
+                ) : (
+                    <img width={700} src={MapYield} alt="map" />
+                )}
             </div>
 
             <div className={classes.option}>
