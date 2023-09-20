@@ -13,50 +13,7 @@ import YieldModal from './YieldModal/YieldModal';
 import YieldDatas from '../../assets/data.json';
 import CameraComponent from '../main/CameraComponent';
 import MapYield from '../../assets/imgs/map.jpg';
-
-// const temp = [
-//     {
-//         id: 'A1',
-//         img: 'https://kinpetshop.com/wp-content/uploads/meo-con-keu-lien-tuc.jpg',
-//         name: 'Mũ trang phục Hoa',
-//         lat: 10.766894,
-//         lng: 106.695466,
-//     },
-//     {
-//         id: 'A2',
-//         img: 'https://kinpetshop.com/wp-content/uploads/meo-con-keu-lien-tuc.jpg',
-//         name: 'Áo trang phục Hoa',
-//         lat: 10.766970623687978,
-//         lng: 106.69504968618132,
-//     },
-//     {
-//         id: 'A3',
-//         img: 'https://kinpetshop.com/wp-content/uploads/meo-con-keu-lien-tuc.jpg',
-//         name: 'Quần trang phục Hoa',
-//         lat: 10.766703394544189,
-//         lng: 106.69524844454077,
-//     },
-//     {
-//         id: 'A4',
-//         img: 'https://kinpetshop.com/wp-content/uploads/meo-con-keu-lien-tuc.jpg',
-//         name: 'Voucher 50%',
-//         lat: 10.766736589044667,
-//         lng: 106.69497602048739,
-//     },
-// ];
-
-// const test = [
-//     {
-//         id: 'A1',
-//         lat: 10.766894,
-//         lng: 106.695466,
-//     },
-//     {
-//         id: 'A2',
-//         lat: 10.766970623687978,
-//         lng: 106.69504968618132,
-//     },
-// ];
+import Webcam from 'react-webcam';
 
 const MainScreen = () => {
     const [bookModal, setBookModal] = useState(false);
@@ -65,9 +22,10 @@ const MainScreen = () => {
     const [yieldModal, setYieldModal] = useState(false);
     const [yields, setYield] = useState(null);
 
-    const [videoStream, setVideoStream] = useState(null);
-    const videoRef = useRef(null);
-    const videoStreamRef = useRef(videoStream);
+    const [webcamStream, setWebcamStream] = useState(null);
+    const [devices, setDevices] = useState([]);
+    const webcamRef = useRef(null);
+    const [selectedDevice, setSelectedDevice] = useState(null);
 
     const [currentPosition, setCurrentPosition] = useState(null);
     const [watchId, setWatchId] = useState(null);
@@ -257,26 +215,43 @@ const MainScreen = () => {
         };
     }, []);
 
+    // Lấy danh sách thiết bị đầu vào (bao gồm camera)
     useEffect(() => {
-        function startVideo() {
-            try {
-                const stream = navigator.mediaDevices.getUserMedia({ video: true });
-                setVideoStream(stream);
-                videoStreamRef.current = stream; // Cập nhật biến ref
-            } catch (error) {
-                console.error('Error accessing camera:', error);
-            }
-        }
-
-        startVideo();
-
-        return () => {
-            if (videoStreamRef.current) {
-                videoStreamRef.current.getTracks().forEach((track) => track.stop());
-            }
-        };
+        navigator.mediaDevices.enumerateDevices().then((devices) => {
+            setDevices(devices.filter((device) => device.kind === 'videoinput'));
+        });
     }, []);
 
+    const startCamera = async () => {
+        try {
+            const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+            setWebcamStream(stream);
+            webcamRef.current.srcObject = stream;
+        } catch (error) {
+            console.error('Error accessing camera:', error);
+        }
+    };
+
+    const stopCamera = () => {
+        if (webcamStream) {
+            webcamStream.getTracks().forEach((track) => track.stop());
+            setWebcamStream(null);
+        }
+    };
+
+    const switchCamera = async () => {
+        if (devices.length > 1 && selectedDevice) {
+            const newIndex = devices.findIndex((device) => device.deviceId !== selectedDevice.deviceId);
+            if (newIndex !== -1) {
+                const newDevice = devices[newIndex];
+                setSelectedDevice(newDevice);
+                stopCamera();
+                const stream = await navigator.mediaDevices.getUserMedia({ video: { deviceId: newDevice.deviceId } });
+                setWebcamStream(stream);
+                webcamRef.current.srcObject = stream;
+            }
+        }
+    };
     const clearLocalStorage = () => {
         localStorage.clear();
     };
@@ -290,10 +265,14 @@ const MainScreen = () => {
                 </div>
             </div>
             <div className={classes.map}>
-                {videoStream ? (
-                    <video width={400} height={500} autoPlay playsInline ref={videoRef} />
+                {webcamStream ? (
+                    <div>
+                        <Webcam audio={false} ref={webcamRef} screenshotFormat="image/jpeg" />
+                        <button onClick={stopCamera}>Dừng Camera</button>
+                        <button onClick={switchCamera}>Xoay Camera</button>
+                    </div>
                 ) : (
-                    <img width={700} src={MapYield} alt="map" />
+                    <button onClick={startCamera}>Bật Camera</button>
                 )}
             </div>
 
