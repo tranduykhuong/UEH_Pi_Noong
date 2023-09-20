@@ -239,8 +239,10 @@ const MainScreen = () => {
             </div>
             <div className={classes.map}>
                 {isCameraOn ? (
-                    <div>
+                    <div className={classes.video}>
                         <video
+                            width={'100%'}
+                            height={'100%'}
                             autoPlay
                             playsInline
                             ref={(videoElement) => {
