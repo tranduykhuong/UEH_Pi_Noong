@@ -11,6 +11,7 @@ import Reload from '../../assets/imgs/reload.png';
 import RequipmentModal from './RequipmentModal/RequipmentModal';
 import YieldModal from './YieldModal/YieldModal';
 import YieldDatas from '../../assets/data.json';
+import CameraComponent from '../main/CameraComponent';
 import MapYield from '../../assets/imgs/map.jpg';
 
 // const temp = [
@@ -63,8 +64,10 @@ const MainScreen = () => {
     const [requipmentModal, setRequipmentModal] = useState(false);
     const [yieldModal, setYieldModal] = useState(false);
     const [yields, setYield] = useState(null);
+
     const [videoStream, setVideoStream] = useState(null);
     const videoRef = useRef(null);
+    const videoStreamRef = useRef(videoStream);
 
     const [currentPosition, setCurrentPosition] = useState(null);
     const [watchId, setWatchId] = useState(null);
@@ -259,6 +262,7 @@ const MainScreen = () => {
             try {
                 const stream = await navigator.mediaDevices.getUserMedia({ video: true });
                 setVideoStream(stream);
+                videoStreamRef.current = stream; // Cập nhật biến ref
             } catch (error) {
                 console.error('Error accessing camera:', error);
             }
@@ -267,8 +271,8 @@ const MainScreen = () => {
         startVideo();
 
         return () => {
-            if (videoStream) {
-                videoStream.getTracks().forEach((track) => track.stop());
+            if (videoStreamRef.current) {
+                videoStreamRef.current.getTracks().forEach((track) => track.stop());
             }
         };
     }, []);
@@ -287,7 +291,7 @@ const MainScreen = () => {
             </div>
             <div className={classes.map}>
                 {videoStream ? (
-                    <video width={400} height={700} autoPlay ref={videoRef} />
+                    <video width={700} autoPlay playsInline ref={videoRef} />
                 ) : (
                     <img width={700} src={MapYield} alt="map" />
                 )}
