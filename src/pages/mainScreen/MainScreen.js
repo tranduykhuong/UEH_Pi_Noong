@@ -237,6 +237,7 @@ const MainScreen = () => {
 
     useEffect(() => {
         startVideo();
+        console.log('cc');
     }, [flag]);
 
     const clearLocalStorage = () => {
