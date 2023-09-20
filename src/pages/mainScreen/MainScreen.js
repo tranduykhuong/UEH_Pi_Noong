@@ -24,6 +24,7 @@ const MainScreen = () => {
 
     const [videoStream, setVideoStream] = useState(null);
     const videoStreamRef = useRef(null);
+    const [isCameraOn, setIsCameraOn] = useState(false);
 
     const [currentPosition, setCurrentPosition] = useState(null);
     const [watchId, setWatchId] = useState(null);
@@ -213,26 +214,29 @@ const MainScreen = () => {
         };
     }, []);
 
-    useEffect(() => {
-        async function startVideo() {
-            try {
-                const stream = await navigator.mediaDevices.getUserMedia({
-                    video: { facingMode: 'environment' }, // Sử dụng camera sau
-                });
-                setVideoStream(stream);
-                videoStreamRef.current = stream; // Cập nhật biến ref
-            } catch (error) {
-                console.error('Lỗi truy cập camera:', error);
-            }
+    const startVideo = async () => {
+        try {
+            const stream = await navigator.mediaDevices.getUserMedia({
+                video: { facingMode: 'environment' }, // Sử dụng camera sau
+            });
+            setVideoStream(stream);
+            videoStreamRef.current = stream; // Cập nhật biến ref
+            setIsCameraOn(true); // Đặt biến trạng thái thành true khi camera đã bật
+        } catch (error) {
+            console.error('Lỗi truy cập camera:', error);
         }
+    };
 
+    const stopVideo = () => {
+        if (videoStreamRef.current) {
+            videoStreamRef.current.getTracks().forEach((track) => track.stop());
+            setVideoStream(null);
+            setIsCameraOn(false); // Đặt biến trạng thái thành false khi camera đã tắt
+        }
+    };
+
+    useEffect(() => {
         startVideo();
-
-        return () => {
-            if (videoStreamRef.current) {
-                videoStreamRef.current.getTracks().forEach((track) => track.stop());
-            }
-        };
     }, []);
 
     const clearLocalStorage = () => {
@@ -248,16 +252,19 @@ const MainScreen = () => {
                 </div>
             </div>
             <div className={classes.map}>
-                {videoStream ? (
-                    <video
-                        autoPlay
-                        playsInline
-                        ref={(videoElement) => {
-                            if (videoElement) {
-                                videoElement.srcObject = videoStream;
-                            }
-                        }}
-                    />
+                {isCameraOn ? (
+                    <div>
+                        <video
+                            autoPlay
+                            playsInline
+                            ref={(videoElement) => {
+                                if (videoElement) {
+                                    videoElement.srcObject = videoStream;
+                                }
+                            }}
+                        />
+                        <button onClick={stopVideo}>Dừng Camera</button>
+                    </div>
                 ) : (
                     <img width={700} src={MapYield} alt="map" />
                 )}
