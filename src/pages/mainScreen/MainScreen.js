@@ -227,14 +227,6 @@ const MainScreen = () => {
         }
     };
 
-    const stopVideo = () => {
-        if (videoStreamRef.current) {
-            videoStreamRef.current.getTracks().forEach((track) => track.stop());
-            setVideoStream(null);
-            setIsCameraOn(false); // Đặt biến trạng thái thành false khi camera đã tắt
-        }
-    };
-
     useEffect(() => {
         startVideo();
         console.log('cc');
@@ -264,7 +256,6 @@ const MainScreen = () => {
                                 }
                             }}
                         />
-                        <button onClick={stopVideo}>Dừng Camera</button>
                     </div>
                 ) : (
                     <img width={700} src={MapYield} alt="map" />
