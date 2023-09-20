@@ -291,7 +291,7 @@ const MainScreen = () => {
             </div>
             <div className={classes.map}>
                 {videoStream ? (
-                    <video width={700} autoPlay playsInline ref={videoRef} />
+                    <video width={400} height={500} autoPlay playsInline ref={videoRef} />
                 ) : (
                     <img width={700} src={MapYield} alt="map" />
                 )}
