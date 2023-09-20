@@ -235,10 +235,6 @@ const MainScreen = () => {
         }
     };
 
-    useEffect(() => {
-        startVideo();
-    }, [isCameraOn]);
-
     const clearLocalStorage = () => {
         localStorage.clear();
     };
