@@ -21,10 +21,11 @@ const MainScreen = () => {
     const [requipmentModal, setRequipmentModal] = useState(false);
     const [yieldModal, setYieldModal] = useState(false);
     const [yields, setYield] = useState(null);
-    const flag = true;
+
     const [videoStream, setVideoStream] = useState(null);
     const videoStreamRef = useRef(null);
-    const [isCameraOn, setIsCameraOn] = useState(false);
+    const [isCameraOn, setIsCameraOn] = useState(false); // Sử dụng biến trạng thái để kiểm soát camera
+    const [hasStarted, setHasStarted] = useState(false);
 
     const [currentPosition, setCurrentPosition] = useState(null);
     const [watchId, setWatchId] = useState(null);
@@ -227,10 +228,13 @@ const MainScreen = () => {
         }
     };
 
+    // Gọi hàm startVideo chỉ khi hasStarted là false
     useEffect(() => {
-        startVideo();
-        console.log('cc');
-    }, [flag]);
+        if (!hasStarted) {
+            startVideo();
+            setHasStarted(true); // Đánh dấu rằng đã gọi startVideo
+        }
+    }, [hasStarted]);
 
     const clearLocalStorage = () => {
         localStorage.clear();
