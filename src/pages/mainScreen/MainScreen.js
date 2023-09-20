@@ -275,7 +275,7 @@ const MainScreen = () => {
                 ) : (
                     <img width={700} src={MapYield} alt="map" />
                 )} */}
-                {stream && <video ref={videoRef} playsInline height={'100%'} width={'100%'} autoPlay></video>}
+                {stream && <video ref={videoRef} playsInline width={'100%'} autoPlay></video>}
             </div>
 
             <div className={classes.option}>
