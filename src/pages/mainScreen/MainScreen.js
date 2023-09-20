@@ -219,15 +219,14 @@ const MainScreen = () => {
     // Gọi hàm startVideo chỉ khi hasStarted là false
     useEffect(() => {
         console.log('cc');
-        if (!hasStarted) {
-            startVideo();
-            setHasStarted(true);
-        }
-    }, [hasStarted]);
+        startVideo();
+    }, []);
 
     const clearLocalStorage = () => {
         localStorage.clear();
     };
+
+    console.log(1);
 
     return (
         <div className={classes.container}>
