@@ -21,7 +21,7 @@ const MainScreen = () => {
     const [requipmentModal, setRequipmentModal] = useState(false);
     const [yieldModal, setYieldModal] = useState(false);
     const [yields, setYield] = useState(null);
-
+    const flag = true;
     const [videoStream, setVideoStream] = useState(null);
     const videoStreamRef = useRef(null);
     const [isCameraOn, setIsCameraOn] = useState(false);
@@ -237,7 +237,7 @@ const MainScreen = () => {
 
     useEffect(() => {
         startVideo();
-    }, [isCameraOn]);
+    }, [flag]);
 
     const clearLocalStorage = () => {
         localStorage.clear();
