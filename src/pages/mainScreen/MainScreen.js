@@ -22,10 +22,7 @@ const MainScreen = () => {
     const [yieldModal, setYieldModal] = useState(false);
     const [yields, setYield] = useState(null);
 
-    const [webcamStream, setWebcamStream] = useState(null);
-    const [devices, setDevices] = useState([]);
-    const webcamRef = useRef(null);
-    const [selectedDevice, setSelectedDevice] = useState(null);
+    const videoElement = document.getElementById('video-element');
 
     const [currentPosition, setCurrentPosition] = useState(null);
     const [watchId, setWatchId] = useState(null);
@@ -215,43 +212,22 @@ const MainScreen = () => {
         };
     }, []);
 
-    // Lấy danh sách thiết bị đầu vào (bao gồm camera)
-    useEffect(() => {
-        navigator.mediaDevices.enumerateDevices().then((devices) => {
-            setDevices(devices.filter((device) => device.kind === 'videoinput'));
-        });
-    }, []);
+    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+        // Yêu cầu quyền truy cập vào camera sau
+        navigator.mediaDevices
+            .getUserMedia({ video: { facingMode: 'environment' } }) // facingMode: 'environment' để chọn camera sau
+            .then(function (stream) {
+                // Gán luồng video từ camera vào video element
+                videoElement.srcObject = stream;
+                videoElement.play();
+            })
+            .catch(function (error) {
+                console.error('Lỗi truy cập camera:', error);
+            });
+    } else {
+        console.error('Trình duyệt không hỗ trợ navigator.mediaDevices');
+    }
 
-    const startCamera = async () => {
-        try {
-            const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-            setWebcamStream(stream);
-            webcamRef.current.srcObject = stream;
-        } catch (error) {
-            console.error('Error accessing camera:', error);
-        }
-    };
-
-    const stopCamera = () => {
-        if (webcamStream) {
-            webcamStream.getTracks().forEach((track) => track.stop());
-            setWebcamStream(null);
-        }
-    };
-
-    const switchCamera = async () => {
-        if (devices.length > 1 && selectedDevice) {
-            const newIndex = devices.findIndex((device) => device.deviceId !== selectedDevice.deviceId);
-            if (newIndex !== -1) {
-                const newDevice = devices[newIndex];
-                setSelectedDevice(newDevice);
-                stopCamera();
-                const stream = await navigator.mediaDevices.getUserMedia({ video: { deviceId: newDevice.deviceId } });
-                setWebcamStream(stream);
-                webcamRef.current.srcObject = stream;
-            }
-        }
-    };
     const clearLocalStorage = () => {
         localStorage.clear();
     };
@@ -265,15 +241,7 @@ const MainScreen = () => {
                 </div>
             </div>
             <div className={classes.map}>
-                {webcamStream ? (
-                    <div>
-                        <Webcam audio={false} ref={webcamRef} screenshotFormat="image/jpeg" />
-                        <button onClick={stopCamera}>Dừng Camera</button>
-                        <button onClick={switchCamera}>Xoay Camera</button>
-                    </div>
-                ) : (
-                    <button onClick={startCamera}>Bật Camera</button>
-                )}
+                <video id="video-element" autoplay playsinline></video>
             </div>
 
             <div className={classes.option}>
