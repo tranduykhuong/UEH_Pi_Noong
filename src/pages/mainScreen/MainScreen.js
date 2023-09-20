@@ -162,21 +162,10 @@ const MainScreen = () => {
             if (currentPosition !== null) {
                 for (let i = 0; i < data.length; i++) {
                     const element = data[i];
-                    console.log(element.lat);
-                    console.log(element.lng);
-                    console.log(currentPosition);
                     const dist = calculateDistance(currentPosition.lat, currentPosition.lng, element.lat, element.lng);
-                    console.log(dist);
                     if (dist < 0.05 && !yieldModal) {
-                        // console.log(element);
-                        // console.log(dist);
-                        // check thêm có đang hiện vật phẩm trước đó không
-                        // alert(element.id);
-                        // Xử lý hiện vật phẩm
-                        console.log(element);
                         setYield(element);
                         setYieldModal(true);
-                        console.log('vvvvv');
 
                         // Cập nhật data và local các vật phẩm đã hoàn thành
                         const dataUpdate = data
@@ -184,7 +173,6 @@ const MainScreen = () => {
                                 if (item.id !== element.id) return item;
                             })
                             .filter((e) => e !== undefined);
-                        console.log(dataUpdate);
                         setData(dataUpdate);
                         const completed = JSON.parse(localStorage.getItem('completed'));
                         completed.push(element);
