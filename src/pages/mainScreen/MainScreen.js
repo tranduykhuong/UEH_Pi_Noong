@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import classes from './MainScreen.module.scss';
 import RightBracket from '../../assets/imgs/Logout.png';
 import Book from '../../assets/imgs/Book.png';
@@ -64,6 +64,7 @@ const MainScreen = () => {
     const [yieldModal, setYieldModal] = useState(false);
     const [yields, setYield] = useState(null);
     const [videoStream, setVideoStream] = useState(null);
+    const videoRef = useRef(null);
 
     const [currentPosition, setCurrentPosition] = useState(null);
     const [watchId, setWatchId] = useState(null);
@@ -286,7 +287,7 @@ const MainScreen = () => {
             </div>
             <div className={classes.map}>
                 {videoStream ? (
-                    <video width={700} autoPlay playsInline ref={videoRef} />
+                    <video width={700} height={700} autoPlay playsInline ref={videoRef} />
                 ) : (
                     <img width={700} src={MapYield} alt="map" />
                 )}
