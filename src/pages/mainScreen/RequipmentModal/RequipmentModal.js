@@ -59,14 +59,14 @@ const RequipmentModal = ({ onClose }) => {
                 </div>
                 <div className={classes.colection}>
                     <div className={classes.template}>
+                        {filteredCollectionData.map((item, index) => (
+                            <img key={index} className={classes.img_ao} src={item?.img} alt={item?.name} />
+                        ))}
                         {imageSelected ? (
                             <img className={classes.img_hiden} src={imageSelected?.hidden_img} alt={'pic'} />
                         ) : (
                             <p style={{ padding: 20 }}>Vui lòng chọn trang phục</p>
                         )}
-                        {filteredCollectionData.map((item, index) => (
-                            <img key={index} className={classes.img_ao} src={item?.img} alt={item?.name} />
-                        ))}
                     </div>
                 </div>
             </div>

@@ -77,12 +77,14 @@
                 .img_hiden {
                     width: 100%;
                     height: auto;
+                    z-index: 1000;
                 }
 
                 .img_ao {
                     position: absolute;
                     width: 100%;
                     height: auto;
+                    z-index: 1001;
                 }
 
                 .img_vay {
