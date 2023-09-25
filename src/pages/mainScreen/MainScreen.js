@@ -176,7 +176,7 @@ const MainScreen = () => {
                         setData(dataUpdate);
                         const completed = JSON.parse(localStorage.getItem('completed'));
                         completed.push(element);
-                        localStorage.setItem('completed', completed);
+                        localStorage.setItem('completed', JSON.stringify(completed));
                         break;
                     }
                 }
