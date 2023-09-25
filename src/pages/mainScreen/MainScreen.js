@@ -93,26 +93,26 @@ const MainScreen = () => {
         localStorage.setItem('completed', JSON.stringify([]));
     };
 
-    useEffect(() => {
-        const completed = localStorage.getItem('completed');
-        // const completed = test;
-        // console.log(completed);
-        if (completed) {
-            const completedData = completed || JSON.parse(completed);
-            const tmp = YieldDatas.items
-                .map((item) => {
-                    for (let i = 0; i < completedData.length; i++) {
-                        const element = completedData[i];
-                        if (element.id === item.id) return;
-                    }
-                    return item;
-                })
-                .filter((e) => e !== undefined);
-            setData(tmp);
-        } else {
-            localStorage.setItem('completed', JSON.stringify([]));
-        }
-    }, []);
+    // useEffect(() => {
+    //     const completed = localStorage.getItem('completed');
+    //     // const completed = test;
+    //     // console.log(completed);
+    //     if (completed) {
+    //         const completedData = completed || JSON.parse(completed);
+    //         const tmp = YieldDatas.items
+    //             .map((item) => {
+    //                 for (let i = 0; i < completedData.length; i++) {
+    //                     const element = completedData[i];
+    //                     if (element.id === item.id) return;
+    //                 }
+    //                 return item;
+    //             })
+    //             .filter((e) => e !== undefined);
+    //         setData(tmp);
+    //     } else {
+    //         localStorage.setItem('completed', JSON.stringify([]));
+    //     }
+    // }, []);
 
     useEffect(() => {
         const handleWatchPosition = () => {
@@ -160,6 +160,26 @@ const MainScreen = () => {
     useEffect(() => {
         const isHeadingTowardTarget = () => {
             if (currentPosition !== null) {
+                let data = YieldDatas.items;
+                const completed = localStorage.getItem('completed');
+                // const completed = test;
+                // console.log(completed);
+                if (completed) {
+                    const completedData = completed || JSON.parse(completed);
+                    const tmp = YieldDatas.items
+                        .map((item) => {
+                            for (let i = 0; i < completedData.length; i++) {
+                                const element = completedData[i];
+                                if (element.id === item.id) return;
+                            }
+                            return item;
+                        })
+                        .filter((e) => e !== undefined);
+                    data = tmp;
+                } else {
+                    localStorage.setItem('completed', JSON.stringify([]));
+                }
+
                 for (let i = 0; i < data.length; i++) {
                     const element = data[i];
                     const dist = calculateDistance(currentPosition.lat, currentPosition.lng, element.lat, element.lng);
@@ -168,12 +188,12 @@ const MainScreen = () => {
                         setYieldModal(true);
 
                         // Cập nhật data và local các vật phẩm đã hoàn thành
-                        const dataUpdate = data
-                            .map((item) => {
-                                if (item.id !== element.id) return item;
-                            })
-                            .filter((e) => e !== undefined);
-                        setData(dataUpdate);
+                        // const dataUpdate = data
+                        //     .map((item) => {
+                        //         if (item.id !== element.id) return item;
+                        //     })
+                        //     .filter((e) => e !== undefined);
+                        // setData(dataUpdate);
                         const completed = JSON.parse(localStorage.getItem('completed'));
                         completed.push(element);
                         localStorage.setItem('completed', JSON.stringify(completed));
