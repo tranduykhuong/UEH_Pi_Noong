@@ -46,7 +46,11 @@ const RequipmentModal = ({ onClose }) => {
         }
     }, []);
 
-    const filteredCollectionData = collectionData.filter((item) => item.id.includes(imageSelected.id));
+    const filteredCollectionData = collectionData.filter((item) => {
+        if (imageSelected) {
+            item.id.includes(imageSelected.id);
+        }
+    });
 
     return (
         <div onClick={handleModalClick} className={classes.container}>
@@ -75,3 +79,4 @@ const RequipmentModal = ({ onClose }) => {
 };
 
 export default RequipmentModal;
+
