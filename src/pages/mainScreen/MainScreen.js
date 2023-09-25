@@ -165,7 +165,9 @@ const MainScreen = () => {
                 // const completed = test;
                 // console.log(completed);
                 if (completed) {
+                    console.log(completed);
                     const completedData = completed || JSON.parse(completed);
+                    console.log(completedData);
                     const tmp = YieldDatas.items
                         .map((item) => {
                             for (let i = 0; i < completedData.length; i++) {
