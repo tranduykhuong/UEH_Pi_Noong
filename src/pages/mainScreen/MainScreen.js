@@ -166,19 +166,16 @@ const MainScreen = () => {
                 // console.log(completed);
                 if (completed) {
                     const completedData = JSON.parse(completed);
-                    console.log(YieldDatas.items);
                     const tmp = YieldDatas.items
                         .map((item) => {
                             for (let i = 0; i < completedData.length; i++) {
                                 const element = completedData[i];
-                                console.log(element.id, item.id);
                                 if (element.id === item.id) return;
                             }
                             return item;
                         })
                         .filter((e) => e !== undefined);
                     data = tmp;
-                    console.log(tmp);
                 } else {
                     localStorage.setItem('completed', JSON.stringify([]));
                 }
