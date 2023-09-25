@@ -43,16 +43,16 @@
             "img": "https://res.cloudinary.com/dnax1t7m4/image/upload/v1694791106/ueh/A1_ealctc.png",
             "name": "Khăn đội đầu trang phục Tày",
             "yield_img": "https://res.cloudinary.com/dnax1t7m4/image/upload/v1694844936/ueh/a1_kpuy69.png",
-            "lat": 10.761004060772583,
-            "lng": 106.66829784288188
+            "lat": 10.7668207,
+            "lng": 106.6950655
         },
         {
             "id": "A2",
             "img": "https://res.cloudinary.com/dnax1t7m4/image/upload/v1694791104/ueh/A2_eh2n28.png",
             "name": "Áo trang phục Tày",
             "yield_img": "https://res.cloudinary.com/dnax1t7m4/image/upload/v1694844937/ueh/a2_seq24j.png",
-            "lat": 10.760964471458822,
-            "lng": 106.66839065606478
+            "lat": 10.7668201,
+            "lng": 106.6950668
         },
         {
             "id": "A3",
