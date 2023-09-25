@@ -176,10 +176,12 @@ const MainScreen = () => {
                         })
                         .filter((e) => e !== undefined);
                     data = tmp;
+                    console.log(tmp);
                 } else {
                     localStorage.setItem('completed', JSON.stringify([]));
                 }
 
+                console.log(data);
                 for (let i = 0; i < data.length; i++) {
                     const element = data[i];
                     const dist = calculateDistance(currentPosition.lat, currentPosition.lng, element.lat, element.lng);
