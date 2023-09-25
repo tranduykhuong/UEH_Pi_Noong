@@ -13,7 +13,7 @@ const Navigation = () => {
         <main>
             <Routes>
                 <Route element={<Layout />}>
-                    {/* <Route path="/" name="home" element={<Home />} /> */}
+                    <Route path="/s" name="home" element={<Home />} />
                     <Route path="/" name="mainScreen" element={<MainScreen />} />
                     <Route path="/main" name="home" element={<Main />} />
                 </Route>
