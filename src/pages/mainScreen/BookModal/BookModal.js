@@ -1,10 +1,11 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import classes from './BookModal.module.scss';
 import Back from '../../../assets/imgs/back.png';
 import bookData from '../../../assets/data.json';
 
 const BookModal = ({ onClose }) => {
     const modalRef = useRef(null);
+    const [showModal, setShowModal] = useState(false);
 
     const handleModalClick = (e) => {
         if (modalRef.current && !modalRef.current.contains(e.target)) {
@@ -28,8 +29,15 @@ const BookModal = ({ onClose }) => {
         // Lưu thông tin ảnh vào localStorage
         localStorage.setItem(`image_choose`, JSON.stringify(imageInfo));
         // alert(`Đã chọn ảnh ${imageInfo.name}`);
-        // Đóng modal
-        onClose();
+
+        // Hiển thị modal
+        setShowModal(true);
+
+        // Đặt thời gian tự động tắt modal sau 2 giây
+        setTimeout(() => {
+            setShowModal(false);
+            onClose();
+        }, 1000);
     };
 
     return (
@@ -54,6 +62,11 @@ const BookModal = ({ onClose }) => {
                     ))}
                 </div>
             </div>
+            {showModal && (
+                <div className={classes.notification}>
+                    <p>Đã chọn trang phục</p>
+                </div>
+            )}
         </div>
     );
 };

@@ -5,6 +5,7 @@ import Back from '../../../assets/imgs/back.png';
 const YieldModal = ({ onClose, yields }) => {
     const modalRef = useRef(null);
     const [confirmModal, setConfirmModal] = useState(false);
+    const [showModal, setShowModal] = useState(false);
 
     const handleModalClick = (e) => {
         if (modalRef.current && !modalRef.current.contains(e.target)) {
@@ -22,7 +23,15 @@ const YieldModal = ({ onClose, yields }) => {
         completed.push(yields);
         localStorage.setItem('collected', JSON.stringify(completed));
         // alert(`Đã thu thập được vật phẩm`);
-        onClose();
+
+        // Hiển thị modal
+        setShowModal(true);
+
+        // Đặt thời gian tự động tắt modal sau 2 giây
+        setTimeout(() => {
+            setShowModal(false);
+            onClose();
+        }, 1000);
     };
 
     const handleConfirm = () => {
@@ -57,6 +66,12 @@ const YieldModal = ({ onClose, yields }) => {
                     </div>
                 </div>
             </div>
+
+            {showModal && (
+                <div className={classes.notification}>
+                    <p>Đã chọn trang phục</p>
+                </div>
+            )}
 
             {confirmModal && (
                 <div className={classes.confirmModal}>
