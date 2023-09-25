@@ -48,7 +48,7 @@ const RequipmentModal = ({ onClose }) => {
 
     const filteredCollectionData = collectionData.filter((item) => {
         if (imageSelected) {
-            item.id.includes(imageSelected.id);
+            return item.id.includes(imageSelected.id);
         }
     });
 
