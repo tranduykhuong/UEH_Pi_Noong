@@ -6,8 +6,8 @@ const CameraComponent = ({ start, onStop, setImg }) => {
     const [stream, setStream] = useState(null);
     const [idAnimate, setIdAnimate] = useState(null);
     const videoRef = useRef();
-    const canvasRef = useRef();
     const streamRef = useRef();
+    const canvasRef = useRef();
 
     const startCamera = async () => {
         try {

@@ -21,7 +21,7 @@ const YieldModal = ({ onClose, yields }) => {
         const completed = JSON.parse(localStorage.getItem('collected')) || [];
         completed.push(yields);
         localStorage.setItem('collected', JSON.stringify(completed));
-        alert(`Đã thu thập được vật phẩm`);
+        // alert(`Đã thu thập được vật phẩm`);
         onClose();
     };
 

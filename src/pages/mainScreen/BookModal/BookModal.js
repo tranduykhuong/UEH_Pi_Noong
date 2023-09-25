@@ -27,7 +27,7 @@ const BookModal = ({ onClose }) => {
 
         // Lưu thông tin ảnh vào localStorage
         localStorage.setItem(`image_choose`, JSON.stringify(imageInfo));
-        alert(`Đã chọn ảnh ${imageInfo.name}`);
+        // alert(`Đã chọn ảnh ${imageInfo.name}`);
         // Đóng modal
         onClose();
     };
