@@ -170,6 +170,7 @@ const MainScreen = () => {
                         .map((item) => {
                             for (let i = 0; i < completedData.length; i++) {
                                 const element = completedData[i];
+                                console.log(element.id, item.id);
                                 if (element.id === item.id) return;
                             }
                             return item;
