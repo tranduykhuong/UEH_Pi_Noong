@@ -184,7 +184,7 @@ const MainScreen = () => {
                 for (let i = 0; i < data.length; i++) {
                     const element = data[i];
                     const dist = calculateDistance(currentPosition.lat, currentPosition.lng, element.lat, element.lng);
-                    if (dist < 0.03 && !yieldModal) {
+                    if (dist < 0.01 && !yieldModal) {
                         setYield(element);
                         setYieldModal(true);
 
